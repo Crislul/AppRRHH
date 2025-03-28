@@ -1,0 +1,49 @@
+<body>
+    <div class="form-container">
+        <h2>Gestión de Motivos / Autorizaciones</h2>
+        <p> </p>
+
+            <!-- Formulario para crear/editar -->
+            <form (submit)="createMotivo()">
+                <mat-form-field class="model1" appearance="outline">
+                <mat-label>Nombre del motivo</mat-label>
+                <input matInput [(ngModel)]="motivoForm.nombre" name="nombre" required />
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">
+                {{ isEditing ? 'Actualizar' : 'Agregar' }}
+                </button>
+                <button mat-raised-button color="warn" *ngIf="isEditing" (click)="resetForm()">Cancelar</button>
+            </form>
+
+            <!-- Tabla de Motivos -->
+            <table mat-table [dataSource]="motivos" class="mat-elevation-z8">
+                <!-- Columna ID -->
+                <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let motivo">{{ motivo.id }}</td>
+                </ng-container>
+
+                <!-- Columna Nombre -->
+                <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let motivo">{{ motivo.nombre }}</td>
+                </ng-container>
+
+                <!-- Columna Acciones -->
+                <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let motivo">
+                    <button mat-icon-button color="accent" (click)="editMotivo(motivo)">
+                    <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteMotivo(motivo.id)">
+                    <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+    </div>
+</body>

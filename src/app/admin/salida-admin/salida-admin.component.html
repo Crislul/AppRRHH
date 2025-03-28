@@ -1,0 +1,51 @@
+<body>
+    <div class="form-container">
+        <div> 
+            <h2>Autorización de Salida #123</h2>
+        </div>
+        <form id="autorizacionForm">
+            <p> </p>
+            <label>Nombre del Trabajador</label>
+            <input type="text" placeholder="Nombre del Trabajador" disabled id="Name">
+            <label>Área de Trabajo</label>
+            <input type="text" placeholder="Área de Trabajo" disabled id="AreaTrabajoId">
+            <label>Categoría</label>
+            <input type="text" placeholder="Categoría" disabled id="CategoriaId">
+            <p> </p>
+                <label>Hora de:</label>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Salida</label>
+                    <input type="time"  id="HoraSalida" disabled>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Entrada</label>
+                    <input type="time"  id="HoraEntrada" disabled>
+                </div>
+            </div>
+            <p> </p>
+            <label>Horario de Trabajo</label>
+            <input type="number" placeholder="8" id="HoraTrabajo" disabled>
+            <label>Lugar</label>
+            <input type="text" placeholder="Lugar" id="Lugar" disabled>
+            <label>Asunto</label>
+            <input type="text" placeholder="Asunto" id="Asunto" disabled>
+            <label>Fecha ** del dia</label>
+            <input type="date" placeholder="Fecha **" id="Fecha" disabled>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <button type="submit">
+                        <i class="fas fa-check-circle"></i>
+                        Autorizar</button>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <button class="buttonC" type="submit">
+                        <i class="fas fa-times-circle"></i>
+                        Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

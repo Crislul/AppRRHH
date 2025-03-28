@@ -1,0 +1,57 @@
+<body>
+    <div class="form-container">
+        <div>
+            <h2>Generar Incidencia</h2>
+        </div>
+        <form id="incidenciaForm">
+            <p> </p>
+            <label>Nombre del Trabajador</label>
+            <input class="inputT" type="text" placeholder="Sergio Perez" id="Name" disabled>
+            <label>Areá de trabajo</label>
+            <input type="text" placeholder="RRHH" id="AreaTrabajoId" list="listanavegadores" required>
+            <datalist id="listanavegadores">
+                <option label="Chrome" value="Chrome">
+                <option label="Firefox" value="Firefox">
+                <option label="Internet Explorer" value="Internet Explorer">
+                <option label="Microsoft Edge" value="Microsoft Edge">
+                <option label="Safari" value="Safari">
+                <option label="RRHH" value="RRHH"></option>
+              </datalist>
+
+            <label>Categoriá</label>
+            <input type="text" placeholder="Categoría" id="CategoriaId" list="listanavegadores" required>
+            <p> </p>
+                <label>Fecha de Movimiento</label>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Del:</label>
+                    <input type="date" id="FechaDel" required>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Al:</label>
+                    <input type="date" id="FechaAl" required>
+                </div>
+            </div>
+            <p> </p>
+            <label>Motivo \ Se autoriza a:</label>
+            <input type="text" placeholder="Consulta Médica" id="Motivo" list="listanavegadores" required>
+            <Label> Descripción</Label>
+            <input type="text" placeholder="Descripción" id="Descripcion" required>
+            <label>Fecha ** seria la del dia</label>
+            <input class="inputT" type="date" placeholder="Fecha **" id="Fecha" disabled>
+
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <button type="submit">
+                        <i class="fas fa-check-circle"></i>
+                        Generar</button>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

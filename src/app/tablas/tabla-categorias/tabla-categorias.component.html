@@ -1,0 +1,50 @@
+<body>
+    <div class="form-container">
+        <h2>Gestión de Categorías</h2>
+        <p> </p>
+
+        <!-- Formulario para crear/editar -->
+        <form (submit)="createCategoria()">
+            <mat-form-field class="model1" appearance="outline">
+            <mat-label>Nombre de la categoría</mat-label>
+            <input matInput [(ngModel)]="categoriaForm.nombre" name="nombre" required />
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">
+            {{ isEditing ? 'Actualizar' : 'Agregar' }}
+            </button>
+            <button mat-raised-button color="warn" *ngIf="isEditing" (click)="resetForm()">Cancelar</button>
+        </form>
+
+        <!-- Tabla de Categorías -->
+        <table mat-table [dataSource]="categorias" class="mat-elevation-z8">
+            <!-- Columna ID -->
+            <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let categoria">{{ categoria.id }}</td>
+            </ng-container>
+
+            <!-- Columna Nombre -->
+            <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let categoria">{{ categoria.nombre }}</td>
+            </ng-container>
+
+            <!-- Columna Acciones -->
+            <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let categoria">
+                <button mat-icon-button color="accent" (click)="editCategoria(categoria)">
+                <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteCategoria(categoria.id)">
+                <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </div>
+</body>

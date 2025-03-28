@@ -1,0 +1,56 @@
+<body>
+  <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+  
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <!-- Correo -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Correo</mat-label>
+        <input type="email" matInput formControlName="correo" placeholder="Ejemplo: 123@utrng.edu.com.mx">
+        <mat-error *ngIf="loginForm.get('correo')?.hasError('email') && !loginForm.get('correo')?.hasError('required')">
+          Ingresa un correo válido.
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('correo')?.hasError('required')">
+          El correo es <strong>requerido</strong>.
+        </mat-error>
+      </mat-form-field>
+  
+      <p></p>
+  
+      <!-- Contraseña -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="contrasena" [type]="hide() ? 'password' : 'text'">
+        <button
+        mat-icon-button
+        matSuffix
+        type="button"  
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Toggle password visibility'"
+        [attr.aria-pressed]="!hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      
+
+        <mat-error *ngIf="loginForm.get('contrasena')?.hasError('required')">
+          La contraseña es <strong>requerida</strong>.
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('contrasena')?.hasError('minlength')">
+          La contraseña debe tener al menos 8 caracteres.
+        </mat-error>
+      </mat-form-field>
+  
+      <p></p>
+  
+      <!-- Botón de Ingresar -->
+      <div>
+        <button mat-flat-button color="primary" type="submit" [disabled]="loading()">
+          <mat-spinner *ngIf="loading()" diameter="20"></mat-spinner>
+          <span *ngIf="!loading()">Ingresar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  
+</body>

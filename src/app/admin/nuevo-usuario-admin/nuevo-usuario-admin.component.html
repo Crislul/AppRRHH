@@ -1,0 +1,45 @@
+<body>
+  <div class="form-container">
+    <div>
+      <h2>Crear Nuevo Usuario</h2>
+    </div>
+    <form (ngSubmit)="crearUsuario()">
+      <label>Nombre completo:</label>
+      <input type="text" placeholder="..." [(ngModel)]="nombre" name="nombre" required>
+  
+      <div style="display: flex; gap: 10px;">
+        <div style="flex: 1; padding: 10px;">
+          <label>Apellido Paterno:</label>
+          <input type="text" placeholder="..." [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+          <label>Apellido Materno:</label>
+          <input type="text" placeholder="..." [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required>
+        </div>
+      </div>
+  
+      <label>Correo</label>
+      <input type="email" placeholder="..." [(ngModel)]="correo" name="correo" required>
+  
+      <div style="display: flex; gap: 10px;">
+        <div style="flex: 1; padding: 10px;">
+          <label>Contraseña:</label>
+          <input type="password" [(ngModel)]="contrasena" name="contraseña" required>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+          <label>Confirme la contraseña:</label>
+          <input type="password" [(ngModel)]="confirmarContrasena" name="confirmarContraseña" required>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <div style="flex: 1; padding: 10px;">
+          <button type="submit">Crear Usuario</button>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+          
+        </div>
+      </div>
+    </form>
+  </div>
+</body>

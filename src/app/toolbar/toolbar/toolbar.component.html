@@ -1,0 +1,48 @@
+<mat-toolbar>
+  <span class="example-spacer"></span>
+  <h1>Bienvenido {{nombreUsuario()}}</h1>
+
+
+   <!-- Botón de Notificaciones -->
+   <button mat-icon-button [matMenuTriggerFor]="notificationsMenu" aria-label="Notificaciones">
+    <mat-icon>notifications</mat-icon>
+    <span  class="notification-badge"></span>
+  </button>
+
+  <!-- Menú de Notificaciones -->
+  <mat-menu #notificationsMenu="matMenu">
+    <ng-container *ngIf="notifications.length > 0; else noNotifications">
+      <button mat-menu-item *ngFor="let notification of notifications">
+        <mat-icon>message</mat-icon>
+        <span>{{ notification.message }}</span>
+      </button>
+    </ng-container>
+    
+    <ng-template #noNotifications>
+      <button mat-menu-item disabled>
+        <span>No hay notificaciones</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+
+
+
+
+  <!-- Botón de Usuario -->
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="Usuario">
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <!-- Menú de Usuario -->
+  <mat-menu #userMenu="matMenu" >
+    <button mat-menu-item (click)="logout()">
+      <mat-icon >exit_to_app</mat-icon>
+      <span >Cerrar sesión</span>
+    </button>
+    <button mat-menu-item (click)="help()">
+      <mat-icon>help</mat-icon>
+      <span>Ayuda</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+  

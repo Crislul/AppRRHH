@@ -1,0 +1,58 @@
+<body>
+    <div class="form-container">
+        <div> 
+            <h2>Generar Autorización de Salida</h2>
+        </div>
+        <form id="autorizacionForm">
+            <p> </p>
+            <label>Nombre del Trabajador</label>
+            <input type="text" placeholder="Nombre del Trabajador" id="Name" required>
+            <label>Área de Trabajo</label>
+            <input type="text" placeholder="Área de Trabajo" id="AreaTrabajoId" list="listanavegadores" required>
+            <datalist id="listanavegadores">
+                <option label="Chrome" value="Chrome">
+                <option label="Firefox" value="Firefox">
+                <option label="Internet Explorer" value="Internet Explorer">
+                <option label="Microsoft Edge" value="Microsoft Edge">
+                <option label="Safari" value="Safari">
+                <option label="RRHH" value="RRHH"></option>
+              </datalist>
+
+            <label>Categoría</label>
+            <input type="text" placeholder="Categoría" id="CategoriaId" list="listanavegadores" required>
+            <p> </p>
+                <label>Hora de:</label>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Salida</label>
+                    <input type="time"  id="HoraSalida" required>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Entrada</label>
+                    <input type="time"  id="HoraEntrada" required>
+                </div>
+            </div>
+            <p> </p>
+            <label>Horario de Trabajo</label>
+            <input type="number" placeholder="8" id="HoraTrabajo" required>
+            <label>Lugar</label>
+            <input type="text" placeholder="Lugar" id="Lugar"  required>
+            <label>Asunto</label>
+            <input type="text" placeholder="Asunto" id="Asunto" required>
+            <label>Fecha ** del dia</label>
+            <input class="inputT" type="date" placeholder="Fecha **" id="Fecha" disabled>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <button type="submit">
+                        <i class="fas fa-check-circle"></i>
+                        Generar</button>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
