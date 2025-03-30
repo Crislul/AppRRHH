@@ -23,6 +23,8 @@ import { authAdminGuard } from './auth-admin.guard';
 import { TablaAreasComponent } from './tablas/tabla-areas/tabla-areas.component';
 import { TablaCategoriasComponent } from './tablas/tabla-categorias/tabla-categorias.component';
 import { TablaMotivosComponent } from './tablas/tabla-motivos/tabla-motivos.component';
+import { IncidenciaUserComponent } from './user/incidencia-user/incidencia-user.component';
+import { SalidaUserComponent } from './user/salida-user/salida-user.component';
 
 
 
@@ -47,10 +49,10 @@ export const routes: Routes = [
    { path: 'generarSalidaAdmin', component: GenerarSalidaAdminComponent, canActivate: [authAdminGuard]},
    { path: 'generarUsuario', component: NuevoUsuarioAdminComponent, canActivate: [authAdminGuard]},
 
-   { path: 'incidencia', component: IncidenciaAdminComponent, canActivate: [authAdminGuard]}, 
-   { path: 'notifiAdmin', component: NotifiAdminComponent, canActivate: [authAdminGuard]},
-   
+   { path: 'incidencia/:id', component: IncidenciaAdminComponent, canActivate: [authAdminGuard]}, 
    { path: 'salida', component: SalidaAdminComponent, canActivate: [authAdminGuard]},
+
+   { path: 'notifiAdmin', component: NotifiAdminComponent, canActivate: [authAdminGuard]},
 
    { path: 'tablaExpedientesAdmin', component: TablaExpedientesAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaIncidenciasAdmin', component: TablaIncidenciasAdminComponent, canActivate: [authAdminGuard]},
@@ -64,7 +66,10 @@ export const routes: Routes = [
    { path: 'expediente', component: ExpedienteUserComponent},  
 
    { path: 'generar/incidencia', component: GenerarIncidenciaUserComponent}, 
-   { path: 'generar/salida', component: GenerarSalidaUserComponent},  
+   { path: 'generar/salida', component: GenerarSalidaUserComponent},
+   
+   { path: 'incidenciaUser/:id', component: IncidenciaUserComponent},
+   { path: 'salidaUser/:id', component: SalidaUserComponent},  
 
    { path: 'notifi', component: NotifiUserComponent},
 

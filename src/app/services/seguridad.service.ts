@@ -16,8 +16,23 @@ export class SeguridadService implements OnDestroy {
     window.addEventListener('beforeunload', this.cerrarSesion.bind(this));
   }
 
-  login(correo: string, contrasenaHash: string): Observable<{ autenticado: boolean; tipoUsuario?: number; nombre?: string; id?: number;}> {
-    return this.http.post<{ autenticado: boolean; tipoUsuario?: number; nombre?: string; id?: number; }>(this.apiUrl, {
+  login(correo: string, contrasenaHash: string): 
+  Observable<{ 
+    autenticado: boolean; 
+    tipoUsuario?: number;
+    apellidoM?: string;
+    apellidoP?: string; 
+    nombre?: string; 
+    id?: number;
+  }> {
+    return this.http.post<{ 
+      autenticado: boolean; 
+      tipoUsuario?: number;
+      apellidoM?: string;
+      apellidoP?: string; 
+      nombre?: string; 
+      id?: number; 
+    }>(this.apiUrl, {
       correo,
       contrasenaHash
     }).pipe(
@@ -25,6 +40,8 @@ export class SeguridadService implements OnDestroy {
         if (resp.autenticado) {
           localStorage.setItem('autenticado', 'true');
           localStorage.setItem('tipoUsuario', String(resp.tipoUsuario));
+          localStorage.setItem('apellidoMUsuario', String(resp.apellidoM));
+          localStorage.setItem('apellidoPUsuario', String(resp.apellidoP));
           localStorage.setItem('nombreUsuario', String(resp.nombre));
           localStorage.setItem('idUsuario', String(resp.id));
 
@@ -66,7 +83,17 @@ export class SeguridadService implements OnDestroy {
 
   obtenerNombre(): string {
     const nombre1 = localStorage.getItem('nombreUsuario');
-    return nombre1 ?? 'Bruce Wayne';  // Retorna un string vacío si el valor es null
+    return nombre1 ?? 'Bruce';  // Retorna un string vacío si el valor es null
+  }
+
+  obtenerApellidoP(): string {
+    const nombre1 = localStorage.getItem('apellidoPUsuario');
+    return nombre1 ?? 'Wayne';  // Retorna un string vacío si el valor es null
+  }
+
+  obtenerApellidoM(): string {
+    const nombre1 = localStorage.getItem('apellidoMUsuario');
+    return nombre1 ?? 'Diaz';  // Retorna un string vacío si el valor es null
   }
 
   obtenerId(): number {

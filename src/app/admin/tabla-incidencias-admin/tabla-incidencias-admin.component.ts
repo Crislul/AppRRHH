@@ -89,9 +89,9 @@ export class TablaIncidenciasAdminComponent implements OnInit, AfterViewInit{
     }
   
 
-    visualizarIncidencia()
+    visualizarIncidencia(id: number)
     {
-      this.router.navigate(['/incidencia']);
+      this.router.navigate(['/incidencia', id,]);
     }
 }
 

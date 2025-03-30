@@ -79,4 +79,5 @@ export class IncidenciaService {
   getMotivos(): Observable<any[]> {
     return this.http.get<any[]>(this.motivosUrl);
   }
+  
 }

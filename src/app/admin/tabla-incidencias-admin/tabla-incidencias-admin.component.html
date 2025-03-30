@@ -45,12 +45,10 @@
           <td mat-cell *matCellDef="let incidencia"> {{ incidencia.fecha }} </td>
         </ng-container>
 
-    
-        <!-- Columna Acciones (Editar) -->
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef> Acciones </th>
           <td mat-cell *matCellDef="let incidencia">
-            <button mat-button (click)="visualizarIncidencia()">
+            <button mat-button (click)="visualizarIncidencia(incidencia.id)">
               <i class="fa-solid fa-file-import"></i> Visualizar
             </button>
           </td>

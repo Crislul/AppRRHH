@@ -99,9 +99,9 @@ export class TablaIncidenciasUserComponent implements OnInit, AfterViewInit{
     }
   
 
-    visualizarIncidencia()
+    visualizarIncidencia(id: number)
     {
-      this.router.navigate(['/incidencia']);
+      this.router.navigate(['/incidenciaUser', id]);
     }
 
 }

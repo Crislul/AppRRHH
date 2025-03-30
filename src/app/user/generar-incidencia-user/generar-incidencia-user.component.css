@@ -16,6 +16,7 @@ body {
     display: grid;
     align-items: center;
 }
+
 .form-container h2 {
     line-height: 1.2;
     font-size: 2rem;
@@ -30,10 +31,27 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-.form-container .inputT {
+
+.form-container select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.form-container .inputT {
+    width: auto;
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: lightcyan;
+}
+
+.form-container .inputName {
+    
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: lightcyan;
