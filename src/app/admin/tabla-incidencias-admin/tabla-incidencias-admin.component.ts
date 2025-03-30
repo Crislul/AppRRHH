@@ -40,7 +40,7 @@ export interface Incidencia {
     MatSortModule,
     MatDialogModule,
     MatButtonModule,
-    MatInputModule,
+    MatInputModule
     ],
   templateUrl: './tabla-incidencias-admin.component.html',
   styleUrl: './tabla-incidencias-admin.component.css'

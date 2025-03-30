@@ -25,8 +25,8 @@ export interface Incidencia {
   providedIn: 'root'
 })
 export class IncidenciaService {
-  private apiUrl = 'https://localhost:7064/api/incidencia';  // Reemplaza con tu URL real
-
+  
+  private apiUrl = 'https://localhost:7064/api/incidencia';
   private usuariosUrl = 'https://localhost:7064/api/usuarios';
   private areasUrl = 'https://localhost:7064/api/area';
   private categoriasUrl = 'https://localhost:7064/api/categoria';

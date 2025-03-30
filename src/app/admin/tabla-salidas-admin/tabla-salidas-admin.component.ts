@@ -1,101 +1,102 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { SalidaService } from '../../services/salida.service';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
+export interface Salida{
+  id: number;
+
+  horaSalida: string;
+  horaEntrada: string;
+  horarioTrabajo: string;
+
+  lugar: string;
+  asunto: string;
+  fecha: string;
+
+  usuarioId: number;
+  usuarioNombre: string; 
+  usuarioApellidoP: string; 
+  usuarioApellidoM: string; 
+
+  areaId: number;
+  areaNombre: string;  
+
+  categoriaId: number;
+  categoriaNombre: string;  
+    
+  estatus: number;
 }
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
-
 
 @Component({
   selector: 'app-tabla-salidas-admin',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+  imports: [
+        CommonModule,
+        MatTableModule,
+        MatFormFieldModule, 
+        MatPaginatorModule,
+        MatSortModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule
+  ],
   templateUrl: './tabla-salidas-admin.component.html',
   styleUrl: './tabla-salidas-admin.component.css'
 })
-export class TablaSalidasAdminComponent implements AfterViewInit{
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit','estatus'];
-    dataSource: MatTableDataSource<UserData>;
-  
-    @ViewChild(MatPaginator)
-    paginator: MatPaginator = new MatPaginator;
-    @ViewChild(MatSort)
-    sort: MatSort = new MatSort;
-  
-    constructor() {
-      // Create 100 users
-      const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-  
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(users);
-    }
-  
-    ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
-  
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-  
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
+export class TablaSalidasAdminComponent implements OnInit, AfterViewInit{
+
+
+  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
+      dataSource = new MatTableDataSource<Salida>([]);
+    
+      @ViewChild(MatPaginator) paginator!: MatPaginator;
+      @ViewChild(MatSort) sort!: MatSort;
+    
+      constructor(
+        private salidaService: SalidaService,
+        private dialog: MatDialog, 
+        private router: Router) {}
+    
+      ngOnInit(): void {
+        this.getIncidencias();
       }
-    }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
+    
+      ngAfterViewInit(): void {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    
+      getIncidencias(): void {
+        this.salidaService.getAutorizaciones().subscribe(
+          (data) => {
+            this.dataSource.data = data.sort((a, b) => b.id - a.id); 
+          },
+          (error) => {
+            console.error('Error al obtener las incidencias:', error);
+          }
+        );
+      }
+    
+      aplicarFiltro(event: Event): void {
+        const valorFiltro = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = valorFiltro.trim().toLowerCase();
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.firstPage();
+        }
+      }
+    
+  
+      visualizarIncidencia(id: number)
+      {
+        this.router.navigate(['/salida', id,]);
+      }
+  
+  
 }

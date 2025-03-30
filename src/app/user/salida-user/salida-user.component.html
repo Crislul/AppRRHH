@@ -1,1 +1,49 @@
-<p>salida-user works!</p>
+<body>
+    <div class="form-container">
+        <div>
+            <h2>Autorizacion de salida #{{salida?.id}}</h2>
+            <h3>Estatus: 
+                <span class="estatus1" *ngIf="salida?.estatus === 0">En espera</span>
+                <span class="estatus2" *ngIf="salida?.estatus === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="salida?.estatus === 2">Rechazado</span>
+              </h3>
+        </div>
+        <form>
+            <p> </p>
+            <label>Nombre del Trabajador</label>
+            <input type="text" [value]="
+            salida?.usuarioNombre + ' ' + 
+            salida?.usuarioApellidoP + ' ' + 
+            salida?.usuarioApellidoM" disabled>
+
+            <label>Areá de trabajo</label>
+            <input type="text" [value]="salida?.areaNombre" disabled>
+            <label>Categoriá</label>
+            <input type="text" [value]="salida?.categoriaNombre" disabled>
+            <p> </p>
+                <label>Hora de:</label>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Entrada</label>
+                    <input type="time" [value]="salida?.horaEntrada" disabled>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Salida</label>
+                    <input type="time" [value]="salida?.horaSalida" disabled>
+                </div>
+            </div>
+            <p> </p>
+            <label>Horario de Trabajo</label>
+            <input type="text" [value]="salida?.horarioTrabajo" disabled>
+            <label>Lugar</label>
+            <input type="text" [value]="salida?.lugar" disabled>
+            <label>Asunto</label>
+            <input type="text" [value]="salida?.asunto" disabled>
+            <label>Fecha de Generacion de la Autorizacion</label>
+            <input class="inputT" type="string" [value]="salida?.fecha" disabled>
+            <p> </p>
+            
+        </form>
+    </div>
+</body>

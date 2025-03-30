@@ -15,7 +15,6 @@ export class IncidenciaAdminComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private incidenciaService: IncidenciaService
   ) {}
 

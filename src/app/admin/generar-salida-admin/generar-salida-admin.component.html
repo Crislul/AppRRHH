@@ -3,45 +3,48 @@
         <div> 
             <h2>Generar Autorización de Salida</h2>
         </div>
-        <form id="autorizacionForm">
+        <form (ngSubmit)="submitForm()">
             <p> </p>
             <label>Nombre del Trabajador</label>
-            <input type="text" placeholder="Nombre del Trabajador" id="Name" required>
+            <select [(ngModel)]="salida.usuarioId" name="usuarioId" required>
+            <option *ngFor="let usuario of usuarios" [value]="usuario.id">
+                {{ usuario.nombre }} {{ usuario.apellidoP }} {{ usuario.apellidoM }}
+            </option>
+            </select>
+
             <label>Área de Trabajo</label>
-            <input type="text" placeholder="Área de Trabajo" id="AreaTrabajoId" list="listanavegadores" required>
-            <datalist id="listanavegadores">
-                <option label="Chrome" value="Chrome">
-                <option label="Firefox" value="Firefox">
-                <option label="Internet Explorer" value="Internet Explorer">
-                <option label="Microsoft Edge" value="Microsoft Edge">
-                <option label="Safari" value="Safari">
-                <option label="RRHH" value="RRHH"></option>
-              </datalist>
+            <select [(ngModel)]="salida.areaId" name="areaId" required>
+                <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
+            </select>
+            
 
             <label>Categoría</label>
-            <input type="text" placeholder="Categoría" id="CategoriaId" list="listanavegadores" required>
+            <select [(ngModel)]="salida.categoriaId" name="categoriaId" required>
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+            </select>
+
             <p> </p>
                 <label>Hora de:</label>
             <p> </p>
             <div style="display: flex; gap: 10px;">
                 <div style="flex: 1; padding: 10px;"> 
-                    <label>Salida</label>
-                    <input type="time"  id="HoraSalida" required>
+                    <label>Entrada</label>
+                    <input type="time" [(ngModel)]="salida.horaEntrada" name="horaEntrada" required>
                 </div>
                 <div style="flex: 1; padding: 10px;">
-                    <label>Entrada</label>
-                    <input type="time"  id="HoraEntrada" required>
+                    <label>Salida</label>
+                    <input type="time" [(ngModel)]="salida.horaSalida" name="horaSalida" required>
                 </div>
             </div>
             <p> </p>
             <label>Horario de Trabajo</label>
-            <input type="number" placeholder="8" id="HoraTrabajo" required>
+            <input type="text" [(ngModel)]="salida.horarioTrabajo" name="horarioTrabajo" required>
             <label>Lugar</label>
-            <input type="text" placeholder="Lugar" id="Lugar"  required>
+            <input type="text" [(ngModel)]="salida.lugar" name="lugar" required>
             <label>Asunto</label>
-            <input type="text" placeholder="Asunto" id="Asunto" required>
+            <input type="text" [(ngModel)]="salida.asunto" name="asunto" required>
             <label>Fecha ** del dia</label>
-            <input class="inputT" type="date" placeholder="Fecha **" id="Fecha" disabled>
+            <input class="inputT" type="date" [(ngModel)]="fechaHoy" name="fecha" disabled>
             <p> </p>
             <div style="display: flex; gap: 10px;">
                 <div style="flex: 1; padding: 10px;"> 

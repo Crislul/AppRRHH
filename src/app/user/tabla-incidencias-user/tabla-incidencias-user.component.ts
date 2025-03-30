@@ -40,7 +40,7 @@ export interface IncidenciaUser {
     MatSortModule,
     MatDialogModule,
     MatButtonModule,
-    MatInputModule,
+    MatInputModule
   ],
   templateUrl: './tabla-incidencias-user.component.html',
   styleUrl: './tabla-incidencias-user.component.css'

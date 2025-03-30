@@ -50,7 +50,7 @@ export const routes: Routes = [
    { path: 'generarUsuario', component: NuevoUsuarioAdminComponent, canActivate: [authAdminGuard]},
 
    { path: 'incidencia/:id', component: IncidenciaAdminComponent, canActivate: [authAdminGuard]}, 
-   { path: 'salida', component: SalidaAdminComponent, canActivate: [authAdminGuard]},
+   { path: 'salida/:id', component: SalidaAdminComponent, canActivate: [authAdminGuard]},
 
    { path: 'notifiAdmin', component: NotifiAdminComponent, canActivate: [authAdminGuard]},
 

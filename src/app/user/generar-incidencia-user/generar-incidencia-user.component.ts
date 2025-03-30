@@ -32,7 +32,6 @@ export class GenerarIncidenciaUserComponent implements OnInit{
     return this.seguridadService.obtenerApellidoM();
   }
   
-  usuarios: any[] = [];
   areas: any[] = [];
   categorias: any[] = [];
   motivos: any[] = [];

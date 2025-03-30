@@ -1,1 +1,65 @@
-<p>expediente-user works!</p>
+<body>
+    <div class="form-container">
+        <div>
+            <h2>Mi Expediente</h2>
+        </div>
+        <p> </p>
+        <form id="incidenciaForm">
+
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <div class="image-container" (mouseover)="showIcon = true" (mouseleave)="showIcon = false">
+                        <img src="logo1.jpg" alt="Imagen de perfil" class="profile-image">
+                      
+                        <!-- Ícono de edición (solo visible cuando el cursor está sobre la imagen) -->
+                        <div *ngIf="showIcon" class="edit-icon" (click)="openFileInput()">
+                          🖊️
+                        </div>
+                      
+                        <!-- Input de archivo oculto -->
+                        <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden>
+                      </div>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <h1>Bruce </h1>
+                    <h1>Wayne </h1>
+                </div>
+            </div>  
+
+
+            <p> </p>  
+            <h3>Documentos</h3>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Constancia</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Constancia</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Constancia</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+                </div>
+            </div>
+            <p> </p>  
+            <h3>Certificados / Diplomas</h3>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Constancia</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Constancia</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Constancia</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" />
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
