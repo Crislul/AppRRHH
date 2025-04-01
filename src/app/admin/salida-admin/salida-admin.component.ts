@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Salida, SalidaService } from '../../services/salida.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-salida-admin',
@@ -9,14 +10,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './salida-admin.component.html',
   styleUrl: './salida-admin.component.css'
 })
-export class SalidaAdminComponent implements OnInit{
+export class SalidaAdminComponent implements OnInit {
 
   salida: Salida | null = null;
 
-  constructor (
+  constructor(
     private route: ActivatedRoute,
     private salidaService: SalidaService
-
   ) {}
 
   ngOnInit(): void {
@@ -38,31 +38,37 @@ export class SalidaAdminComponent implements OnInit{
   }
 
   actualizarEstatus(estatus: number): void {
-      if (!this.salida) return;
-  
-      const incidenciaActualizada: Salida = {
-        ...this.salida,
-        estatus: estatus
-      };
+    if (!this.salida) return;
 
+    const salidaActualizada: Salida = {
+      ...this.salida,
+      estatus: estatus
+    };
 
-      this.salidaService.updateAutorizacion(this.salida.id, incidenciaActualizada).subscribe(
-        () => {
-          this.salida!.estatus = estatus;
-        },
-        (error) => {
-          console.error('Error al actualizar el estatus:', error);
-        }
-      );
+    this.salidaService.updateAutorizacion(this.salida.id, salidaActualizada).subscribe(
+      () => {
+        this.salida!.estatus = estatus;
+        this.mostrarAlerta(estatus);
+      },
+      (error) => {
+        console.error('Error al actualizar el estatus:', error);
+      }
+    );
+  }
+
+  mostrarAlerta(estatus: number): void {
+    if (estatus === 1) {
+      Swal.fire('Éxito', 'La salida ha sido autorizada.', 'success');
+    } else if (estatus === 2) {
+      Swal.fire('Rechazada', 'La salida ha sido rechazada.', 'error');
     }
+  }
 
+  autorizarSalida(): void {
+    this.actualizarEstatus(1);
+  }
 
-    autorizarSalida(): void {
-      this.actualizarEstatus(1);
-    }
-  
-    rechazarSalida(): void {
-      this.actualizarEstatus(2);
-    }
-
+  rechazarSalida(): void {
+    this.actualizarEstatus(2);
+  }
 }

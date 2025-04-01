@@ -1,12 +1,14 @@
 body {
     font-family: Arial, sans-serif;
+    background-image: url('/images/LogoRH.jpg')  ; /* Aquí pones la ruta de tu imagen */
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
     margin: 0px;
     padding: 0px;
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: #ecf0f1;
 }
 .login-container {
     width: 300px;

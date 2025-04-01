@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tabla-areas',
@@ -63,12 +64,32 @@ export class TablaAreasComponent implements OnInit {
     this.editingId = area.id;
   }
 
-  deleteArea(id: number) {
-    if (confirm('¿Estás seguro de eliminar esta área?')) {
-      this.areaService.deleteArea(id).subscribe(() => {
-        this.loadAreas();
-      });
-    }
+  deleteArea(area: Area): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '⚠️ Esta acción eliminará el area de forma permanente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.areaService.deleteArea(area.id).subscribe({
+          next: () => {
+            Swal.fire({
+              title: '¡Eliminada!',
+              text: 'El area ha sido eliminada correctamente.',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+          },
+    
+          
+        });
+      }
+    });
   }
 
   resetForm() {

@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { Motivo, CreateMotivoDto, MotivoService } from '../../services/motivo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tabla-motivos',
@@ -64,13 +65,33 @@ export class TablaMotivosComponent implements OnInit {
     this.editingId = motivo.id;
   }
 
-  deleteMotivo(id: number) {
-    if (confirm('¿Estás seguro de eliminar este motivo?')) {
-      this.motivoService.deleteMotivo(id).subscribe(() => {
-        this.loadMotivos();
-      });
-    }
-  }
+ deleteMotivo(motivo: Motivo): void {
+     Swal.fire({
+       title: '¿Estás seguro?',
+       text: '⚠️ Esta acción eliminará el motivo de forma permanente.',
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#d33',
+       cancelButtonColor: '#3085d6',
+       confirmButtonText: 'Sí, eliminar',
+       cancelButtonText: 'Cancelar'
+     }).then((result) => {
+       if (result.isConfirmed) {
+         this.motivoService.deleteMotivo(motivo.id).subscribe({
+           next: () => {
+             Swal.fire({
+               title: '¡Eliminada!',
+               text: 'El motivo ha sido eliminado correctamente.',
+               icon: 'success',
+               confirmButtonText: 'OK'
+             });
+           },
+     
+           
+         });
+       }
+     });
+   }
 
   resetForm() {
     this.motivoForm = { nombre: '' };

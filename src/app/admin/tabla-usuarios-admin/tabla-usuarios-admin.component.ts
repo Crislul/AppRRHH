@@ -8,6 +8,7 @@ import { EditarUsuarioDialogComponent } from '../editar-usuario-dialog/editar-us
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import Swal from 'sweetalert2';
 
 export interface Usuario {
  // id: number;
@@ -70,17 +71,41 @@ export class TablaUsuariosAdminComponent implements OnInit, AfterViewInit {
   }
 
   eliminarUsuario(id: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      this.usuarioService.eliminarUsuario(id).subscribe(
-        () => {
-          this.obtenerUsuarios();
-        },
-        (error) => {
-          console.error('Error al eliminar usuario:', error);
-        }
-      );
-    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '⚠️ Esta acción eliminará al usuario de forma permanente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.eliminarUsuario(id).subscribe({
+          next: () => {
+            Swal.fire({
+              title: '¡Eliminado!',
+              text: 'El usuario ha sido eliminado correctamente.',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+            this.obtenerUsuarios(); // Recargar la lista
+          },
+          error: (error) => {
+            console.error('Error al eliminar usuario:', error);
+            Swal.fire({
+              title: 'Error',
+              text: '❌ No se pudo eliminar el usuario. Inténtalo de nuevo.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+        });
+      }
+    });
   }
+  
 
   editarUsuario(usuario: Usuario): void {
     const dialogRef = this.dialog.open(EditarUsuarioDialogComponent, {

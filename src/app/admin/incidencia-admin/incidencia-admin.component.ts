@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Incidencia, IncidenciaService } from '../../services/incidencia.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-incidencia-admin',
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './incidencia-admin.component.html',
   styleUrl: './incidencia-admin.component.css'
 })
-export class IncidenciaAdminComponent implements OnInit{
+export class IncidenciaAdminComponent implements OnInit {
 
   incidencia: Incidencia | null = null;
 
@@ -47,11 +48,20 @@ export class IncidenciaAdminComponent implements OnInit{
     this.incidenciaService.updateIncidencia(this.incidencia.id, incidenciaActualizada).subscribe(
       () => {
         this.incidencia!.estatus = estatus;
+        this.mostrarAlerta(estatus);
       },
       (error) => {
         console.error('Error al actualizar el estatus:', error);
       }
     );
+  }
+
+  mostrarAlerta(estatus: number): void {
+    if (estatus === 1) {
+      Swal.fire('Éxito', 'La incidencia ha sido autorizada.', 'success');
+    } else if (estatus === 2) {
+      Swal.fire('Rechazada', 'La incidencia ha sido rechazada.', 'error');
+    }
   }
 
   autorizarIncidencia(): void {

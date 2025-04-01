@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { Categoria, CreateCategoriaDto, CategoriaService } from '../../services/categoria.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-tabla-categorias',
   imports: [
@@ -65,13 +65,33 @@ export class TablaCategoriasComponent implements OnInit {
     this.editingId = categoria.id;
   }
 
-  deleteCategoria(id: number) {
-    if (confirm('¿Estás seguro de eliminar esta categoría?')) {
-      this.categoriaService.deleteCategoria(id).subscribe(() => {
-        this.loadCategorias();
-      });
-    }
-  }
+ deleteCategoria(categoria: Categoria): void {
+     Swal.fire({
+       title: '¿Estás seguro?',
+       text: '⚠️ Esta acción eliminará la categoria de forma permanente.',
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#d33',
+       cancelButtonColor: '#3085d6',
+       confirmButtonText: 'Sí, eliminar',
+       cancelButtonText: 'Cancelar'
+     }).then((result) => {
+       if (result.isConfirmed) {
+          this.categoriaService.deleteCategoria(categoria.id).subscribe({
+           next: () => {
+             Swal.fire({
+               title: '¡Eliminada!',
+               text: 'La categoria ha sido eliminada correctamente.',
+               icon: 'success',
+               confirmButtonText: 'OK'
+             });
+           },
+     
+           
+         });
+       }
+     });
+   }
 
   resetForm() {
     this.categoriaForm = { nombre: '' };

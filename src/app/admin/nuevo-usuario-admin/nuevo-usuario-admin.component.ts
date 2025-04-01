@@ -1,11 +1,11 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-nuevo-usuario-admin',
+  standalone: true, // 👈 Necesario si usas imports en `@Component`
   imports: [FormsModule],
   templateUrl: './nuevo-usuario-admin.component.html',
   styleUrl: './nuevo-usuario-admin.component.css'
@@ -18,12 +18,21 @@ export class NuevoUsuarioAdminComponent {
   correo: string = '';
   contrasena: string = '';
   confirmarContrasena: string = '';
-  tipoUsuario: number = 1 ;
+  tipoUsuario: number = 1;
 
-
-  constructor(private usuarioService: UsuarioService ) {}
+  constructor(private usuarioService: UsuarioService) {}
 
   crearUsuario() {
+    if (!this.nombre || !this.apellidoPaterno || !this.apellidoMaterno || !this.correo || !this.contrasena) {
+      Swal.fire({
+        title: 'Error',
+        text: '❌ Todos los campos son obligatorios',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
+
     if (this.contrasena !== this.confirmarContrasena) {
       Swal.fire({
         title: 'Error',
@@ -33,17 +42,17 @@ export class NuevoUsuarioAdminComponent {
       });
       return;
     }
-  
+
     const usuario = {
       id: this.id,
       nombre: this.nombre,
-      apellidoP: this.apellidoPaterno,
+      apellidoP: this.apellidoPaterno, // 🔹 Asegúrate de que coincida con la API
       apellidoM: this.apellidoMaterno,
       correo: this.correo,
-      contrasenaHash: this.contrasena,
+      contrasenaHash: this.contrasena, // 🔹 Debe coincidir con el backend
       tipoUsuario: this.tipoUsuario
     };
-  
+
     this.usuarioService.crearUsuario(usuario).subscribe({
       next: (response) => {
         Swal.fire({
@@ -53,6 +62,7 @@ export class NuevoUsuarioAdminComponent {
           confirmButtonText: 'OK'
         }).then(() => {
           // 🔹 Limpiar los valores del formulario
+          this.id = 0;
           this.nombre = '';
           this.apellidoPaterno = '';
           this.apellidoMaterno = '';
@@ -72,5 +82,4 @@ export class NuevoUsuarioAdminComponent {
       }
     });
   }
-  
 }

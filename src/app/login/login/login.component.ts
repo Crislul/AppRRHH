@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -72,17 +73,23 @@ export class LoginComponent {
             this.router.navigate(['/indexAdmin']);
           }
         } else {
-          this.errorMessage = 'Credenciales incorrectas';
+          Swal.fire({
+            title: 'Error',
+            text: 'Credenciales incorrectas o usuario no registrado.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
         }
       },
       error: (err) => {
-        this.errorMessage = err.error || 'Error en el inicio de sesión';
         this.loading.set(false);
+        Swal.fire({
+          title: 'Error',
+          text: err.error || 'Error en el inicio de sesión.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
     });
   }
 }
-
-
-
-
