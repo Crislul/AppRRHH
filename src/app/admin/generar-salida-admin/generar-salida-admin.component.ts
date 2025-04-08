@@ -23,7 +23,6 @@ export class GenerarSalidaAdminComponent implements OnInit{
     horaEntrada: '',
     horarioTrabajo: '',
   
-    lugar: '',
     asunto: '',
     fecha: DateTime.now().setZone('America/Mexico_City').toFormat('dd/MM/yyyy'),
   
@@ -41,7 +40,12 @@ export class GenerarSalidaAdminComponent implements OnInit{
     estatus: 0
     };
 
-    fechaHoy: string = new Date().toISOString().split('T')[0];
+    fechaHoy: string = new Date().toLocaleDateString('es-MX', {
+      timeZone: 'America/Mexico_City',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).split('/').reverse().join('-');
 
 
     constructor (private salidaService: SalidaService){}

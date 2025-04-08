@@ -1,110 +1,52 @@
-
-/* General */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 20px;
-}
-
-/* Contenedor Principal */
-.container {
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* Cards */
-.card {
-    background: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+    background: #ecf0f1;
+  }
+  
+  .form-container {
+    width: 1100px;
+    padding: 70px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
+    display: grid;
+    align-items: center;
+  }
+  
+
+.div-salida{
+  background-color: #FFC0C7;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
 }
 
-/* Encabezado */
-h2 {
-    color: #343a40;
-    text-align: center;
+.div-incidencia{
+  background-color: #D9EEE1;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
 }
 
-/* Estilos de la Tabla */
-.table-container {
-    overflow-x: auto;
+.grid-container {
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+  
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.mat-button {
+  width: 140px;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
 
-th {
-    background: lightseagreen;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-}
 
-tr:nth-child(even) {
-    background: #f2f2f2;
-}
 
-tr:hover {
-    background: #d8e3f5;
-}
 
-/* Botones de enlaces */
-a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
 
-a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
     
-/* --------------------- */ 
 
- 
-  
-  .button_slide {
-    color: black;
-    border: 1px solid rgb(216, 2, 134);
-    border-radius: 0px;
-    padding: 10px 30px;
-    display: inline-block;
-    font-family: "Lucida Console", Monaco, monospace;
-    font-size: 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: inset 0 0 0 0 blue;
-    -webkit-transition: ease-out 0.4s;
-    -moz-transition: ease-out 0.4s;
-    transition: ease-out 0.4s;
-  }
-  
-
-  
-  .slide_left:hover {
-    box-shadow: inset 0 0 0 50px greenyellow;
-  }
-  
-  
-  .card-body {
-    flex: 1 1 auto;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-    color: var(--bs-card-color);
-  }
   

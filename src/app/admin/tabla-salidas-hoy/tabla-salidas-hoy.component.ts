@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SalidaService } from '../../services/salida.service';
 
@@ -16,7 +16,7 @@ export interface Salida{
   horaSalida: string;
   horaEntrada: string;
   horarioTrabajo: string;
-  
+
   asunto: string;
   fecha: string;
 
@@ -35,9 +35,9 @@ export interface Salida{
 }
 
 @Component({
-  selector: 'app-tabla-salidas-admin',
+  selector: 'app-tabla-salidas-hoy',
   imports: [
-        CommonModule,
+    CommonModule,
         MatTableModule,
         MatFormFieldModule, 
         MatPaginatorModule,
@@ -46,12 +46,10 @@ export interface Salida{
         MatButtonModule,
         MatInputModule
   ],
-  templateUrl: './tabla-salidas-admin.component.html',
-  styleUrl: './tabla-salidas-admin.component.css'
+  templateUrl: './tabla-salidas-hoy.component.html',
+  styleUrl: './tabla-salidas-hoy.component.css'
 })
-export class TablaSalidasAdminComponent implements OnInit, AfterViewInit{
-
-
+export class TablaSalidasHoyComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
       dataSource = new MatTableDataSource<Salida>([]);
     
@@ -75,7 +73,19 @@ export class TablaSalidasAdminComponent implements OnInit, AfterViewInit{
       getIncidencias(): void {
         this.salidaService.getAutorizaciones().subscribe(
           (data) => {
-            this.dataSource.data = data.sort((a, b) => b.id - a.id); 
+            const today = new Date();
+            const todayFormatted = new Intl.DateTimeFormat('es-MX', {
+              timeZone: 'America/Mexico_City',
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            }).format(today); // Esto devuelve "dd/mm/aaaa"
+      
+            const filteredData = data.filter((incidencia) => {
+              return incidencia.fecha === todayFormatted;
+            });
+      
+            this.dataSource.data = filteredData.sort((a, b) => b.id - a.id);
           },
           (error) => {
             console.error('Error al obtener las incidencias:', error);
@@ -90,10 +100,11 @@ export class TablaSalidasAdminComponent implements OnInit, AfterViewInit{
           this.dataSource.paginator.firstPage();
         }
       }
-
+    
+  
       visualizarIncidencia(id: number)
       {
         this.router.navigate(['/salida', id,]);
       }
-  
+
 }

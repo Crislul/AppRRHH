@@ -50,7 +50,7 @@ body {
     background-color: lightcyan;
 }
 
-.form-container button {
+.form-container .button-generar {
     width: 100%;
     padding: 10px;
     background: #04AA6D;
@@ -59,6 +59,74 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
-.form-container button:hover {
+.form-container .button-generar:hover {
     background: #46a049;
 }
+
+
+
+
+.boton-deshabilitado {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: #cccccc !important;
+    border: 1px solid #aaa;
+    color: #666;
+  }
+
+  .file-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px ;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .custom-file-upload input[type="file"] {
+    display: none;
+  }
+  
+  .archivo-cargado {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    background-color: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+  
+  .btn-quitar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  
+  .btn-quitar:hover {
+    background-color: #c82333;
+  }
+
+
+  .custom-file-upload.disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    pointer-events: none; /* evita que se active el click */
+    opacity: 0.6;
+  }
+  
+  
+  

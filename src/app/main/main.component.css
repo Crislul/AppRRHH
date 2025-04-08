@@ -9,7 +9,7 @@
     max-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Permite desplazamiento */
+    overflow-y: auto;
   }
   
   .body-trimmed {

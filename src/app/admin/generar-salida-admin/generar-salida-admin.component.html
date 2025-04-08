@@ -5,7 +5,7 @@
         <div> 
             <h2>Generar Autorización de Salida</h2>
         </div>
-        <form (ngSubmit)="submitForm()">
+        <form >
             <p> </p>
             <label>Nombre del Trabajador</label>
             <select [(ngModel)]="salida.usuarioId" name="usuarioId" required>
@@ -29,28 +29,26 @@
                 <label>Hora de:</label>
             <p> </p>
             <div style="display: flex; gap: 10px;">
-                <div style="flex: 1; padding: 10px;"> 
-                    <label>Entrada</label>
-                    <input type="time" [(ngModel)]="salida.horaEntrada" name="horaEntrada" required>
-                </div>
                 <div style="flex: 1; padding: 10px;">
                     <label>Salida</label>
                     <input type="time" [(ngModel)]="salida.horaSalida" name="horaSalida" required>
+                </div>
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Entrada</label>
+                    <input type="time" [(ngModel)]="salida.horaEntrada" name="horaEntrada" required>
                 </div>
             </div>
             <p> </p>
             <label>Horario de Trabajo</label>
             <input type="text" [(ngModel)]="salida.horarioTrabajo" name="horarioTrabajo" required>
-            <label>Lugar</label>
-            <input type="text" [(ngModel)]="salida.lugar" name="lugar" required>
             <label>Asunto</label>
             <input type="text" [(ngModel)]="salida.asunto" name="asunto" required>
-            <label>Fecha ** del dia</label>
-            <input class="inputT" type="date" [(ngModel)]="fechaHoy" name="fecha" disabled>
+            <label>Fecha</label>
+            <input class="inputT" type="text" [(ngModel)]="fechaHoy" name="fecha" disabled>
             <p> </p>
             <div style="display: flex; gap: 10px;">
                 <div style="flex: 1; padding: 10px;"> 
-                    <button type="submit">
+                    <button type="button" class="buttonC" (click)="submitForm()">
                         <i class="fas fa-check-circle"></i>
                         Generar</button>
                 </div>

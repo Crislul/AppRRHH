@@ -19,6 +19,8 @@ export interface Incidencia {
   motivoId: number;
   motivoNombre: string;  
   estatus: number;
+  archivo?: string;
+  nombreArchivo?: string;
 }
 
 @Injectable({
@@ -78,6 +80,20 @@ export class IncidenciaService {
 
   getMotivos(): Observable<any[]> {
     return this.http.get<any[]>(this.motivosUrl);
+  }
+
+  // subir archivo
+  uploadFile(id: number, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('archivo', file);
+  
+    return this.http.post(`${this.apiUrl}/subir-archivo/${id}`, formData);
+  }
+  
+  downloadFile(id: number): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/descargar-archivo/${id}`, {
+      responseType: 'blob' // Recibir el archivo como Blob
+    });
   }
   
 }

@@ -32,9 +32,6 @@ export class ToolbarComponent {
 
 
   logout() {
-    //console.log('Cerrando sesión...');
-    // Lógica para cerrar sesión (borrar token, redirigir, etc.)
-    // localStorage.removeItem('token');
     localStorage.removeItem('autenticado');
     localStorage.removeItem('tipoUsuario');
     localStorage.removeItem('nombreUsuario');
@@ -43,9 +40,11 @@ export class ToolbarComponent {
   }
 
   help(){
-    //console.log('Redireccionando...');
-
     this.router.navigate(['/Help']);
+  }
+
+  editUser(){
+    this.router.navigate(['/configuracion']);
   }
 
   notifications = [

@@ -46,18 +46,7 @@ body {
     background: #46a049;
 }
 
-.form-container .buttonC{
-    width: 100%;
-    padding: 10px;
-    background: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.form-container .buttonC:hover {
-    background: #da190b;
-}
+
 
 .form-container .inputT {
     width: auto;
@@ -79,4 +68,29 @@ body {
   .estatus3{
     color: red ;
   }
+
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Estilos cuando los botones están deshabilitados */
+.form-container button:disabled {
+    background: #a5d6a7; /* Verde claro para el botón "Autorizar" deshabilitado */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.form-container .buttonC:disabled {
+    background: #ef9a9a; /* Rojo claro para el botón "Rechazar" deshabilitado */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Evita el cambio de color en el hover cuando están deshabilitados */
+.form-container button:disabled:hover,
+.form-container .buttonC:disabled:hover {
+    background: inherit;
+}
 

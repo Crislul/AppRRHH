@@ -8,8 +8,8 @@ body {
 }
 
 .form-container {
-  width: 1000px;
-  padding: 50px;
+  width: 1100px;
+  padding: 70px;
   background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -29,17 +29,10 @@ body {
   color: red ;
 }
 
-.table {
-    width: 100%;
-  }
-  
   .mat-mdc-form-field {
     font-size: 14px;
     width: 100%;
   }
   
-  .td, .th {
-    width: 25%;
-  }
 
 

@@ -73,7 +73,7 @@ export class TablaMotivosComponent implements OnInit {
        showCancelButton: true,
        confirmButtonColor: '#d33',
        cancelButtonColor: '#3085d6',
-       confirmButtonText: 'Sí, eliminar',
+       confirmButtonText: 'Eliminar',
        cancelButtonText: 'Cancelar'
      }).then((result) => {
        if (result.isConfirmed) {

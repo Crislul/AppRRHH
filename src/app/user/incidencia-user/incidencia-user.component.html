@@ -40,7 +40,19 @@
             <Label> Descripción</Label>
             <input type="text" [value]="incidencia?.descripcion" disabled>
             <label>Fecha de Generacion de incidencia</label>
-            <input class="inputT" type="string" [value]="incidencia?.fecha" disabled>
+            <input class="inputT" type="text" [value]="incidencia?.fecha" disabled>
+
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;"> 
+                    <button type="button" (click)="visualizarArchivo()" [disabled]="!incidencia?.nombreArchivo">
+                        <i class="fas fa-file-pdf"></i> Visualizar Receta
+                      </button>
+                      
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    
+                </div>
+            </div>
 
             <p> </p>
             

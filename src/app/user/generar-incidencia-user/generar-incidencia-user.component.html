@@ -35,7 +35,7 @@
         <p> </p>
   
         <label>Motivo / Se Autoriza a:</label>
-        <select [(ngModel)]="incidencia.motivoId" name="motivoId" required>
+        <select [(ngModel)]="incidencia.motivoId" name="motivoId" required required (change)="onMotivoChange()">
           <option *ngFor="let motivo of motivos" [value]="motivo.id">{{ motivo.nombre }}</option>
         </select>
   
@@ -43,18 +43,46 @@
         <input type="text" [(ngModel)]="incidencia.descripcion" name="descripcion" required>
   
         <label>Fecha</label>
-        <input class="inputT" type="date" [(ngModel)]="fechaHoy" name="fecha" disabled>
+        <input class="inputT" type="text" [(ngModel)]="fechaHoy" name="fecha" disabled>
   
         
 
         <div style="display: flex; gap: 10px;">
-            <div style="flex: 1; padding: 10px;">
-                <button type="submit">Generar <i class="fas fa-check-circle"></i></button>
-            </div>
-            <div style="flex: 1; padding: 10px;">
-              
-            </div>
+          <div style="flex: 1; padding: 10px;">
+            <button 
+            type="button" 
+            class="button-generar" 
+            (click)="submitForm()"
+            [disabled]="habilitarArchivo && !incidencia.archivo"
+            [ngClass]="{'boton-deshabilitado': habilitarArchivo && !incidencia.archivo}"
+            
+          >
+            Generar
+          </button>            
           </div>
+          <div  style="flex: 1; padding: 10px;">
+            <div class="file-upload-wrapper">
+              <label 
+              class="custom-file-upload"
+              [class.disabled]="!habilitarArchivo">
+              
+                <input 
+                  type="file" 
+                  (change)="subirReceta($event)" 
+                  [disabled]="!habilitarArchivo"
+                >
+                Seleccionar archivo
+              </label>
+            
+              <div *ngIf="incidencia.archivo" class="archivo-cargado">
+                <span>{{ incidencia.archivo.name }}</span>
+                <button type="button" (click)="quitarArchivo()" class="btn-quitar">✖</button>
+              </div>
+            </div>
+            
+          </div>  
+        </div>
+
       </form>
     </div>
   </body>

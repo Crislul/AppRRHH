@@ -1,29 +1,36 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {Router, RouterModule } from '@angular/router';
+import { TablaSalidasHoyComponent } from "../tabla-salidas-hoy/tabla-salidas-hoy.component";
+import { TablaIncidenciaHoyComponent } from "../tabla-incidencia-hoy/tabla-incidencia-hoy.component";
+import { MatButtonModule } from '@angular/material/button';
+
+
 
 @Component({
   selector: 'app-index-admin',
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+    TablaSalidasHoyComponent,
+    TablaIncidenciaHoyComponent,
+    MatButtonModule
+],
   templateUrl: './index-admin.component.html',
   styleUrl: './index-admin.component.css'
 })
-export class IndexAdminComponent {
+export class IndexAdminComponent  {
 
-  constructor(private router: Router) {}
+  constructor( 
+    private router: Router
+  ) {}
 
-  incidenciaroute(){
-    //console.log('Redireccionando...');
+
+  incidenciaRoute(){
 
     this.router.navigate(['/generarIncidenciaAdmin']);
   }
-  salidaroute(){
-    //console.log('Redireccionando...');
+  salidaRoute(){
 
     this.router.navigate(['/generarSalidaAdmin']);
   }
-  usuarioroute(){
-    //console.log('Redireccionando...');
 
-    this.router.navigate(['/generarUsuario']);
-  }
 }

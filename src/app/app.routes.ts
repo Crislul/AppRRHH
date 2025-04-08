@@ -25,6 +25,7 @@ import { TablaCategoriasComponent } from './tablas/tabla-categorias/tabla-catego
 import { TablaMotivosComponent } from './tablas/tabla-motivos/tabla-motivos.component';
 import { IncidenciaUserComponent } from './user/incidencia-user/incidencia-user.component';
 import { SalidaUserComponent } from './user/salida-user/salida-user.component';
+import { UsuarioUserComponent } from './user/usuario-user/usuario-user.component';
 
 
 
@@ -74,6 +75,7 @@ export const routes: Routes = [
    { path: 'notifi', component: NotifiUserComponent},
 
    { path: 'tabla/incidencias', component: TablaIncidenciasUserComponent},
-   { path: 'tabla/salidas', component: TablaSalidasUserComponent}
+   { path: 'tabla/salidas', component: TablaSalidasUserComponent},
+   { path: 'configuracion', component: UsuarioUserComponent}
    
 ];

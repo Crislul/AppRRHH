@@ -17,8 +17,7 @@ export interface SalidaUser{
   horaSalida: string;
   horaEntrada: string;
   horarioTrabajo: string;
-
-  lugar: string;
+  
   asunto: string;
   fecha: string;
 

@@ -9,7 +9,6 @@ export interface Salida{
   horaEntrada: string;
   horarioTrabajo: string;
 
-  lugar: string;
   asunto: string;
   fecha: string;
 

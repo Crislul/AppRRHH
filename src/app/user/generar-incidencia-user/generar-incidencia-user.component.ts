@@ -50,10 +50,16 @@ export class GenerarIncidenciaUserComponent implements OnInit{
     motivoId: '',
     motivoNombre: '',
     estatus: 0,
+    archivo: null
   };
 
 
-  fechaHoy: string = new Date().toISOString().split('T')[0];
+  fechaHoy: string = new Date().toLocaleDateString('es-MX', {
+    timeZone: 'America/Mexico_City',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).split('/').reverse().join('-');
 
 
 
@@ -66,6 +72,32 @@ ngOnInit() {
   this.incidenciaService.getAreas().subscribe(data => (this.areas = data));
   this.incidenciaService.getCategorias().subscribe(data => (this.categorias = data));
   this.incidenciaService.getMotivos().subscribe(data => (this.motivos = data));
+}
+
+subirReceta(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    this.incidencia.archivo = file;
+  }
+}
+
+
+habilitarArchivo: boolean = false;
+
+onMotivoChange() {
+  const motivoSeleccionado = this.motivos.find(m => m.id == this.incidencia.motivoId);
+  const motivosConArchivo = ['Incapacidad', 'Consulta médica', 'Cuidados maternos'];
+
+  if (motivoSeleccionado) {
+    this.habilitarArchivo = motivosConArchivo.includes(motivoSeleccionado.nombre);
+  } else {
+    this.habilitarArchivo = false;
+  }
+
+}
+
+quitarArchivo() {
+  this.incidencia.archivo = null;
 }
 
 

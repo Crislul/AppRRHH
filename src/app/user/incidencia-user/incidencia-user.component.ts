@@ -36,4 +36,12 @@ export class IncidenciaUserComponent implements OnInit{
     );
   }
 
+  visualizarArchivo(): void {
+    if (!this.incidencia?.id) return;
+  
+    const fileUrl = `https://localhost:7064/api/incidencia/descargar-archivo/${this.incidencia.id}`;
+    window.open(fileUrl, '_blank');
+
+  }
+
 }

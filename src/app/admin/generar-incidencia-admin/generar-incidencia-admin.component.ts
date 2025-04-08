@@ -5,13 +5,13 @@ import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-generar-incidencia-admin',
   imports: [FormsModule, CommonModule],
   templateUrl: './generar-incidencia-admin.component.html',
   styleUrl: './generar-incidencia-admin.component.css'
 })
-
 
 
 export class GenerarIncidenciaAdminComponent implements OnInit{
@@ -35,10 +35,17 @@ export class GenerarIncidenciaAdminComponent implements OnInit{
     motivoId: '',
     motivoNombre: '',
     estatus: 0,
+    archivo: null
   };
 
 
-  fechaHoy: string = new Date().toISOString().split('T')[0];
+  fechaHoy: string = new Date().toLocaleDateString('es-MX', {
+    timeZone: 'America/Mexico_City',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).split('/').reverse().join('-');
+  
 
 
 
@@ -51,17 +58,67 @@ ngOnInit() {
   this.incidenciaService.getMotivos().subscribe(data => (this.motivos = data));
 }
 
+subirReceta(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    this.incidencia.archivo = file;
+  }
+}
+
+
+habilitarArchivo: boolean = false;
+
+onMotivoChange() {
+  const motivoSeleccionado = this.motivos.find(m => m.id == this.incidencia.motivoId);
+  const motivosConArchivo = ['Incapacidad', 'Consulta médica', 'Cuidados maternos'];
+
+  if (motivoSeleccionado) {
+    this.habilitarArchivo = motivosConArchivo.includes(motivoSeleccionado.nombre);
+  } else {
+    this.habilitarArchivo = false;
+  }
+
+}
+
+quitarArchivo() {
+  this.incidencia.archivo = null;
+}
+
 
 
 submitForm() {
   this.incidenciaService.createIncidencia(this.incidencia).subscribe({
-    next: response => {
-      Swal.fire({
-        title: '¡Éxito!',
-        text: 'Incidencia creada con éxito',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      });
+    next: (response) => {
+      const incidenciaId = response.id;
+
+      if (this.incidencia.archivo) {
+        this.incidenciaService.uploadFile(incidenciaId, this.incidencia.archivo).subscribe({
+          next: () => {
+            Swal.fire({
+              title: '¡Éxito!',
+              text: 'Incidencia creada y archivo subido con éxito',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+          },
+          error: (error) => {
+            console.error('Error al subir archivo:', error);
+            Swal.fire({
+              title: 'Incidencia creada',
+              text: 'Pero hubo un problema al subir el archivo',
+              icon: 'warning',
+              confirmButtonText: 'OK'
+            });
+          }
+        });
+      } else {
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Incidencia creada con éxito',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      }
     },
     error: error => {
       Swal.fire({

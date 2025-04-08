@@ -64,7 +64,7 @@ export class LoginComponent {
 
         if (resp.autenticado) {
           // Guardar en localStorage si es necesario
-          localStorage.setItem('tipoUsuario', String(resp.tipoUsuario));
+          //localStorage.setItem('tipoUsuario', String(resp.tipoUsuario));
 
           // Redirigir según el tipo de usuario
           if (resp.tipoUsuario === 1) {

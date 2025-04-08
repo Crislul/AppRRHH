@@ -39,10 +39,15 @@
       <mat-icon >exit_to_app</mat-icon>
       <span >Cerrar sesión</span>
     </button>
+    <button mat-menu-item (click)="editUser()">
+      <mat-icon>manage_accounts</mat-icon>
+      <span>Editar Usuario</span>
+    </button>
     <button mat-menu-item (click)="help()">
       <mat-icon>help</mat-icon>
       <span>Ayuda</span>
     </button>
+    
   </mat-menu>
 </mat-toolbar>
   

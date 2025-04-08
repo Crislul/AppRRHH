@@ -1,1 +1,78 @@
-<p>usuario-user works!</p>
+<title>Configuración</title>
+
+<body> 
+  <div class="form-container">
+    <h2>Editar Usuario</h2>
+    <form (ngSubmit)="guardarCambios()" #usuarioForm="ngForm">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input
+          type="text"
+          id="nombre"
+          class="form-control"
+          [(ngModel)]="usuario.nombre"
+          name="nombre"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="apellidoP">Apellido Paterno:</label>
+        <input
+          type="text"
+          id="apellidoP"
+          class="form-control"
+          [(ngModel)]="usuario.apellidoP"
+          name="apellidoP"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="apellidoM">Apellido Materno:</label>
+        <input
+          type="text"
+          id="apellidoM"
+          class="form-control"
+          [(ngModel)]="usuario.apellidoM"
+          name="apellidoM"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="correo">Correo:</label>
+        <input
+          type="email"
+          id="correo"
+          class="form-control"
+          [(ngModel)]="usuario.correo"
+          name="correo"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="contrasenaHash">Contraseña: *Minimo 8 caracteres</label>
+        <input
+          type="password"
+          id="contrasenaHash"
+          class="form-control"
+          [(ngModel)]="usuario.contrasenaHash"
+          name="contrasenaHash"
+          required
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!usuarioForm.form.valid">
+        Guardar Cambios
+      </button>
+    </form>
+  </div>
+
+</body>
+
+  
+
+
+
