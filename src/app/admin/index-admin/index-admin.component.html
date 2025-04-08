@@ -6,18 +6,19 @@
     <h1>Inicio - Administrador</h1>
 
       <div class="grid-container">
-
+        <div class="div-incidencia">
+          <h2 style="color: gray;">Generar Incidencia</h2>
+          <button (click)="incidenciaRoute()" class="mat-button" mat-raised-button>Generar</button>
+        </div>
+        <div></div>
       <div class="div-salida">
         <h2 style="color: gray;">Generar Autorizacion de salida</h2>
         <button (click)="salidaRoute()" class="mat-button" mat-raised-button>Generar</button>
       </div>
 
-      <div> </div>
+      
 
-      <div class="div-incidencia">
-        <h2 style="color: gray;">Generar Incidencia</h2>
-        <button (click)="incidenciaRoute()" class="mat-button" mat-raised-button>Generar</button>
-      </div>
+    
 
       </div>
 
@@ -25,7 +26,7 @@
     <br>
 
     <!-- Tabla de Autorizaciones-->
-    <h2>Autorizaciones de salida | Hoy</h2>
+    <h2>Autorizaciones de salida del Dia</h2>
 
     <app-tabla-salidas-hoy> </app-tabla-salidas-hoy>
 
@@ -35,11 +36,18 @@
     <br> 
 
     <!-- Tabla de Incidencias-->
-    <h2>Incidencias | Hoy</h2>
+    <h2>Incidencias del Dia</h2>
 
     <app-tabla-incidencia-hoy> </app-tabla-incidencia-hoy>
-
-
+    <br> <br> <br>
+    <div class="d-flex align-items-center justify-content-between small">
+      <div class="text-muted" style="font-size: small; text-align: end;">Copyright &copy; RRH UTRNG 2025</div>
+      <div style="text-align: end;">
+          <a class="text-muted" href="#" style="font-size: small; ">Privacy Policy </a> 
+          
+          <a class="text-muted" href="#" style="font-size: small; ">Terms &amp; Conditions</a>
+      </div>
+  </div>
     
   </div>
 </body>

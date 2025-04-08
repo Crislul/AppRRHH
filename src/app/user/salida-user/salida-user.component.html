@@ -1,7 +1,16 @@
 <body>
-    <div class="form-container">
+    <div class="form-container" id="salidaPDF">
         <div>
-            <h2>Autorizacion de salida #{{salida?.id}}</h2>
+            <h2>Autorizacion de Salida {{salida?.id}}</h2>
+            <img src="logo1.jpg" style="width: 150px; height: 100px;">
+      
+   
+       
+            <div style="text-align: end; " class="oculto-para-pdf">
+                <button (click)="descargarPDF($event)" style="height: 30px; width: 100px; font-size: 10px; text-align: center ; " class="btn-download  "> <i class="fa fa-download"></i> Descargar PDF</button>
+            </div>
+        
+            <br>     <br>     <br>
             <h3>Estatus: 
                 <span class="estatus1" *ngIf="salida?.estatus === 0">En espera</span>
                 <span class="estatus2" *ngIf="salida?.estatus === 1">Aceptado</span>

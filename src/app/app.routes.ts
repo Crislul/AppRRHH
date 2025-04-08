@@ -18,7 +18,7 @@ import { IndexUserComponent } from './user/index-user/index-user.component';
 import { NotifiUserComponent } from './user/notifi-user/notifi-user.component';
 import { TablaIncidenciasUserComponent } from './user/tabla-incidencias-user/tabla-incidencias-user.component';
 import { TablaSalidasUserComponent } from './user/tabla-salidas-user/tabla-salidas-user.component';
-import { AdminHelpComponent } from './admin-help/admin-help.component';
+import { AdminHelpComponent } from './admin/admin-help/admin-help.component';
 import { authAdminGuard } from './auth-admin.guard';
 import { TablaAreasComponent } from './tablas/tabla-areas/tabla-areas.component';
 import { TablaCategoriasComponent } from './tablas/tabla-categorias/tabla-categorias.component';

@@ -49,7 +49,25 @@ export class GenerarSalidaAdminComponent implements OnInit{
 
 
     constructor (private salidaService: SalidaService){}
-
+    resetForm() {
+      this.salida = {
+        horaSalida: '',
+        horaEntrada: '',
+        horarioTrabajo: '',
+        asunto: '',
+        fecha: DateTime.now().setZone('America/Mexico_City').toFormat('dd/MM/yyyy'),
+        usuarioId: '',
+        usuarioNombre: '', 
+        usuarioApellidoP: '', 
+        usuarioApellidoM: '',
+        areaId: '',
+        areaNombre: '',  
+        categoriaId: '',
+        categoriaNombre: '',  
+        estatus: 0
+      };
+    }
+    
 
     ngOnInit() {
       this.salidaService.ObtenerUsuarios().subscribe(data => (this.usuarios = data));
@@ -65,6 +83,8 @@ export class GenerarSalidaAdminComponent implements OnInit{
             text: 'Autorización de salida creada con éxito',
             icon: 'success',
             confirmButtonText: 'OK'
+          }).then(() => {
+            this.resetForm();
           });
         },
         error: error => {

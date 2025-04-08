@@ -32,7 +32,24 @@ export class GenerarSalidaUserComponent implements OnInit{
     return this.seguridadService.obtenerApellidoM();
   }
 
-  
+  resetForm() {
+    this.salida = {
+      horaSalida: '',
+      horaEntrada: '',
+      horarioTrabajo: '',
+      asunto: '',
+      fecha: DateTime.now().setZone('America/Mexico_City').toFormat('dd/MM/yyyy'),
+      usuarioId: '',
+      usuarioNombre: '', 
+      usuarioApellidoP: '', 
+      usuarioApellidoM: '',
+      areaId: '',
+      areaNombre: '',  
+      categoriaId: '',
+      categoriaNombre: '',  
+      estatus: 0
+    };
+  }
 
   areas: any[] = [];
   categorias: any[] = [];
@@ -87,9 +104,11 @@ export class GenerarSalidaUserComponent implements OnInit{
           next: response => {
             Swal.fire({
               title: '¡Éxito!',
-              text: 'Incidencia creada con éxito',
+              text: 'Autorizacion creada con éxito',
               icon: 'success',
               confirmButtonText: 'OK'
+            }).then(() => {
+              this.resetForm();
             });
           },
           error: error => {

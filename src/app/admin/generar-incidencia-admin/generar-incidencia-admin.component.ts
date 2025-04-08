@@ -85,6 +85,25 @@ quitarArchivo() {
 }
 
 
+resetForm() {
+  this.incidencia = {
+    descripcion: '',
+    fecha: DateTime.now().setZone('America/Mexico_City').toFormat('dd/MM/yyyy'),
+    fechaInicio: '',
+    fechaFin: '',
+    usuarioId: '',
+    usuarioNombre: '',
+    areaId: '',
+    areaNombre: '',
+    categoriaId: '',
+    categoriaNombre:'',
+    motivoId: '',
+    motivoNombre: '',
+    estatus: 0,
+    archivo: null
+  };
+  this.habilitarArchivo = false;
+}
 
 submitForm() {
   this.incidenciaService.createIncidencia(this.incidencia).subscribe({
@@ -99,6 +118,8 @@ submitForm() {
               text: 'Incidencia creada y archivo subido con éxito',
               icon: 'success',
               confirmButtonText: 'OK'
+            }).then(() => {
+              this.resetForm();
             });
           },
           error: (error) => {
@@ -117,6 +138,8 @@ submitForm() {
           text: 'Incidencia creada con éxito',
           icon: 'success',
           confirmButtonText: 'OK'
+        }).then(() => {
+          this.resetForm();
         });
       }
     },

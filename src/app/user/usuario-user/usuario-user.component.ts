@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Usuario, UsuarioService } from '../../services/usuario.service';
 import { SeguridadService } from '../../services/seguridad.service';
 import { FormsModule } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 
 
 
@@ -53,8 +53,12 @@ export class UsuarioUserComponent {
   guardarCambios(): void {
     this.usuarioService.editarUsuario(this.usuario).subscribe(
       (response) => {
-        console.log('Usuario actualizado correctamente', response);
-        // Redirigir a otra vista o mostrar un mensaje de éxito
+         Swal.fire({
+                 title: '¡Usuario Actualizado!',
+                 text: 'Usuario actualizado correctamente',
+                 icon: 'success',
+                 confirmButtonText: 'OK'
+               })
       },
       (error) => {
         console.error('Error al actualizar el usuario', error);

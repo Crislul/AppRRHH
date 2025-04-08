@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IncidenciaService } from '../../services/incidencia.service';
 import { CommonModule } from '@angular/common';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-incidencia-user',
@@ -24,7 +26,30 @@ export class IncidenciaUserComponent implements OnInit{
       this.cargarIncidencia(Number(id));
     }
   }
+  descargarPDF(event: Event) {
+    event.preventDefault();
+    
+    const elemento = document.getElementById('incidenciaPDF');
+    if (!elemento) return;
+  
+    const ocultos = elemento.querySelectorAll('.oculto-para-pdf');
+    ocultos.forEach(e => (e as HTMLElement).style.display = 'none');
+  
+    html2canvas(elemento).then(canvas => {
+      const imgData = canvas.toDataURL('image/jpeg 0.5');
+      const pdf = new jsPDF('p', 'mm', 'letter');
 
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('incidencia.pdf');
+  
+      // Restaurar visibilidad
+      ocultos.forEach(e => (e as HTMLElement).style.display = '');
+    });
+  } 
   cargarIncidencia(id: number): void {
     this.incidenciaService.getIncidencia(id).subscribe(
       (data) => {
