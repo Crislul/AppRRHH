@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Salida, SalidaService } from '../../services/salida.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-salida-admin',
@@ -19,6 +21,30 @@ export class SalidaAdminComponent implements OnInit {
     private salidaService: SalidaService
   ) {}
 
+  descargarPDF(event: Event) {
+    event.preventDefault();
+    
+    const elemento = document.getElementById('salidaPDF');
+    if (!elemento) return;
+  
+    const ocultos = elemento.querySelectorAll('.oculto-para-pdf');
+    ocultos.forEach(e => (e as HTMLElement).style.display = 'none');
+  
+    html2canvas(elemento).then(canvas => {
+      const imgData = canvas.toDataURL('image/jpeg  0.5');
+      const pdf = new jsPDF('p', 'mm', 'letter');
+
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('Salida.pdf');
+  
+      // Restaurar visibilidad
+      ocultos.forEach(e => (e as HTMLElement).style.display = '');
+    });
+  }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

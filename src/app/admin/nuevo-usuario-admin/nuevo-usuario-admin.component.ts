@@ -22,7 +22,29 @@ export class NuevoUsuarioAdminComponent {
 
   constructor(private usuarioService: UsuarioService) {}
 
+  // Variables
+
+
+// Método para generar la contraseña
+generateRandomPassword(length: number = 12): string {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    password += chars[randomIndex];
+  }
+  return password;
+}
+
+// Asignar la contraseña generada
+setRandomPassword(): void {
+  const generated = this.generateRandomPassword();
+  this.contrasena = generated;
+  this.confirmarContrasena = generated;
+}
+
   crearUsuario() {
+   
     if (!this.nombre || !this.apellidoPaterno || !this.apellidoMaterno || !this.correo || !this.contrasena) {
       Swal.fire({
         title: 'Error',
@@ -32,7 +54,17 @@ export class NuevoUsuarioAdminComponent {
       });
       return;
     }
-
+    
+    const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.correo);
+    if (!correoValido) {
+      Swal.fire({
+        title: 'Correo inválido',
+        text: '❌ Ingresa un correo electrónico válido ',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
     if (this.contrasena !== this.confirmarContrasena) {
       Swal.fire({
         title: 'Error',
@@ -43,6 +75,7 @@ export class NuevoUsuarioAdminComponent {
       return;
     }
 
+    
     const usuario = {
       id: this.id,
       nombre: this.nombre,

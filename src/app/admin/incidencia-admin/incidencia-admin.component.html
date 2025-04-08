@@ -1,9 +1,22 @@
 <title>Incidencia {{incidencia?.id}}</title>
 
 <body>
-    <div class="form-container">
+    <div class="form-container" id="incidenciaPDF">
         <div>
-            <h2>Incidencia #{{incidencia?.id}}</h2>
+
+            <div>
+                <h2>Incidencia {{incidencia?.id}}</h2>
+                <img src="logo1.jpg" style="width: 150px; height: 100px;">
+          
+       
+            </div>
+                <div style="text-align: end; " class="oculto-para-pdf">
+                    <button (click)="descargarPDF($event)" style="height: 30px; width: 100px; font-size: 10px; text-align: center ; " class="btn-download  "> <i class="fa fa-download"></i> Descargar PDF</button>
+                </div>
+            
+                <br>     <br>     <br>
+
+      
             <h3>Estatus: 
                 <span class="estatus1" *ngIf="incidencia?.estatus === 0">En espera</span>
                 <span class="estatus2" *ngIf="incidencia?.estatus === 1">Aceptado</span>
@@ -44,19 +57,19 @@
             <input class="inputT" type="text" [value]="incidencia?.fecha" disabled>
 
             <p> </p>
-            <div style="display: flex; gap: 10px;">
+            <div style="display: flex; gap: 10px;" class="oculto-para-pdf" > 
                 <div style="flex: 1; padding: 10px;"> 
                     <button type="button" (click)="autorizarIncidencia()" [disabled]="incidencia?.estatus === 1">
-                        <i class="fas fa-check-circle"></i> Autorizar
-                      </button>
-                </div>
-                <div style="flex: 1; padding: 10px;">
-                    <button type="button" class="buttonC" (click)="rechazarIncidencia()" [disabled]="incidencia?.estatus === 2">
-                        <i class="fas fa-times-circle"></i> Rechazar
-                      </button>
-                </div>
+                      <i class="fas fa-check-circle"></i> Autorizar
+                    </button>
+                  </div>
+                  <div style="flex: 1; padding: 10px;">
+                    <button type="button" class="buttonC oculto-para-pdf" (click)="rechazarIncidencia()" [disabled]="incidencia?.estatus === 2">
+                      <i class="fas fa-times-circle"></i> Rechazar
+                    </button>
+                  </div>
             </div>
-            <div style="display: flex; gap: 10px;">
+            <div style="display: flex; gap: 10px;" class="oculto-para-pdf">
                 <div style="flex: 1; padding: 10px;"> 
                     <button type="button" (click)="visualizarArchivo()" [disabled]="!incidencia?.nombreArchivo">
                         <i class="fas fa-file-pdf"></i> Visualizar Receta

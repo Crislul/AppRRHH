@@ -6,33 +6,35 @@
     </div>
     <form (ngSubmit)="crearUsuario()">
       <label>Nombre completo:</label>
-      <input type="text" placeholder="..." [(ngModel)]="nombre" name="nombre" required>
+      <input type="text" placeholder="Nombre..." [(ngModel)]="nombre" name="nombre" required>
   
       <div style="display: flex; gap: 10px;">
         <div style="flex: 1; padding: 10px;">
           <label>Apellido Paterno:</label>
-          <input type="text" placeholder="..." [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required>
+          <input type="text" placeholder="Apellido..." [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required>
         </div>
         <div style="flex: 1; padding: 10px;">
           <label>Apellido Materno:</label>
-          <input type="text" placeholder="..." [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required>
+          <input type="text" placeholder="Apellido..." [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required>
         </div>
       </div>
   
       <label>Correo</label>
-      <input type="email" placeholder="..." [(ngModel)]="correo" name="correo" required>
+      <input type="email" placeholder="Correo..." [(ngModel)]="correo" name="correo" required>
   
       <div style="display: flex; gap: 10px;">
         <div style="flex: 1; padding: 10px;">
           <label>Contraseña:</label>
-          <input type="password" [(ngModel)]="contrasena" name="contraseña" required>
+          <input type="text" [(ngModel)]="contrasena" name="contrasena" required>
+          <button type="button" (click)="setRandomPassword()" style="height: 30px; width: 65px;; text-align:center; font-size: 12px; background-color:green; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">Generar </button>
+
         </div>
+        
         <div style="flex: 1; padding: 10px;">
           <label>Confirme la contraseña:</label>
-          <input type="password" [(ngModel)]="confirmarContrasena" name="confirmarContraseña" required>
+          <input type="password" [(ngModel)]="confirmarContrasena" name="confirmarContrasena" required>
         </div>
       </div>
-
       <div style="display: flex; gap: 10px;">
         <div style="flex: 1; padding: 10px;">
           <button type="submit">Crear Usuario</button>
