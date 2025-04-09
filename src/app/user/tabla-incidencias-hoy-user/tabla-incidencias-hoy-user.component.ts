@@ -54,7 +54,7 @@ export class TablaIncidenciasHoyUserComponent implements OnInit, AfterViewInit {
   }
 
 
-  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
+  displayedColumns: string[] = ['areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
       dataSource = new MatTableDataSource<Incidencia>([]);
     
       @ViewChild(MatPaginator) paginator!: MatPaginator;

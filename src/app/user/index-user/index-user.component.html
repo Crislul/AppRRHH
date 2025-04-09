@@ -7,51 +7,37 @@
 
       <div class="grid-container">
 
-      <div class="div-salida">
-        <h2 style="color: gray;">Generar Autorizacion de salida</h2>
-        <button (click)="salidaRoute()" class="mat-button" mat-raised-button>Generar</button>
+          <div class="div-salida">
+            <h2 style="color: gray;">Generar Autorizacion de salida</h2>
+            <button (click)="salidaRoute()" class="mat-button" mat-raised-button>Generar</button>
+          </div>
+
+          <div> </div>
+
+          <div class="div-incidencia">
+            <h2 style="color: gray;">Generar Incidencia</h2>
+            <button (click)="incidenciaRoute()" class="mat-button" mat-raised-button>Generar</button>
+          </div>
       </div>
 
-      <div> </div>
-
-      <div class="div-incidencia">
-        <h2 style="color: gray;">Generar Incidencia</h2>
-        <button (click)="incidenciaRoute()" class="mat-button" mat-raised-button>Generar</button>
-      </div>
-
-      </div>
-
-    <br>
-    <br>
+      <p> </p>
 
     <!-- Tabla de Autorizaciones-->
     <h2>Autorizaciones de salida | Hoy</h2>
 
     <app-tabla-salidas-hoy-user> </app-tabla-salidas-hoy-user>
 
-
-
-
-    <br>
-    <br> 
+    <p> </p>
 
     <!-- Tabla de Incidencias-->
     <h2>Incidencias | Hoy</h2>
 
     <app-tabla-incidencias-hoy-user> </app-tabla-incidencias-hoy-user>
 
-    <br> <br> <br>
-    <div class="d-flex align-items-center justify-content-between small">
-      <div class="text-muted" style="font-size: small; text-align: end;">Copyright &copy; RRH UTRNG 2025</div>
-      <div style="text-align: end;">
-          <a class="text-muted" href="#" style="font-size: small; ">Privacy Policy  | </a> 
-          
-          <a class="text-muted" href="#" style="font-size: small; ">Terms &amp; Conditions</a>
-      </div>
-  </div>
-    
+    <p> </p>
 
-
+    <!-- footer-->
+    <app-footer> </app-footer>
     
   </div>
 </body>

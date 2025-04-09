@@ -3,13 +3,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { TablaSalidasHoyUserComponent } from "../tabla-salidas-hoy-user/tabla-salidas-hoy-user.component";
 import { TablaIncidenciasHoyUserComponent } from "../tabla-incidencias-hoy-user/tabla-incidencias-hoy-user.component";
+import { FooterComponent } from "../../footer/footer.component";
 
 @Component({
   selector: 'app-index-user',
   imports: [
     MatButtonModule,
     TablaSalidasHoyUserComponent,
-    TablaIncidenciasHoyUserComponent
+    TablaIncidenciasHoyUserComponent,
+    FooterComponent
 ],
   templateUrl: './index-user.component.html',
   styleUrl: './index-user.component.css'

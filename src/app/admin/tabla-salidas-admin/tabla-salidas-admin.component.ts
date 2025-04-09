@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SalidaService } from '../../services/salida.service';
+import { TablaFiltroSalidasComponent } from "../tabla-filtro-salidas/tabla-filtro-salidas.component";
 
 export interface Salida{
   id: number;
@@ -37,15 +38,16 @@ export interface Salida{
 @Component({
   selector: 'app-tabla-salidas-admin',
   imports: [
-        CommonModule,
-        MatTableModule,
-        MatFormFieldModule, 
-        MatPaginatorModule,
-        MatSortModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatInputModule
-  ],
+    CommonModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    TablaFiltroSalidasComponent
+],
   templateUrl: './tabla-salidas-admin.component.html',
   styleUrl: './tabla-salidas-admin.component.css'
 })

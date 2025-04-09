@@ -3,6 +3,7 @@ import {Router, RouterModule } from '@angular/router';
 import { TablaSalidasHoyComponent } from "../tabla-salidas-hoy/tabla-salidas-hoy.component";
 import { TablaIncidenciaHoyComponent } from "../tabla-incidencia-hoy/tabla-incidencia-hoy.component";
 import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from "../../footer/footer.component";
 
 
 
@@ -12,7 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule,
     TablaSalidasHoyComponent,
     TablaIncidenciaHoyComponent,
-    MatButtonModule
+    MatButtonModule,
+    FooterComponent
 ],
   templateUrl: './index-admin.component.html',
   styleUrl: './index-admin.component.css'

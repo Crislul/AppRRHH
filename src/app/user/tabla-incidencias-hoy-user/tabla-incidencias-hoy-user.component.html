@@ -8,25 +8,6 @@
     
       <!-- Tabla -->
       <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-    
-
-        <!-- Columna Nombre -->
-        <ng-container matColumnDef="usuarioNombre">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-          <td mat-cell *matCellDef="let incidencia"> {{ incidencia.usuarioNombre }} </td>
-        </ng-container>
-
-        <!-- Columna Apellido Paterno -->
-        <ng-container matColumnDef="usuarioApellidoP">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> - </th>
-          <td mat-cell *matCellDef="let incidencia"> {{ incidencia.usuarioApellidoP }} </td>
-        </ng-container>
-
-        <!-- Columna Apellido Materno -->
-        <ng-container matColumnDef="usuarioApellidoM">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> - </th>
-          <td mat-cell *matCellDef="let incidencia"> {{ incidencia.usuarioApellidoM }} </td>
-        </ng-container>
 
         <ng-container matColumnDef="areaNombre">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Area </th>

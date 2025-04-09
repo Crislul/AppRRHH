@@ -1,0 +1,55 @@
+<div class="form-container">
+  <h2>Contador de Autorizaciones de Salida por Docente</h2>
+
+  <div class="container">
+
+    <!-- Filtros personalizados -->
+        <div class="filters">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del usuario</mat-label>
+            <input matInput [(ngModel)]="filtroNombre" (input)="aplicarFiltros()">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha inicio</mat-label>
+            <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="filtroFechaInicio" (dateChange)="aplicarFiltros()">
+            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicio></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha fin</mat-label>
+            <input matInput [matDatepicker]="pickerFin" [(ngModel)]="filtroFechaFin" (dateChange)="aplicarFiltros()">
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <h3>Resumen por usuario</h3>
+
+                     
+      <table mat-table [dataSource]="usuariosConIncidencias" class="mat-elevation-z8">
+
+        <!-- Columna Nombre Completo -->
+        <ng-container matColumnDef="nombreCompleto">
+          <th mat-header-cell *matHeaderCellDef> Docente </th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.nombreCompleto }} </td>
+        </ng-container>
+
+        <!-- Columna Cantidad de Incidencias -->
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef>Total de Autorizaciones de Salida</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.cantidad }} </td>
+        </ng-container>
+
+        <!-- Header y rows -->
+        <tr mat-header-row *matHeaderRowDef="['nombreCompleto', 'cantidad']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['nombreCompleto', 'cantidad']"></tr>
+
+        <!-- Mensaje si no hay datos -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="2">No hay coincidencias encontradas</td>
+        </tr>
+      </table>
+  </div>
+</div>

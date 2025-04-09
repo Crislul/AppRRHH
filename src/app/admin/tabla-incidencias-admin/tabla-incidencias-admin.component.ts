@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { IncidenciaService } from '../../services/incidencia.service';
 import { CommonModule } from '@angular/common';
+import { TablaFiltroIncidenciasComponent } from "../tabla-filtro-incidencias/tabla-filtro-incidencias.component";
 
 export interface Incidencia {
   id: number;
@@ -35,13 +36,14 @@ export interface Incidencia {
   imports: [
     CommonModule,
     MatTableModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
     MatButtonModule,
-    MatInputModule
-    ],
+    MatInputModule,
+    TablaFiltroIncidenciasComponent
+],
   templateUrl: './tabla-incidencias-admin.component.html',
   styleUrl: './tabla-incidencias-admin.component.css'
 })

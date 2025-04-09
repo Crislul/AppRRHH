@@ -46,7 +46,7 @@ export class IncidenciaAdminComponent implements OnInit {
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
   
       pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('incidencia.pdf');
+      pdf.save('incidencia_' + (this.incidencia?.id ?? 'sin_id') + '.pdf');
   
       // Restaurar visibilidad
       ocultos.forEach(e => (e as HTMLElement).style.display = '');
