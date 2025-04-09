@@ -79,6 +79,7 @@ export class TablaCategoriasComponent implements OnInit {
        if (result.isConfirmed) {
           this.categoriaService.deleteCategoria(categoria.id).subscribe({
            next: () => {
+            this.loadCategorias();
              Swal.fire({
                title: '¡Eliminada!',
                text: 'La categoria ha sido eliminada correctamente.',
@@ -86,8 +87,14 @@ export class TablaCategoriasComponent implements OnInit {
                confirmButtonText: 'OK'
              });
            },
-     
-           
+           error: (err) => {
+                       Swal.fire({
+                         title: 'Error',
+                         text: `Hubo un problema al eliminar el área. Intenta nuevamente más tarde. ${err.message}`,
+                         icon: 'error',
+                         confirmButtonText: 'OK'
+                       });
+                     }
          });
        }
      });

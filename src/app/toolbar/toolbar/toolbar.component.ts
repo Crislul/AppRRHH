@@ -15,7 +15,7 @@ import { SeguridadService } from '../../services/seguridad.service';
     MatToolbarModule, 
     MatButtonModule, 
     MatIconModule,
-    MatMenuModule,
+    MatMenuModule
     ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
@@ -32,10 +32,7 @@ export class ToolbarComponent {
 
 
   logout() {
-    localStorage.removeItem('autenticado');
-    localStorage.removeItem('tipoUsuario');
-    localStorage.removeItem('nombreUsuario');
-    localStorage.removeItem('idUsuario');
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 

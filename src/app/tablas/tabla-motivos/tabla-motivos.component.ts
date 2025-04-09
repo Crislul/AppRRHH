@@ -79,6 +79,7 @@ export class TablaMotivosComponent implements OnInit {
        if (result.isConfirmed) {
          this.motivoService.deleteMotivo(motivo.id).subscribe({
            next: () => {
+            this.loadMotivos();
              Swal.fire({
                title: '¡Eliminada!',
                text: 'El motivo ha sido eliminado correctamente.',
@@ -86,8 +87,14 @@ export class TablaMotivosComponent implements OnInit {
                confirmButtonText: 'OK'
              });
            },
-     
-           
+           error: (err) => {
+                       Swal.fire({
+                         title: 'Error',
+                         text: `Hubo un problema al eliminar el área. Intenta nuevamente más tarde. ${err.message}`,
+                         icon: 'error',
+                         confirmButtonText: 'OK'
+                       });
+                     }
          });
        }
      });

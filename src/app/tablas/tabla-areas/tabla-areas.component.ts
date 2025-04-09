@@ -30,7 +30,8 @@ export class TablaAreasComponent implements OnInit {
   isEditing = false;
   editingId: number | null = null;
 
-  constructor(private areaService: AreaService) {}
+  constructor(
+    private areaService: AreaService) {}
 
   ngOnInit(): void {
     this.loadAreas();
@@ -78,19 +79,27 @@ export class TablaAreasComponent implements OnInit {
       if (result.isConfirmed) {
         this.areaService.deleteArea(area.id).subscribe({
           next: () => {
+            this.loadAreas();
             Swal.fire({
               title: '¡Eliminada!',
-              text: 'El area ha sido eliminada correctamente.',
+              text: 'El área ha sido eliminada correctamente.',
               icon: 'success',
               confirmButtonText: 'OK'
             });
           },
-    
-          
+          error: (err) => {
+            Swal.fire({
+              title: 'Error',
+              text: `Hubo un problema al eliminar el área. Intenta nuevamente más tarde. ${err.message}`,
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
         });
       }
     });
   }
+  
 
   resetForm() {
     this.areaForm = { nombre: '' };
