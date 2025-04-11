@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SeguridadService } from './services/seguridad.service';
 import { LoginComponent } from "./login/login/login.component";
 import { MenuUserComponent } from "./menu/menu-user/menu-user.component";
+import { ToolbarUserComponent } from './toolbar/toolbar-user/toolbar-user.component';
 
 
 
@@ -17,6 +18,8 @@ import { MenuUserComponent } from "./menu/menu-user/menu-user.component";
     ToolbarComponent, 
     CommonModule, 
     LoginComponent, 
+    ToolbarUserComponent,
+
     MenuUserComponent],
 
   templateUrl: './app.component.html',
@@ -26,8 +29,18 @@ export class AppComponent implements OnInit {
 
   seguridadService = inject(SeguridadService);
 
-  estaAutorizado(): boolean{
-    return this.seguridadService.estaLogeado();
+  estaAutorizado(): boolean {
+    const isLoggedIn = this.seguridadService.estaLogeado();
+    
+    // Si el usuario está logeado, verifica que ya se hizo la redirección
+    if (isLoggedIn) {
+      const rutaActual = window.location.pathname;
+      if (rutaActual === '/login') {
+        return false; // Evita mostrar el index si la redirección aún no ocurrió
+      }
+    }
+  
+    return isLoggedIn;
   }
 
   tipoUsuario(): string{

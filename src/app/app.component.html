@@ -1,9 +1,8 @@
 
 @if (estaAutorizado() && tipoUsuario()=='admin')
 {
-  <app-toolbar></app-toolbar>
-
-  <app-menu
+<app-toolbar ></app-toolbar>  
+<app-menu
     [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
     (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
   ></app-menu>
@@ -17,7 +16,7 @@
 @else if (estaAutorizado() && tipoUsuario()=='user')
 {
 
-  <app-toolbar></app-toolbar>
+  <app-toolbar-user ></app-toolbar-user> 
   
   <app-menu-user 
       [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"

@@ -50,7 +50,11 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
-  login() {
+  
+  nombreUsuario(): string{
+    return this.seguridadService.obtenerNombre();
+  }
+  async login() {
     if (this.loginForm.invalid) return;
 
     this.loading.set(true);
@@ -59,19 +63,28 @@ export class LoginComponent {
     const { correo, contrasena } = this.loginForm.value;
 
     this.seguridadService.login(correo, contrasena).subscribe({
-      next: (resp) => {
+      next: async (resp) => {
         this.loading.set(false);
 
         if (resp.autenticado) {
-          // Guardar en localStorage si es necesario
-          //localStorage.setItem('tipoUsuario', String(resp.tipoUsuario));
-
-          // Redirigir según el tipo de usuario
-          if (resp.tipoUsuario === 1) {
-            this.router.navigate(['/index']);
-          } else {
-            this.router.navigate(['/indexAdmin']);
-          }
+  
+          // Esperar a que el usuario cierre la alerta antes de continuar
+          await Swal.fire({
+            title: 'Bienvenido',
+            text: `Hola, ${this.nombreUsuario()}! Te has autenticado correctamente.`,
+            icon: 'success',
+            timer: 2000,
+          showConfirmButton: false
+                  });
+  
+          // Redirigir después de que el usuario cierre la alerta
+          setTimeout(() => {
+            if (resp.tipoUsuario === 1) {
+              this.router.navigate(['/index']);
+            } else {
+              this.router.navigate(['/indexAdmin']);
+            }
+          }, 200);
         } else {
           Swal.fire({
             title: 'Error',

@@ -7,7 +7,22 @@ body {
     background: #ecf0f1;
 }
 
-.form-container {
+.pdf-export {
+    background-color: white !important;
+    color: black !important;
+    font-family: Arial, sans-serif !important;
+    box-shadow: none !important;
+  }
+  
+  .pdf-export * {
+    color: black !important;
+    font-size: 20px !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+.form-container {   
     width: 1100px;
     padding: 70px;
     background: #fff;

@@ -11,7 +11,7 @@ import { interval, Subscription } from 'rxjs';
 import { Input } from '@angular/core';
 
 @Component({
-  selector: 'app-toolbar',
+  selector: 'app-toolbar-user',
   standalone: true,
   imports: [
     RouterModule,
@@ -21,10 +21,10 @@ import { Input } from '@angular/core';
     MatIconModule,
     MatMenuModule
   ],
-  templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.css'
+  templateUrl: './toolbar-user.component.html',
+  styleUrl: './toolbar-user.component.css'
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarUserComponent implements OnInit {
 
   seguridadService = inject(SeguridadService);
   notificaciones: Notificacion[] = [];
@@ -38,13 +38,9 @@ export class ToolbarComponent implements OnInit {
   ) {}
 
   rolUsuario: string = '';
-  
+
   ngOnInit(): void {
-    this.cargarNotificaciones(); // carga inicial
-  
-    this.pollingSub = interval(10000).subscribe(() => {
-      this.cargarNotificaciones();
-    });
+    this.cargarNotificaciones();
   }
   
   ngOnDestroy(): void {
@@ -82,22 +78,7 @@ export class ToolbarComponent implements OnInit {
     );
   }
   
-  
-  irAVista(notificacion: any) {
-    const permisoId = notificacion.permisoId; // id de la incidencia la notificación
-  
-    const ruta = notificacion.tipo === 'incidencia'
-      ? ['/incidencia', permisoId]
-      : ['/salida', permisoId];
-  
-      console.log('Ruta a navegar:', ruta); // ✅
-      console.log('ID notificación a pasar:', notificacion.id); // ✅
-      
-    this.router.navigate(ruta, {
-      state: { notificacionId: notificacion.id }
-    });
+  irAVistaIncidencias() {
+    this.router.navigate(['/tablaIncidenciasAdmin']);
   }
-  
-  
-  
 }

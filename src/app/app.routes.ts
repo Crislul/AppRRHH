@@ -59,7 +59,7 @@ export const routes: Routes = [
    { path: 'tablaIncidenciasAdmin', component: TablaIncidenciasAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaSalidasAdmin', component: TablaSalidasAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaUsuariosAdmin', component: TablaUsuariosAdminComponent, canActivate: [authAdminGuard]},
-   
+
 
    // usuario
    { path: 'index', component: IndexUserComponent},

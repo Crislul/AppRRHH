@@ -52,12 +52,12 @@
             <p> </p>
             <div style="display: flex; gap: 10px;"> 
                 <div style="flex: 1; padding: 10px;" class="oculto-para-pdf"> 
-                    <button type="button" (click)="autorizarIncidencia()" [disabled]="incidencia?.estatus === 1">
+                    <button type="button"  (click)="autorizarIncidencia() "  [disabled]="incidencia?.estatus === 1">
                       <i class="fas fa-check-circle"></i> Autorizar
                     </button>
                   </div>
                   <div style="flex: 1; padding: 10px;" class="oculto-para-pdf">
-                    <button type="button" class="buttonC" (click)="rechazarIncidencia()" [disabled]="incidencia?.estatus === 2">
+                    <button type="button" class="buttonC"  (click)="rechazarIncidencia()" [disabled]="incidencia?.estatus === 2">
                       <i class="fas fa-times-circle"></i> Rechazar
                     </button>
                   </div>
