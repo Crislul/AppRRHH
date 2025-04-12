@@ -1,15 +1,16 @@
+<title>Generar autorización de salida</title>
 <body>
     <div class="form-container">
         <div> 
-            <h2>Generar Autorización de Salida</h2>
+            <h2>Generar autorización de salida</h2>
         </div>
         <form (ngSubmit)="submitForm()">
             <p> </p>
-            <label>Nombre del Trabajador</label>
+            <label>Nombre del trabajador</label>
         <input class="inputName" type="text" 
         [value]="salida.usuarioNombre + ' ' + apellidoPUsuario() + ' ' + apellidoMUsuario()" disabled>
 
-        <label>Área de Trabajo</label>
+        <label>Área de trabajo</label>
         <select [(ngModel)]="salida.areaId" name="areaId" required>
           <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
         </select>
@@ -22,17 +23,17 @@
                 <label>Hora de:</label>
             <p> </p>
             <div style="display: flex; gap: 10px;">
-                <div style="flex: 1; padding: 10px;"> 
-                    <label>Entrada</label>
-                    <input type="time" [(ngModel)]="salida.horaEntrada" name="horaEntrada" required>
-                </div>
                 <div style="flex: 1; padding: 10px;">
                     <label>Salida</label>
                     <input type="time" [(ngModel)]="salida.horaSalida" name="horaSalida" required>
                 </div>
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Entrada</label>
+                    <input type="time" [(ngModel)]="salida.horaEntrada" name="horaEntrada" required>
+                </div>
             </div>
             <p> </p>
-            <label>Horario de Trabajo</label>
+            <label>Horario de trabajo</label>
             <input type="text" [(ngModel)]="salida.horarioTrabajo" name="horarioTrabajo" required>
             <label>Asunto</label>
             <input type="text" [(ngModel)]="salida.asunto" name="asunto" required>

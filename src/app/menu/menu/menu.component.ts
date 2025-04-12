@@ -31,10 +31,10 @@ export class MenuComponent {
       expanded: false
     },
     {
-      label: 'Autorizacion de salida',
+      label: 'Autorización de salida del personal',
       icon: 'fa-solid fa-person-running',
       submenu: [
-        { label: 'Salidas', icon: 'fa-solid fa-user-check', routeLink: 'tablaSalidasAdmin' },
+        { label: 'Autorización de salida', icon: 'fa-solid fa-user-check', routeLink: 'tablaSalidasAdmin' },
         { label: 'Generar Autorización de salida', icon: 'fa-solid fa-user-clock', routeLink: 'generarSalidaAdmin' }
       ],
       expanded: false
@@ -45,7 +45,7 @@ export class MenuComponent {
       label: 'Expediente del personal',
     },
     {
-      label: 'Administrar Usuario',
+      label: 'Gestión de usuarios',
       icon: 'fa-solid fa-user',
       submenu: [
         { label: 'Usuarios', icon: 'fa fa-users', routeLink: 'tablaUsuariosAdmin' },
@@ -57,9 +57,9 @@ export class MenuComponent {
       label: 'Extra',
       icon: 'fa-solid fa-house-user',
       submenu: [
-        { label: 'Areas', icon: 'fa-solid fa-chalkboard-user', routeLink: 'tabla/Areas' },
-        { label: 'Categorias', icon: 'fa-solid fa-shapes', routeLink: 'tabla/Categorias' },
-        { label: 'Motivos / Autorizacion', icon: 'fa-solid fa-person-falling', routeLink: 'tabla/Motivos' }
+        { label: 'Áreas', icon: 'fa-solid fa-chalkboard-user', routeLink: 'tabla/Areas' },
+        { label: 'Categorías', icon: 'fa-solid fa-shapes', routeLink: 'tabla/Categorias' },
+        { label: 'Motivos / Autorización', icon: 'fa-solid fa-person-falling', routeLink: 'tabla/Motivos' }
       ],
       expanded: false
     }

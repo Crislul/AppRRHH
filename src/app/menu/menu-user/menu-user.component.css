@@ -6,6 +6,7 @@
   width: 16.5625rem;
   height: 100vh;
   text-decoration: none;
+  user-select: none;
 }
 .sidenav-collapsed {
   width: 5rem;

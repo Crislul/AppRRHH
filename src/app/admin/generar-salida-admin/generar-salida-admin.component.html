@@ -1,20 +1,20 @@
-<title>Generar Salida</title>
+<title>Generar salida</title>
 
 <body>
     <div class="form-container">
         <div> 
-            <h2>Generar Autorización de Salida</h2>
+            <h2>Generar autorización de salida</h2>
         </div>
         <form >
             <p> </p>
-            <label>Nombre del Trabajador</label>
+            <label>Nombre del trabajador</label>
             <select [(ngModel)]="salida.usuarioId" name="usuarioId" required>
             <option *ngFor="let usuario of usuarios" [value]="usuario.id">
                 {{ usuario.nombre }} {{ usuario.apellidoP }} {{ usuario.apellidoM }}
             </option>
             </select>
 
-            <label>Área de Trabajo</label>
+            <label>Área de trabajo</label>
             <select [(ngModel)]="salida.areaId" name="areaId" required>
                 <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
             </select>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <p> </p>
-            <label>Horario de Trabajo</label>
+            <label>Horario de trabajo</label>
             <input type="text" [(ngModel)]="salida.horarioTrabajo" name="horarioTrabajo" required>
             <label>Asunto</label>
             <input type="text" [(ngModel)]="salida.asunto" name="asunto" required>

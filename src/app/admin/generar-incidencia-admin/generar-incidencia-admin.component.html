@@ -1,19 +1,19 @@
 
-<title>Generar Incidencia </title>
+<title>Generar incidencia </title>
 
 <body>
     <div class="form-container">
-      <h2>Generar Incidencia</h2>
+      <h2>Generar incidencia</h2>
       <form>
         <p> </p>
-        <label>Nombre del Trabajador</label>
+        <label>Nombre del trabajador</label>
         <select [(ngModel)]="incidencia.usuarioId" name="usuarioId" required>
           <option *ngFor="let usuario of usuarios" [value]="usuario.id">
                 {{ usuario.nombre }} {{ usuario.apellidoP }} {{ usuario.apellidoM }}
           </option>
         </select>
         
-        <label>Área de Trabajo</label>
+        <label>Área de trabajo</label>
         <select [(ngModel)]="incidencia.areaId" name="areaId" required>
           <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
         </select>
@@ -25,7 +25,7 @@
         
         <p> </p>
   
-        <label>Fecha de Movimiento</label>
+        <label>Fecha de movimiento</label>
         <div style="display: flex; gap: 10px;">
           <div style="flex: 1; padding: 10px;">
             <label>Del:</label>
@@ -39,7 +39,7 @@
 
         <p> </p>
   
-        <label>Motivo / Se Autoriza a:</label>
+        <label>Motivo / Se autoriza a:</label>
         <select [(ngModel)]="incidencia.motivoId" name="motivoId" required (change)="onMotivoChange()">
           <option *ngFor="let motivo of motivos" [value]="motivo.id">{{ motivo.nombre }}</option>
         </select>

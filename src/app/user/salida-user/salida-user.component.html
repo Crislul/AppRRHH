@@ -1,7 +1,9 @@
+<title>Autorización de salida {{salida?.id}}</title>
 <body>
     <div class="form-container" id="salidaPDF">
         <div>
-            <h2>Autorizacion de Salida {{salida?.id}}</h2>
+            <h2>Autorización de salida {{salida?.id}}</h2>
+            <p> </p>
             <img src="logo1.jpg" style="width: 180px; height: 148px;">
       
             <h3>Estatus: 
@@ -12,7 +14,7 @@
         </div>
         <form>
             <p> </p>
-            <label>Nombre del Trabajador</label>
+            <label>Nombre del trabajador</label>
             <input type="text" [value]="
             salida?.usuarioNombre + ' ' + 
             salida?.usuarioApellidoP + ' ' + 
@@ -26,21 +28,21 @@
                 <label>Hora de:</label>
             <p> </p>
             <div style="display: flex; gap: 10px;">
-                <div style="flex: 1; padding: 10px;"> 
-                    <label>Entrada</label>
-                    <input type="time" [value]="salida?.horaEntrada" disabled>
-                </div>
                 <div style="flex: 1; padding: 10px;">
                     <label>Salida</label>
                     <input type="time" [value]="salida?.horaSalida" disabled>
                 </div>
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Entrada</label>
+                    <input type="time" [value]="salida?.horaEntrada" disabled>
+                </div>
             </div>
             <p> </p>
-            <label>Horario de Trabajo</label>
+            <label>Horario de trabajo</label>
             <input type="text" [value]="salida?.horarioTrabajo" disabled>
             <label>Asunto</label>
             <input type="text" [value]="salida?.asunto" disabled>
-            <label>Fecha de Generacion de la Autorizacion</label>
+            <label>Fecha de generacion de la autorización de salida</label>
             <input class="inputT" type="text" [value]="salida?.fecha" disabled>
             <p> </p>
             <div style="display: flex; gap: 10px;">

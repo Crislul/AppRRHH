@@ -30,10 +30,10 @@ export class MenuUserComponent {
         expanded: false
       },
       {
-        label: 'Autorizacion de salida',
+        label: 'Autorización de salida',
         icon: 'fa-solid fa-person-running',
         submenu: [
-          { label: 'Salidas', icon: 'fa-solid fa-user-check', routeLink: 'tabla/salidas' },
+          { label: 'Autorizaciones de salida', icon: 'fa-solid fa-user-check', routeLink: 'tabla/salidas' },
           { label: 'Generar Autorización de salida', icon: 'fa-solid fa-user-clock', routeLink: 'generar/salida' }
         ],
         expanded: false
@@ -41,7 +41,7 @@ export class MenuUserComponent {
       {
         routeLink: 'expediente',
         icon: 'fa-solid fa-folder-open',
-        label: 'Mi Expediente',
+        label: 'Mi expediente',
       }
     ];
   
