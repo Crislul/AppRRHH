@@ -5,16 +5,19 @@
 <!-- Botón de Notificaciones -->
 
  <!-- Botón de Notificaciones -->
-<button mat-icon-button [matMenuTriggerFor]="notificationsMenu" aria-label="Notificaciones">
-  <mat-icon>notifications</mat-icon>
-  <span *ngIf="notificaciones.length > 0" class="notification-badge">
-    {{ notificaciones.length }}
+ <button mat-icon-button [matMenuTriggerFor]="notificationsMenu" aria-label="Notificaciones">
+  <span class="notification-wrapper">
+    <mat-icon>notifications</mat-icon>
+    <span *ngIf="notificaciones.length > 0" class="notification-badge">
+      {{ notificaciones.length > 99 ? '99+' : notificaciones.length }}
+    </span>
   </span>
 </button>
 
+
 <!-- Menú de Notificaciones -->
 <mat-menu #notificationsMenu="matMenu">
-  <ng-container *ngIf="notificaciones.length > 0; else noNotifications">
+  <ng-container *ngIf="notificaciones.length > 0; else noNotifications"  >
     <button mat-menu-item *ngFor="let notificacion of notificaciones" (click)="irAVista(notificacion)">
       <mat-icon>message</mat-icon>
       <span>{{ notificacion.mensaje }}</span>

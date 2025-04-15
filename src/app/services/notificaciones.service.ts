@@ -3,12 +3,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Notificacion {
+
   id: number;
   mensaje: string;
-  tipo: string;
-  leido: boolean;
-  
+  tipo: string; // incidencia, salida ,respuesta
+  estado: string; // pendiente, leido
+  fecha: Date;
+  permisoId?: number; //id de la incidencia o salida
+  usuarioId?: number; // id del usuario 
+  tipoPermiso?: string; // incidencia o salida para redireccion de respuesta
+
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +36,10 @@ export class NotificacionesService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  getNotificacionesPorUsuario(usuarioId: number): Observable<Notificacion[]> {
+    return this.http.get<Notificacion[]>(`${this.apiUrl}/usuario/${usuarioId}`);
+  }
+  
 }
 
 

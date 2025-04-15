@@ -67,7 +67,7 @@ export class LoginComponent {
         this.loading.set(false);
 
         if (resp.autenticado) {
-  
+          localStorage.setItem('usuarioId', String(resp.id)); // id usuario
           // Esperar a que el usuario cierre la alerta antes de continuar
           await Swal.fire({
             title: 'Bienvenido',

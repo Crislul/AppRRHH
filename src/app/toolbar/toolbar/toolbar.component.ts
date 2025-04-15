@@ -40,12 +40,17 @@ export class ToolbarComponent implements OnInit {
   rolUsuario: string = '';
   
   ngOnInit(): void {
-    this.cargarNotificaciones(); // carga inicial
+    const usuarioId = Number(localStorage.getItem('usuarioId'));
   
-    this.pollingSub = interval(10000).subscribe(() => {
-      this.cargarNotificaciones();
-    });
+    if (usuarioId) {
+      this.cargarNotificaciones(usuarioId); // carga inicial
+  
+      this.pollingSub = interval(10000).subscribe(() => {
+        this.cargarNotificaciones(usuarioId);
+      });
+    }
   }
+  
   
   ngOnDestroy(): void {
     if (this.pollingSub) {
@@ -69,34 +74,47 @@ export class ToolbarComponent implements OnInit {
   editUser() {
     this.router.navigate(['/configuracion']);
   }
-
-
-  cargarNotificaciones() {
-    this.notificacionesService.getNotificaciones().subscribe(
-      (data) => {
-        this.notificaciones = data;
+  cargarNotificaciones(usuarioId: number) {
+    this.notificacionesService.getNotificaciones().subscribe({ // solicitudes para el admin
+      next: (pendientes) => {
+        this.notificacionesService.getNotificacionesPorUsuario(usuarioId).subscribe({ // respuestas para el mismo admin si hizo una solicitud
+          next: (respuestas) => {
+            this.notificaciones = [...pendientes, ...respuestas.filter(r => r.estado === 'pendiente')];
+          },
+          error: (err) => {
+            console.error('Error al obtener notificaciones de respuesta:', err);
+          }
+        });
       },
-      (error) => {
-        console.error('Error al obtener notificaciones', error);
+      error: (err) => {
+        console.error('Error al obtener notificaciones pendientes:', err);
       }
-    );
-  }
-  
-  
-  irAVista(notificacion: any) {
-    const permisoId = notificacion.permisoId; // id de la incidencia la notificación
-  
-    const ruta = notificacion.tipo === 'incidencia'
-      ? ['/incidencia', permisoId]
-      : ['/salida', permisoId];
-  
-      console.log('Ruta a navegar:', ruta); // ✅
-      console.log('ID notificación a pasar:', notificacion.id); // ✅
-      
-    this.router.navigate(ruta, {
-      state: { notificacionId: notificacion.id }
     });
+    
   }
+  
+  
+  
+  irAVista(noti: Notificacion) {
+    const tipo = noti.tipoPermiso?.toLowerCase();
+    const id = noti.permisoId;
+  
+    if (tipo && id) {
+      if (noti.tipo === 'respuesta') {
+        this.notificacionesService.eliminarnotificacion(noti.id).subscribe(() => {
+          this.router.navigate([`/${tipo}`, id]);
+        });
+      } else {
+        this.router.navigate([`/${tipo}`, id], {
+          state: { notificacionId: noti.id }
+        });
+      }
+    } else {
+      console.warn('Notificación sin tipo o id de referencia');
+    }
+  }
+  
+  
   
   
   

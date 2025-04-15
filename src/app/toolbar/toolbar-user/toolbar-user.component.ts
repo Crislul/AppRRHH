@@ -25,6 +25,7 @@ import { Input } from '@angular/core';
   styleUrl: './toolbar-user.component.css'
 })
 export class ToolbarUserComponent implements OnInit {
+  usuarioid:number | null  = null; //id del usuario pa las notis
 
   seguridadService = inject(SeguridadService);
   notificaciones: Notificacion[] = [];
@@ -40,8 +41,22 @@ export class ToolbarUserComponent implements OnInit {
   rolUsuario: string = '';
 
   ngOnInit(): void {
-    this.cargarNotificaciones();
+    
+    const usuarioId = Number(localStorage.getItem('usuarioId'));
+    console.log('ID del usuario desde localStorage:', usuarioId);
+      if (usuarioId) {
+    this.cargarNotificaciones(); // Carga inicial
+
+  
+
+    // Hot reload: actualiza cada 5 segundos
+    this.pollingSub = interval(10000).subscribe(() => {
+      this.cargarNotificaciones();
+    });
   }
+}
+
+  
   
   ngOnDestroy(): void {
     if (this.pollingSub) {
@@ -66,19 +81,40 @@ export class ToolbarUserComponent implements OnInit {
     this.router.navigate(['/configuracion']);
   }
 
-
   cargarNotificaciones() {
-    this.notificacionesService.getNotificaciones().subscribe(
-      (data) => {
-        this.notificaciones = data;
+  const usuarioId = Number(localStorage.getItem('usuarioId'));
+  if (usuarioId) {
+    this.notificacionesService.getNotificacionesPorUsuario(usuarioId).subscribe({
+      next: (notis) => {
+        console.log('Notificaciones obtenidas del backend:', notis); // 👀
+        this.notificaciones = notis.filter(n => n.tipo === 'respuesta' && n.estado === 'pendiente');
       },
-      (error) => {
-        console.error('Error al obtener notificaciones', error);
+      error: (err) => {
+        console.error('Error al obtener notificaciones:', err);
       }
-    );
+    });
+    
   }
+}
+
   
-  irAVistaIncidencias() {
-    this.router.navigate(['/tablaIncidenciasAdmin']);
+irAVista(noti: Notificacion) {
+  const tipo = noti.tipoPermiso?.toLowerCase(); // 'incidencia' o 'salida'
+  const id = noti.permisoId;
+
+  if (tipo && id) {
+    // Redirige según el tipo
+    if (tipo === 'incidencia') {
+      this.router.navigate(['/incidenciaUser', id]);
+    } else if (tipo === 'salida') {
+      this.router.navigate(['/salidaUser', id]);
+    }
+
+    //Luego elimina la notificación
+   this.notificacionesService.eliminarnotificacion(noti.id).subscribe();
+  } else {
+    console.warn('Notificación sin tipoPermiso o permisoId');
   }
+}
+
 }
