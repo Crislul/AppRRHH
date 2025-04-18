@@ -40,10 +40,15 @@ export class MenuComponent {
       expanded: false
     },
     {
-      routeLink: 'tablaExpedientesAdmin',
+      label: 'Expedientes',
       icon: 'fa-solid fa-folder-open',
-      label: 'Expediente del personal',
+      submenu: [
+        { label: 'Lista de Expedientes', icon: 'fa-solid fa-folder', routeLink: 'tablaExpedientesAdmin' },
+        { label: 'Mi Expediente', icon: 'fa-solid fa-user-check ', routeLink: 'expedienteadmin' }
+      ],
+      expanded: false
     },
+ 
     {
       label: 'Gestión de usuarios',
       icon: 'fa-solid fa-user',

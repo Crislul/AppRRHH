@@ -11,7 +11,6 @@ import { TablaExpedientesAdminComponent } from './admin/tabla-expedientes-admin/
 import { TablaIncidenciasAdminComponent } from './admin/tabla-incidencias-admin/tabla-incidencias-admin.component';
 import { TablaSalidasAdminComponent } from './admin/tabla-salidas-admin/tabla-salidas-admin.component';
 import { TablaUsuariosAdminComponent } from './admin/tabla-usuarios-admin/tabla-usuarios-admin.component';
-import { ExpedienteUserComponent } from './user/expediente-user/expediente-user.component';
 import { GenerarIncidenciaUserComponent } from './user/generar-incidencia-user/generar-incidencia-user.component';
 import { GenerarSalidaUserComponent } from './user/generar-salida-user/generar-salida-user.component';
 import { IndexUserComponent } from './user/index-user/index-user.component';
@@ -26,6 +25,8 @@ import { TablaMotivosComponent } from './tablas/tabla-motivos/tabla-motivos.comp
 import { IncidenciaUserComponent } from './user/incidencia-user/incidencia-user.component';
 import { SalidaUserComponent } from './user/salida-user/salida-user.component';
 import { UsuarioUserComponent } from './user/usuario-user/usuario-user.component';
+import { ExpedienteUserComponent } from './user/expediente-user/expediente-user.component';
+import { ExpedienteAdminComponent } from './admin/expediente-admin/expediente-admin.component';
 
 
 
@@ -54,17 +55,18 @@ export const routes: Routes = [
    { path: 'salida/:id', component: SalidaAdminComponent, canActivate: [authAdminGuard]},
 
    { path: 'notifiAdmin', component: NotifiAdminComponent, canActivate: [authAdminGuard]},
-
    { path: 'tablaExpedientesAdmin', component: TablaExpedientesAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaIncidenciasAdmin', component: TablaIncidenciasAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaSalidasAdmin', component: TablaSalidasAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaUsuariosAdmin', component: TablaUsuariosAdminComponent, canActivate: [authAdminGuard]},
 
+   { path: 'expedienteadmin', component: ExpedienteAdminComponent },
+   { path: 'expedienteadmin/:id', component: ExpedienteAdminComponent },
+
 
    // usuario
    { path: 'index', component: IndexUserComponent},
 
-   { path: 'expediente', component: ExpedienteUserComponent},  
 
    { path: 'generar/incidencia', component: GenerarIncidenciaUserComponent}, 
    { path: 'generar/salida', component: GenerarSalidaUserComponent},
@@ -76,6 +78,9 @@ export const routes: Routes = [
 
    { path: 'tabla/incidencias', component: TablaIncidenciasUserComponent},
    { path: 'tabla/salidas', component: TablaSalidasUserComponent},
-   { path: 'configuracion', component: UsuarioUserComponent}
+   { path: 'configuracion', component: UsuarioUserComponent},
    
+   {path: 'expedienteuser', component: ExpedienteUserComponent},
+  
+
 ];

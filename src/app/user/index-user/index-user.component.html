@@ -2,22 +2,26 @@
 
 <body>
   <div class="form-container">
-
+    <div class="logo-container">
+      <img src="/images/logoutrng.png" width="120px">
+      <img src="/images/Logo.jpg" width="180px" style="border-radius: 10px;">
+  
+    </div>  
     <h1>Inicio</h1>
 
       <div class="grid-container">
 
-          <div class="div-salida">
+         
+        <div class="div-incidencia">
+          <h2 style="color: gray;">Generar incidencia</h2>
+          <button (click)="incidenciaRoute()" class="mat-button" mat-raised-button>Generar</button>
+        </div>
+          <div> </div>
+ <div class="div-salida">
             <h2 style="color: gray;">Generar autorizacion de salida</h2>
             <button (click)="salidaRoute()" class="mat-button" mat-raised-button>Generar</button>
           </div>
 
-          <div> </div>
-
-          <div class="div-incidencia">
-            <h2 style="color: gray;">Generar incidencia</h2>
-            <button (click)="incidenciaRoute()" class="mat-button" mat-raised-button>Generar</button>
-          </div>
       </div>
 
       <p> </p>

@@ -9,7 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../tabla-usuarios-admin/tabla-usuarios-admin.component';
 import { Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -23,15 +23,17 @@ import { Router } from '@angular/router';
     MatSortModule,
     MatDialogModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    
   ],
   templateUrl: './tabla-expedientes-admin.component.html',
-  styleUrl: './tabla-expedientes-admin.component.css'
+  styleUrl: './tabla-expedientes-admin.component.css',
+  standalone: true,
 })
 
 
 export class TablaExpedientesAdminComponent implements OnInit, AfterViewInit{
-  
+  usuarioId: string | null = null;
   displayedColumns: string[] = ['nombre', 'apellidoP', 'apellidoM', 'correo','acciones'];
   dataSource = new MatTableDataSource<Usuario>([]);
 
@@ -41,12 +43,25 @@ export class TablaExpedientesAdminComponent implements OnInit, AfterViewInit{
   constructor(
     private usuarioService: UsuarioService, 
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.obtenerUsuarios();
-  }
+    this.usuarioId = this.route.snapshot.paramMap.get('id');    
+  console.log('ID del usuario:', this.usuarioId);
+  
+  this.obtenerUsuarios();
+  this.usuarioService.obtenerUsuarios().subscribe(
+    (data) => {
+      console.log('Usuarios obtenidos:', data); // 👈 Revisa que no venga vacío
+      this.dataSource.data = data.sort((a, b) => b.id - a.id);
+    },
+    (error) => {
+      console.error('Error al obtener usuarios:', error);
+    }
+  );
+    }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -72,18 +87,9 @@ export class TablaExpedientesAdminComponent implements OnInit, AfterViewInit{
     }
   }
 
+  visualizarExpediente(id: number) {
+    this.router.navigate(['/expedienteadmin', id]);
+  }
   
-
-  visualizarExpediente()
-    {
-      this.router.navigate(['/expediente']);
-    }
-
-
-    //visualizarExpediente(id: number)
-    //{
-      //this.router.navigate(['/expediente', id,]);
-    //}
-
   
 }

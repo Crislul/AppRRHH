@@ -3,8 +3,12 @@
     <div class="form-container" id="salidaPDF">
         <div>
             <h2>Autorización de salida {{salida?.id}}</h2>
-            <p> </p>
-            <img src="logo1.jpg" style="width: 180px; height: 148px;">
+          
+            <div class="logo-container">
+                <img src="/images/logoutrng.png" width="120px">
+                <img src="/images/Logo.jpg" width="180px" style="border-radius: 10px;">
+            
+              </div>
       
             <h3>Estatus: 
                 <span class="estatus1" *ngIf="salida?.estatus === 0">En espera</span>
@@ -28,13 +32,14 @@
                 <label>Hora de:</label>
             <p> </p>
             <div style="display: flex; gap: 10px;">
-                <div style="flex: 1; padding: 10px;">
-                    <label>Salida</label>
-                    <input type="time" [value]="salida?.horaSalida" disabled>
-                </div>
+             
                 <div style="flex: 1; padding: 10px;"> 
                     <label>Entrada</label>
                     <input type="time" [value]="salida?.horaEntrada" disabled>
+                </div>  
+                 <div style="flex: 1; padding: 10px;">
+                    <label>Salida</label>
+                    <input type="time" [value]="salida?.horaSalida" disabled>
                 </div>
             </div>
             <p> </p>

@@ -4,37 +4,60 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SeguridadService } from '../../services/seguridad.service';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
-  selector: 'app-expediente-user',
+  selector: 'app-expediente-admin',
   imports: [CommonModule, FormsModule],
-  templateUrl: './expediente-user.component.html',
-  styleUrl: './expediente-user.component.css'
+  templateUrl: './expediente-admin.component.html',
+  styleUrl: './expediente-admin.component.css'
 })
-export class ExpedienteUserComponent {
-  documentos: any[] = [];
+export class ExpedienteAdminComponent {
+ documentos: any[] = [];
   fotoSeleccionada: File | null = null;
   nuevosDocumentos: any[] = [];
 
-  usuarioId: number = Number(localStorage.getItem('usuarioId'));
   nombre: string = localStorage.getItem('nombre') || '';
   apellido: string = localStorage.getItem('apellidoP') || '';
   apellidoM: string = localStorage.getItem('apellidoM') || '';
   editando: boolean = false;
   showIcon: any;
   seguridadService = inject(SeguridadService);
+  usuarioService = inject(UsuarioService);
   fotoId: number | null = null;
   fotoUrl: string = 'assets/default-user.jpg';
-  constructor(private expedienteService: ExpedienteService) {}
+  usuarioId: number = 0;
+
+  constructor
+  (
+    private expedienteService: ExpedienteService,
+    private route: ActivatedRoute 
+  ) {}
 
   private documentosCargados = false;
 
   ngOnInit(): void {
-    if (!this.documentosCargados) {
-      this.obtenerDocumentos();
+    const idParam = this.route.snapshot.paramMap.get('id');
+  
+    if (idParam) {
+      this.usuarioId = +idParam;
+     // ✅ Aquí es donde agregas la petición para traer el nombre del usuario por ID
+     this.usuarioService.obtenerUsuarioPorId(this.usuarioId).subscribe(usuario => {      this.nombre = usuario.nombre;
+      this.apellido = usuario.apellidoP;
+      this.apellidoM = usuario.apellidoM;
+    });
+    } 
+    else {
+      this.usuarioId = Number(localStorage.getItem('usuarioId'));
+      this.nombre = localStorage.getItem('nombre') || '';
+      this.apellido = localStorage.getItem('apellidoP') || '';
+      this.apellidoM = localStorage.getItem('apellidoM') || '';
     }
+  
+    this.obtenerDocumentos();
   }
-
+  
   obtenerDocumentos(): void {
     
     if (this.documentosCargados) return;
@@ -83,9 +106,7 @@ export class ExpedienteUserComponent {
       reader.readAsDataURL(archivo);
     }
   }
-  nombreUsuario(): string {
-    return this.seguridadService.obtenerNombre();
-  }
+ 
   fotoCargada: boolean = false;
   
   subirDocumentos() {

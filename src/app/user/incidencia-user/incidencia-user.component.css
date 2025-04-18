@@ -12,6 +12,12 @@ body {
     font-family: Arial, sans-serif !important;
     box-shadow: none !important;
   }
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Espacio debajo de las imágenes */
+  }
   
   .pdf-export * {
     color: black !important;
