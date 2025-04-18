@@ -27,6 +27,7 @@ import { SalidaUserComponent } from './user/salida-user/salida-user.component';
 import { UsuarioUserComponent } from './user/usuario-user/usuario-user.component';
 import { ExpedienteUserComponent } from './user/expediente-user/expediente-user.component';
 import { ExpedienteAdminComponent } from './admin/expediente-admin/expediente-admin.component';
+import { ExpedienteVistaAdminComponent } from './admin/expediente-vista-admin/expediente-vista-admin.component';
 
 
 
@@ -61,7 +62,7 @@ export const routes: Routes = [
    { path: 'tablaUsuariosAdmin', component: TablaUsuariosAdminComponent, canActivate: [authAdminGuard]},
 
    { path: 'expedienteadmin', component: ExpedienteAdminComponent },
-   { path: 'expedienteadmin/:id', component: ExpedienteAdminComponent },
+   { path: 'expedientevistaadmin/:id', component: ExpedienteVistaAdminComponent },
 
 
    // usuario

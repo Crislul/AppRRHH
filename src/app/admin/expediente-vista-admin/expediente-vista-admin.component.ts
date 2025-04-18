@@ -8,13 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
-  selector: 'app-expediente-admin',
+  selector: 'app-expediente-vista-admin',
   imports: [CommonModule, FormsModule],
-  templateUrl: './expediente-admin.component.html',
-  styleUrl: './expediente-admin.component.css'
+  templateUrl: './expediente-vista-admin.component.html',
+  styleUrl: './expediente-vista-admin.component.css'
 })
-export class ExpedienteAdminComponent {
- documentos: any[] = [];
+export class ExpedienteVistaAdminComponent {
+documentos: any[] = [];
   fotoSeleccionada: File | null = null;
   nuevosDocumentos: any[] = [];
 
@@ -185,9 +185,6 @@ export class ExpedienteAdminComponent {
       this.editando = true;
     }
     
-    nombreUsuario(): string {
-      return this.seguridadService.obtenerNombre();
-    }
   eliminarDocumento(id : number) {
     Swal.fire({
       title: '¿Estás seguro?',

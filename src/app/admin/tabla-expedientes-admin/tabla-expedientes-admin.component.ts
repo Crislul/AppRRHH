@@ -88,7 +88,7 @@ export class TablaExpedientesAdminComponent implements OnInit, AfterViewInit{
   }
 
   visualizarExpediente(id: number) {
-    this.router.navigate(['/expedienteadmin', id]);
+    this.router.navigate(['/expedientevistaadmin', id]);
   }
   
   

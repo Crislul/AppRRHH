@@ -81,17 +81,17 @@ export class SeguridadService {
 
   obtenerNombre(): string {
     const nombre1 = sessionStorage.getItem('nombreUsuario');
-    return nombre1 ?? 'Bruce';  // Retorna un string vacío si el valor es null
+    return nombre1 ?? '';  // Retorna un string vacío si el valor es null
   }
 
   obtenerApellidoP(): string {
     const nombre1 = sessionStorage.getItem('apellidoPUsuario');
-    return nombre1 ?? 'Wayne';  // Retorna un string vacío si el valor es null
+    return nombre1 ?? '';  // Retorna un string vacío si el valor es null
   }
 
   obtenerApellidoM(): string {
     const nombre1 = sessionStorage.getItem('apellidoMUsuario');
-    return nombre1 ?? 'Diaz';  // Retorna un string vacío si el valor es null
+    return nombre1 ?? '';  // Retorna un string vacío si el valor es null
   }
 
   obtenerId(): number {
