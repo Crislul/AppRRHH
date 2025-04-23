@@ -3,13 +3,17 @@
     
   }
 
-  .mat-toolbar
-  {
-    background-color: #2c3e50;
+  .mat-toolbar {
+    background: rgb(43, 82, 104);
     top: 0; 
-    
+    position: sticky; /* Asegura que el toolbar se quede pegado al principio */
+    z-index: 1; /* Asegura que esté por encima de otros elementos */
   }
-
+  
+.mat-toolbar h1 {
+  color: white;
+  margin: 0; /* Elimina cualquier margen en el título para evitar desplazamientos inesperados */
+}
   .mat-icon
   {
     color: white;

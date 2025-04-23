@@ -52,15 +52,12 @@
 <!-- Documentos subidos previamente -->
 <div *ngIf="documentos.length > 0" style="margin-top: 20px;">
   <h3>Documentos subidos</h3>
-  <div *ngFor="let doc of documentos" style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-    <span style="flex: 1;">📄 {{ doc.documento }}</span>
-
-    <a [href]="getUrlDocumento(doc)" target="_blank" class="btn-ver">Ver</a>
-
-
-    <button *ngIf="editando" (click)="eliminarDocumento(doc.id)" class="btn-eliminar">
-      Eliminar
-    </button>
+  <div *ngFor="let doc of documentos" class="documento-item">
+    <span class="documento-nombre">📄 {{ doc.documento }}</span>
+    <div class="acciones-documento">
+      <a [href]="getUrlDocumento(doc)" target="_blank" class="btn-ver">Ver 👁️</a>
+      <button *ngIf="editando" (click)="eliminarDocumento(doc.id)" class="btn-eliminar"> ❌ Eliminar</button>
+    </div>
   </div>
 </div>
 

@@ -1,80 +1,94 @@
 <title>Configuración</title>
 
-<body> 
-  <div class="form-container">
-    <h2 style="text-align: center;">Editar usuario</h2>
+<body>
+  <div class="form-container" style="background-color: lightcyan;">
+    <h2 style="text-align: center; font-size: 30px;" >Editar usuario</h2>
+  
+   
+  
     <form (ngSubmit)="guardarCambios()" #usuarioForm="ngForm">
+      <br> <br> <br> 
       <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input
-          type="text"
-          id="nombre"
-          class="form-control"
+        <input type="text" id="nombre" class="form-control"
           [(ngModel)]="usuario.nombre"
           name="nombre"
           required
-        />
+          [disabled]="!editando" />
       </div>
   
       <div class="form-group">
         <label for="apellidoP">Apellido paterno:</label>
-        <input
-          type="text"
-          id="apellidoP"
-          class="form-control"
+        <input type="text" id="apellidoP" class="form-control"
           [(ngModel)]="usuario.apellidoP"
           name="apellidoP"
           required
-        />
+          [disabled]="!editando" />
       </div>
   
       <div class="form-group">
         <label for="apellidoM">Apellido materno:</label>
-        <input
-          type="text"
-          id="apellidoM"
-          class="form-control"
+        <input type="text" id="apellidoM" class="form-control"
           [(ngModel)]="usuario.apellidoM"
           name="apellidoM"
           required
-        />
+          [disabled]="!editando" />
       </div>
   
       <div class="form-group">
         <label for="correo">Correo:</label>
-        <input
-          type="email"
-          id="correo"
-          class="form-control"
+        <input type="email" id="correo" class="form-control"
           [(ngModel)]="usuario.correo"
           name="correo"
           required
-        />
+          [disabled]="!editando" />
       </div>
   
       <div class="form-group">
-        <label for="contrasenaHash">Contraseña:</label>
-        <input
-          type="password"
-          id="contrasenaHash"
-          class="form-control"
+        <label for="contrasenaHash">Contraseña </label>
+        <input type="password" id="contrasenaHash" class="form-control"
           [(ngModel)]="usuario.contrasenaHash"
           name="contrasenaHash"
           required
-        />
+          [disabled]="!editando" />
       </div>
-  
-      <div style="text-align: center;">
-      <button type="submit" class="btn btn-primary" [disabled]="!usuarioForm.form.valid"  >
-        Guardar cambios
+
+      
+ 
+
+      <br> 
+      <div style="text-align: center; display: flex; justify-content: center; gap: 50px; margin-top: 20px;" *ngIf="editando">        <button 
+        type="submit" 
+        class="btn btn-primary" 
+        [disabled]="!usuarioForm.form.valid"
+        style="padding: 6px 12px; font-size: 14px; border-radius: 8px;"
+      >
+        💾 Guardar
+      </button>
+        <button 
+        type="button" 
+        class="btn btn-secondary" 
+        (click)="cancelarEdicion()"
+        style="padding: 6px 12px; font-size: 14px; border-radius: 8px;"
+      >
+        ❌ Cancelar
+      </button>
+      </div>
+      <br> <br> <br> 
+    </form> 
+
+    <br><br><br>
+    <div style="text-align: center;" *ngIf="!editando">
+      <button 
+        class="btn btn-secondary" 
+        type="button" 
+        (click)="editando = true"
+        style="padding: 6px 14px; font-size: 14px; border-radius: 8px;"
+      >
+        ✏️ Editar
       </button>
     </div>
-    </form>
   </div>
-
-</body>
-
   
 
-
-
+</body>

@@ -1,5 +1,5 @@
 .sidenav {
-  background: #2c3e50;
+  background: rgb(43, 82, 104);
   position: fixed;
   z-index: 1;
   top: 0;
@@ -190,6 +190,4 @@
 .submenu-item a {
   text-decoration: none !important;
 }
-
-
 
