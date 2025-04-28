@@ -36,28 +36,22 @@ export class ExpedienteUserComponent {
   }
 
   obtenerDocumentos(): void {
-    
-    if (this.documentosCargados) return;
-    console.log('Obteniendo documentos');
-
     this.expedienteService.obtenerDocumentosPorUsuario(this.usuarioId).subscribe({
       next: (respuesta) => {
-        // Separar la foto del resto de documentos
         const fotoDoc = respuesta.find(doc => doc.documento.toLowerCase() === 'foto');
         if (fotoDoc) {
           this.fotoUrl = `https://localhost:7064/${fotoDoc.archivo.replace(/\\/g, '/')}`;
-          this.fotoId = fotoDoc.id; // Guarda el ID de la foto para actualizar si es necesario
+          this.fotoId = fotoDoc.id;
         }
-  
-        // Filtra los documentos para que no se muestre el que tiene documento === 'foto'
         this.documentos = respuesta.filter(doc => doc.documento.toLowerCase() !== 'foto');
-        this.documentosCargados = true;
-        },
+        this.documentosCargados = true; // Puedes mantenerlo si quieres, pero ya no bloquea la recarga
+      },
       error: (error) => {
         console.error('Error al cargar documentos:', error);
       }
     });
   }
+  
   eliminarNuevoDocumento(index: number) {
     this.nuevosDocumentos.splice(index, 1);
   }
@@ -157,7 +151,7 @@ export class ExpedienteUserComponent {
     this.nuevosDocumentos = [];
     this.fotoSeleccionada = null;
     this.editando = false;
-    this.documentosCargados = true;
+    this.documentosCargados = false;
     this.obtenerDocumentos();
   }
   toggleEditar() {

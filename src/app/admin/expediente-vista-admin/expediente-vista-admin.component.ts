@@ -61,7 +61,7 @@ documentos: any[] = [];
   obtenerDocumentos(): void {
     
     if (this.documentosCargados) return;
-    console.log('Obteniendo documentos');
+    // console.log('Obteniendo documentos');
 
     this.expedienteService.obtenerDocumentosPorUsuario(this.usuarioId).subscribe({
       next: (respuesta) => {
@@ -81,6 +81,7 @@ documentos: any[] = [];
       }
     });
   }
+  
   eliminarNuevoDocumento(index: number) {
     this.nuevosDocumentos.splice(index, 1);
   }

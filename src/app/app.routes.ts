@@ -81,7 +81,7 @@ export const routes: Routes = [
    { path: 'tabla/salidas', component: TablaSalidasUserComponent},
    { path: 'configuracion', component: UsuarioUserComponent},
    
-   {path: 'expedienteuser', component: ExpedienteUserComponent},
+   {path: 'expediente', component: ExpedienteUserComponent}
   
 
 ];

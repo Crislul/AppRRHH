@@ -49,12 +49,12 @@ export class TablaExpedientesAdminComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     this.usuarioId = this.route.snapshot.paramMap.get('id');    
-  console.log('ID del usuario:', this.usuarioId);
+   //console.log('ID del usuario:', this.usuarioId);
   
   this.obtenerUsuarios();
   this.usuarioService.obtenerUsuarios().subscribe(
     (data) => {
-      console.log('Usuarios obtenidos:', data); // 👈 Revisa que no venga vacío
+      //console.log('Usuarios obtenidos:', data); // 👈 Revisa que no venga vacío
       this.dataSource.data = data.sort((a, b) => b.id - a.id);
     },
     (error) => {

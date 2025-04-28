@@ -39,7 +39,7 @@ export class MenuUserComponent {
         expanded: false
       },
       {
-        routeLink: 'expedienteuser',
+        routeLink: 'expediente',
         icon: 'fa-solid fa-folder-open',
         label: 'Mi expediente',
       }
