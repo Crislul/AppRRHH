@@ -26,7 +26,7 @@ documentos: any[] = [];
   seguridadService = inject(SeguridadService);
   usuarioService = inject(UsuarioService);
   fotoId: number | null = null;
-  fotoUrl: string = 'assets/default-user.jpg';
+  fotoUrl: string = 'images/default-profile.png';
   usuarioId: number = 0;
 
   constructor

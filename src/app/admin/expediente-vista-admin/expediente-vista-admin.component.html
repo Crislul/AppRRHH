@@ -6,7 +6,7 @@
   <div style="display: flex; gap: 10px;">
     <div style="flex: 1; padding: 10px;">
       <div class="image-container" (mouseover)="showIcon = true" (mouseleave)="showIcon = false">
-        <img [src]="fotoUrl || 'assets/default.jpg'" alt="Imagen de perfil" class="profile-image" />
+        <img [src]="fotoUrl || 'images/default-profile.png'"  class="profile-image" />
 
         <div *ngIf="showIcon && editando" class="edit-icon" (click)="fileInputFoto.click()">🖊️</div>
         <input

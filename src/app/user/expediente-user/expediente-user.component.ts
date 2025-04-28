@@ -24,7 +24,7 @@ export class ExpedienteUserComponent {
   showIcon: any;
   seguridadService = inject(SeguridadService);
   fotoId: number | null = null;
-  fotoUrl: string = 'assets/default-user.jpg';
+  fotoUrl: string = 'images/default-profile.png';
   constructor(private expedienteService: ExpedienteService) {}
 
   private documentosCargados = false;
