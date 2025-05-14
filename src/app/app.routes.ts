@@ -14,7 +14,6 @@ import { TablaUsuariosAdminComponent } from './admin/tabla-usuarios-admin/tabla-
 import { GenerarIncidenciaUserComponent } from './user/generar-incidencia-user/generar-incidencia-user.component';
 import { GenerarSalidaUserComponent } from './user/generar-salida-user/generar-salida-user.component';
 import { IndexUserComponent } from './user/index-user/index-user.component';
-import { NotifiUserComponent } from './user/notifi-user/notifi-user.component';
 import { TablaIncidenciasUserComponent } from './user/tabla-incidencias-user/tabla-incidencias-user.component';
 import { TablaSalidasUserComponent } from './user/tabla-salidas-user/tabla-salidas-user.component';
 import { AdminHelpComponent } from './admin/admin-help/admin-help.component';
@@ -31,6 +30,8 @@ import { ExpedienteVistaAdminComponent } from './admin/expediente-vista-admin/ex
 import { IndexDirectorComponent } from './director/index-director/index-director.component';
 import { SalidaDirectorComponent } from './director/salida-director/salida-director.component';
 import { IncidenciaDirectorComponent } from './director/incidencia-director/incidencia-director.component';
+import { NuevoDirectorAdminComponent } from './admin/nuevo-director-admin/nuevo-director-admin.component';
+import { TablaDirectoresAdminComponent } from './admin/tabla-directores-admin/tabla-directores-admin.component';
 
 
 
@@ -67,6 +68,9 @@ export const routes: Routes = [
    { path: 'expedienteadmin', component: ExpedienteAdminComponent },
    { path: 'expedientevistaadmin/:id', component: ExpedienteVistaAdminComponent },
 
+   { path: 'generarDirector', component: NuevoDirectorAdminComponent},
+   { path: 'tablaDirectoresAdmin', component: TablaDirectoresAdminComponent}, 
+
 
    // usuario
    { path: 'index', component: IndexUserComponent},
@@ -78,8 +82,7 @@ export const routes: Routes = [
    { path: 'incidenciaUser/:id', component: IncidenciaUserComponent},
    { path: 'salidaUser/:id', component: SalidaUserComponent},  
 
-   { path: 'notifi', component: NotifiUserComponent},
-
+   
    { path: 'tabla/incidencias', component: TablaIncidenciasUserComponent},
    { path: 'tabla/salidas', component: TablaSalidasUserComponent},
    { path: 'configuracion', component: UsuarioUserComponent},

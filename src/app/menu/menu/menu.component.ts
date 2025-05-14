@@ -53,12 +53,21 @@ export class MenuComponent {
       ],
       expanded: false
     },
+      {
+      label: 'Gestión de Directores',
+      icon: 'fa-solid fa-user-tie',
+      submenu: [
+        { label: 'Directores', icon: 'fa-solid fa-users-line', routeLink: 'tablaDirectoresAdmin' },
+        { label: 'Crear nuevo director', icon: 'fa-solid fa-user-plus', routeLink: 'generarDirector' }
+      ],
+      expanded: false
+    },
     {
       label: 'Extra',
       icon: 'fa-solid fa-house-user',
       submenu: [
-        { label: 'Áreas', icon: 'fa-solid fa-chalkboard-user', routeLink: 'tabla/Areas' },
-        { label: 'Categorías', icon: 'fa-solid fa-shapes', routeLink: 'tabla/Categorias' },
+        { label: 'Adscripción', icon: 'fa-solid fa-chalkboard-user', routeLink: 'tabla/Areas' },
+        { label: 'Categorias', icon: 'fa-solid fa-shapes', routeLink: 'tabla/Categorias' },
         { label: 'Motivos / Autorización', icon: 'fa-solid fa-person-falling', routeLink: 'tabla/Motivos' }
       ],
       expanded: false

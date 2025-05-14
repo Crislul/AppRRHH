@@ -10,7 +10,7 @@
         <input class="inputName" type="text" 
         [value]="salida.usuarioNombre + ' ' + apellidoPUsuario() + ' ' + apellidoMUsuario()" disabled>
 
-        <label>Área de trabajo</label>
+        <label>Adscripción de trabajo</label>
         <select [(ngModel)]="salida.areaId" name="areaId" required>
           <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
         </select>

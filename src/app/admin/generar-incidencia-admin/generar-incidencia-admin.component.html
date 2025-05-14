@@ -13,7 +13,7 @@
           </option>
         </select>
         
-        <label>Área de trabajo</label>
+        <label>Adscripción de trabajo</label>
         <select [(ngModel)]="incidencia.areaId" name="areaId" required>
           <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
         </select>
