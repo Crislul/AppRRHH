@@ -28,6 +28,9 @@ import { UsuarioUserComponent } from './user/usuario-user/usuario-user.component
 import { ExpedienteUserComponent } from './user/expediente-user/expediente-user.component';
 import { ExpedienteAdminComponent } from './admin/expediente-admin/expediente-admin.component';
 import { ExpedienteVistaAdminComponent } from './admin/expediente-vista-admin/expediente-vista-admin.component';
+import { IndexDirectorComponent } from './director/index-director/index-director.component';
+import { SalidaDirectorComponent } from './director/salida-director/salida-director.component';
+import { IncidenciaDirectorComponent } from './director/incidencia-director/incidencia-director.component';
 
 
 
@@ -81,7 +84,10 @@ export const routes: Routes = [
    { path: 'tabla/salidas', component: TablaSalidasUserComponent},
    { path: 'configuracion', component: UsuarioUserComponent},
    
-   {path: 'expediente', component: ExpedienteUserComponent}
+   {path: 'expediente', component: ExpedienteUserComponent},
   
-
+   // director 
+   { path: 'index', component: IndexDirectorComponent},
+   { path: 'salida', component:  SalidaDirectorComponent},
+   { path: 'incidencia', component:  IncidenciaDirectorComponent}
 ];

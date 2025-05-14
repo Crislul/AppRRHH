@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ecf0f1;
+}
+
+.pdf-export {
+    background-color: white !important;
+    color: black !important;
+    font-family: Arial, sans-serif !important;
+    box-shadow: none !important;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Espacio debajo de las imágenes */
+  }
+  .pdf-export * {
+    color: black !important;
+    font-size: 20px !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+.form-container {   
+    width: 1100px;
+    padding: 70px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: grid;
+    align-items: center;
+}
+.form-container h2 {
+    line-height: 1.2;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: lightcyan;
+}
+
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background:  #04AA6D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-container button:hover {
+    background: #46a049;
+}
+
+.form-container .buttonC{
+    width: 100%;
+    padding: 10px;
+    background: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-container .buttonC:hover {
+    background: #da190b;
+}
+
+.form-container .inputT {
+    width: auto;
+    padding: 10px;
+    margin: 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: lightcyan;
+}
+
+.estatus1{
+    color: orangered ;
+  }
+  
+  .estatus2{
+    color: green ;
+  }
+  
+  .estatus3{
+    color: red ;
+  }
+
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* Estilos cuando los botones están deshabilitados */
+.form-container button:disabled {
+    background: #a5d6a7; /* Verde claro para el botón "Autorizar" deshabilitado */
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.form-container .buttonC:disabled {
+    background: #ef9a9a; /* Rojo claro para el botón "Rechazar" deshabilitado */
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Evita el cambio de color en el hover cuando están deshabilitados */
+.form-container button:disabled:hover,
+.form-container .buttonC:disabled:hover {
+    background: inherit;
+}
+
+  

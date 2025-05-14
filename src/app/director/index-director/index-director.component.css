@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+    background: #ecf0f1;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Espacio debajo de las imágenes */
+  }
+  
+  .form-container {
+    width: 1100px;
+    padding: 70px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: grid;
+    align-items: center;
+  }
+  
+
+.div-salida{
+  background-color: #FFC0C7;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.div-incidencia{
+  background-color: #D9EEE1;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+  
+}
+
+.mat-button {
+  width: 140px;
+}
+
+
+
+
+
+
+    
+
+  
