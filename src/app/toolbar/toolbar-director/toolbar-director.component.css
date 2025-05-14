@@ -1,0 +1,50 @@
+.example-spacer {
+    flex: 1 1 auto;
+    
+  }
+
+  .mat-toolbar {
+    background-color: rgb(43, 82, 104);
+    top: 0; 
+    position: sticky; /* Asegura que el toolbar se quede pegado al principio */
+    z-index: 1; /* Asegura que esté por encima de otros elementos */
+  }
+  
+  .mat-toolbar h1 {
+    color: white;
+    margin: 0; /* Elimina cualquier margen en el título para evitar desplazamientos inesperados */
+  }
+  .mat-icon
+  {
+    color: white;
+  }
+
+  h1
+  {
+    color: white;
+    
+  }
+  .notification-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-badge {
+    background: red;
+    color: white; /* Aquí estaba el error, lo tenías en rojo */
+    font-size: 11px;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -6px; /* más arriba */
+    right: -6px; /* más a la derecha */
+    font-weight: bold;
+    box-shadow: 0 0 0 1px rgb(255, 255, 255); /* opcional: borde blanco como Facebook */
+    z-index: 1;
+  }
+  
+

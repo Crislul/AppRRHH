@@ -7,20 +7,25 @@ import { SeguridadService } from './services/seguridad.service';
 import { LoginComponent } from "./login/login/login.component";
 import { MenuUserComponent } from "./menu/menu-user/menu-user.component";
 import { ToolbarUserComponent } from './toolbar/toolbar-user/toolbar-user.component';
+import { ToolbarDirectorComponent } from "./toolbar/toolbar-director/toolbar-director.component";
+import { MenuDirectorComponent } from './menu/menu-director/menu-director.component';
 
 
 
 @Component({
   selector: 'app-root',
   imports: [
-    MenuComponent, 
-    MainComponent, 
-    ToolbarComponent, 
-    CommonModule, 
-    LoginComponent, 
+    MenuComponent,
+    MainComponent,
+    ToolbarComponent,
+    CommonModule,
+    LoginComponent,
     ToolbarUserComponent,
-
-    MenuUserComponent],
+    ToolbarDirectorComponent,
+    MenuUserComponent,
+    MenuDirectorComponent,
+ 
+],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

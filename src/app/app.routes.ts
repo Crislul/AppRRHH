@@ -32,6 +32,8 @@ import { SalidaDirectorComponent } from './director/salida-director/salida-direc
 import { IncidenciaDirectorComponent } from './director/incidencia-director/incidencia-director.component';
 import { NuevoDirectorAdminComponent } from './admin/nuevo-director-admin/nuevo-director-admin.component';
 import { TablaDirectoresAdminComponent } from './admin/tabla-directores-admin/tabla-directores-admin.component';
+import { TablaIncidenciasDirectorComponent } from './director/tabla-incidencias-director/tabla-incidencias-director.component';
+import { TablaSalidasDirectorComponent } from './director/tabla-salidas-director/tabla-salidas-director.component';
 
 
 
@@ -90,7 +92,9 @@ export const routes: Routes = [
    {path: 'expediente', component: ExpedienteUserComponent},
   
    // director 
-   { path: 'index', component: IndexDirectorComponent},
+   { path: 'indexDirector', component: IndexDirectorComponent},
    { path: 'salida', component:  SalidaDirectorComponent},
-   { path: 'incidencia', component:  IncidenciaDirectorComponent}
+   { path: 'incidencia', component:  IncidenciaDirectorComponent},
+   { path: 'tablaIncidenciasDirector', component: TablaIncidenciasDirectorComponent},
+   { path: 'tablaSalidasDirector', component: TablaSalidasDirectorComponent}
 ];
