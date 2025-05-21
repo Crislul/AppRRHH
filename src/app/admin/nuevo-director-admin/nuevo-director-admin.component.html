@@ -1,1 +1,55 @@
-<p>nuevo-director-admin works!</p>
+<title> Crear nuevo director </title>  
+<body>
+  <div class="form-container">
+    <div>
+      <h2>Crear nuevo director</h2>
+    </div>
+    <form (ngSubmit)="crearUsuario()">
+      <label>Nombre Dirección:</label>
+      <input type="text" placeholder="Nombre..." [(ngModel)]="nombre" name="nombre" required>
+  
+      <div style="display: flex; gap: 10px;">
+        <div style="flex: 1; padding: 10px;">
+          <label>Apellido Paterno:</label>
+          <input type="text" placeholder="Apellido..." [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+          <label>Apellido Materno:</label>
+          <input type="text" placeholder="Apellido..." [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required>
+        </div>
+      </div>
+
+      <div>
+        <label>Adscripción de trabajo</label>
+        <select [(ngModel)]="areaId" name="areaId" required>
+          <option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</option>
+        </select>
+      </div>
+
+      
+  
+      <label>Correo</label>
+      <input type="email" placeholder="Correo..." [(ngModel)]="correo" name="correo" required>
+  
+      <div style="display: flex; gap: 10px;">
+        <div style="flex: 1; padding: 10px;">
+          <label>Contraseña:</label>
+          <input type="text" [(ngModel)]="contrasena" name="contrasenaDir" required>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+          <label>Confirme la contraseña:</label>
+          <input type="password" [(ngModel)]="confirmarContrasena" name="confirmarContrasenaDir" required>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; ">
+        <div style="flex: 1; padding: 10px; ">
+          <button type="submit">Crear Usuario <i class="fa-solid fa-user-plus"></i></button>
+        </div>
+        <div style="flex: 1; padding: 10px;">
+          <button type="button" (click)="setRandomPassword()">Generar contraseña</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>

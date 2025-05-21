@@ -13,11 +13,19 @@
             </div>
                 
 
-            <h3>Estatus: 
-                <span class="estatus1" *ngIf="salida?.estatus === 0">En espera</span>
-                <span class="estatus2" *ngIf="salida?.estatus === 1">Aceptado</span>
-                <span class="estatus3" *ngIf="salida?.estatus === 2">Rechazado</span>
+            <h3>Estatus RR-HH: 
+                <span class="estatus1" *ngIf="salida?.estatusAdmin === 0">En espera</span>
+                <span class="estatus2" *ngIf="salida?.estatusAdmin === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="salida?.estatusAdmin === 2">Rechazado</span>
               </h3>
+
+              <h3>Estatus dirección de carrera: 
+                <span class="estatus1" *ngIf="salida?.estatusDir === 0">En espera</span>
+                <span class="estatus2" *ngIf="salida?.estatusDir === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="salida?.estatusDir === 2">Rechazado</span>
+              </h3>
+
+              
         </div>
         <form id="autorizacionForm">
             <p> </p>
@@ -56,12 +64,12 @@
             <p> </p>
             <div style="display: flex; gap: 10px;">
                 <div style="flex: 1; padding: 10px;" class=" oculto-para-pdf"> 
-                    <button type="button"  (click)="autorizarSalida()" [disabled]="salida?.estatus === 1">
+                    <button type="button"  (click)="autorizarSalida()" [disabled]="salida?.estatusAdmin === 1">
                         <i class="fas fa-check-circle"></i> Autorizar
                       </button>
                 </div>
                 <div style="flex: 1; padding: 10px;"  class=" oculto-para-pdf">
-                    <button type="button" class="buttonC" (click)="rechazarSalida()" [disabled]="salida?.estatus === 2">
+                    <button type="button" class="buttonC" (click)="rechazarSalida()" [disabled]="salida?.estatusAdmin === 2">
                         <i class="fas fa-times-circle"></i> Rechazar
                       </button>
                 </div>

@@ -1,1 +1,90 @@
-<p>salida-director works!</p>
+<title> Salida {{salida?.id}}  </title>  
+
+<body>
+    <div class="form-container" id="salidaPDF">
+        <div>
+            <div>
+                <h2>Autorizacion de salida {{salida?.id}}</h2>
+                <div class="logo-container">
+                    <img src="/images/logoutrng.png" width="120px">
+                    <img src="/images/Logo.jpg" width="180px" style="border-radius: 10px;">
+                
+                  </div>    
+            </div>
+                
+
+            <h3>Estatus RR-HH: 
+                <span class="estatus1" *ngIf="salida?.estatusAdmin === 0">En espera</span>
+                <span class="estatus2" *ngIf="salida?.estatusAdmin === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="salida?.estatusAdmin === 2">Rechazado</span>
+              </h3>
+
+              <h3>Estatus dirección de carrera: 
+                <span class="estatus1" *ngIf="salida?.estatusDir === 0">En espera</span>
+                <span class="estatus2" *ngIf="salida?.estatusDir === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="salida?.estatusDir === 2">Rechazado</span>
+              </h3>
+
+              
+        </div>
+        <form id="autorizacionForm">
+            <p> </p>
+            <label>Nombre del trabajador</label>
+            <input type="text" [value]="
+            salida?.usuarioNombre + ' ' + 
+            salida?.usuarioApellidoP + ' ' + 
+            salida?.usuarioApellidoM" disabled>
+
+            <label>Área de trabajo</label>
+            <input type="text" [value]="salida?.areaNombre" disabled>
+            <label>Categoriá</label>
+            <input type="text" [value]="salida?.categoriaNombre" disabled>
+            <p> </p>
+                <label>Hora de:</label>
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                
+                <div style="flex: 1; padding: 10px;"> 
+                    <label>Entrada</label>
+                    <input type="time" [value]="salida?.horaEntrada" disabled>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    <label>Salida</label>
+                    <input type="time" [value]="salida?.horaSalida" disabled>
+                </div>
+            </div>
+            <p> </p>
+            <label>Horario de Trabajo</label>
+            <input type="text" [value]="salida?.horarioTrabajo" disabled>
+            <label>Asunto</label>
+            <input type="text" [value]="salida?.asunto" disabled>
+            <label>Fecha de generación de la autorización de salida</label>
+            <input class="inputT" type="text" [value]="salida?.fecha" disabled>
+            
+            <p> </p>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;" class=" oculto-para-pdf"> 
+                    <button type="button"  (click)="autorizarSalida()" [disabled]="salida?.estatusDir === 1">
+                        <i class="fas fa-check-circle"></i> Autorizar
+                      </button>
+                </div>
+                <div style="flex: 1; padding: 10px;"  class=" oculto-para-pdf">
+                    <button type="button" class="buttonC" (click)="rechazarSalida()" [disabled]="salida?.estatusDir === 2">
+                        <i class="fas fa-times-circle"></i> Rechazar
+                      </button>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1; padding: 10px;" class="oculto-para-pdf"> 
+                    <div>
+                        <button (click)="descargarPDF($event)"> <i class="fa fa-download"></i> Descargar PDF</button>
+                    </div>
+                </div>
+                <div style="flex: 1; padding: 10px;">
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

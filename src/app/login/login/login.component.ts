@@ -79,10 +79,20 @@ export class LoginComponent {
   
           // Redirigir después de que el usuario cierre la alerta
           setTimeout(() => {
-            if (resp.tipoUsuario === 1) {
-              this.router.navigate(['/index']);
-            } else {
-              this.router.navigate(['/indexAdmin']);
+            switch (resp.tipoUsuario) {
+              case 1:
+                this.router.navigate(['/index']);
+                break;
+              case 2:
+                this.router.navigate(['/indexAdmin']);
+                break;
+              case 3:
+                this.router.navigate(['/indexDirector']);
+                break;
+              default:
+                // Opcional: redirigir a una ruta por defecto o mostrar un error
+                this.router.navigate(['/help']);
+                break;
             }
           }, 200);
         } else {

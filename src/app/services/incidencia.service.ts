@@ -18,7 +18,8 @@ export interface Incidencia {
   categoriaNombre: string;  
   motivoId: number;
   motivoNombre: string;  
-  estatus: number;
+  estatusDir: number;
+  estatusAdmin: number;
   archivo?: string;
   nombreArchivo?: string;
 }

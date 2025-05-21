@@ -32,7 +32,8 @@ export interface SalidaUser{
   categoriaId: number;
   categoriaNombre: string;  
     
-  estatus: number;
+  estatusDir: number;
+  estatusAdmin: number;
 }
 
 @Component({
@@ -60,7 +61,7 @@ export class TablaSalidasUserComponent implements OnInit, AfterViewInit{
 
 
 
-  displayedColumns: string[] = ['areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
+  displayedColumns: string[] = ['areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin','estatusDir'];
       dataSource = new MatTableDataSource<SalidaUser>([]);
     
       @ViewChild(MatPaginator) paginator!: MatPaginator;

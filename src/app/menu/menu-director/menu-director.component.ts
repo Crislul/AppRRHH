@@ -19,24 +19,18 @@ export class MenuDirectorComponent {
     {
       routeLink: 'indexDirector',
       icon: 'fa fa-home',
-      label: 'Inicio',
+      label: 'Inicio'
     },
     {
-      label: 'Incidencias de la carrera',
-      icon: 'fa-solid fa-person-circle-question',
-      submenu: [
-        { label: 'Incidencias', icon: 'fa-solid fa-list-check', routeLink: 'tablaIncidenciasDirector' },
-      ],
-      expanded: false
+      routeLink: 'tablaIncidenciasDirector',
+      icon: 'fa-solid fa-list-check',
+      label: 'Incidencias'
     },
     {
-      label: 'Autorizaciones de salidas de la carrera',
-      icon: 'fa-solid fa-person-running',
-      submenu: [
-        { label: 'Autorización de salida', icon: 'fa-solid fa-user-check', routeLink: 'tablaSalidasDirector' },
-      ],
-      expanded: false
-    },
+      routeLink: 'tablaSalidasDirector',
+      icon: 'fa-solid fa-user-check',
+      label: 'Autorización de salida'
+    }
     
   ];
 
@@ -44,22 +38,10 @@ export class MenuDirectorComponent {
 
   toggleCollapse(): void {
     this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed());
-
-    if (this.isLeftSidebarCollapsed()) {
-      this.items.forEach((item) => {
-        if (item.submenu) {
-          item.expanded = false; // Contraer el submenú
-        }
-      });
-    }
   }
 
   closeSidenav(): void {
     this.changeIsLeftSidebarCollapsed.emit(true);
-  }
-
-  toggleSubmenu(index: number) {
-    this.items[index].expanded = !this.items[index].expanded;
   }
 
   handleClick(event: Event, item: any, index: number) {
@@ -67,14 +49,12 @@ export class MenuDirectorComponent {
       if (item.submenu) {
         event.preventDefault(); // Evita la redirección
         this.toggleCollapse(); // Expande el menú lateral
-        this.toggleSubmenu(index); // Despliega el submenú
       }
       // Si no es un submenú, el enlace redirigirá normalmente
     } else {
       // Si el menú no está colapsado, maneja el submenú como antes
       if (item.submenu) {
         event.preventDefault(); // Evita la redirección
-        this.toggleSubmenu(index); // Despliega el submenú
       }
     }
   }

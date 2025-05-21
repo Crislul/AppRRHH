@@ -49,17 +49,19 @@ export class GenerarIncidenciaUserComponent implements OnInit{
     categoriaNombre:'',
     motivoId: '',
     motivoNombre: '',
-    estatus: 0,
+    estatusDir: 0,
+    estatusAdmin: 0,
     archivo: null
   };
 
 
   fechaHoy: string = new Date().toLocaleDateString('es-MX', {
-    timeZone: 'America/Mexico_City',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).split('/').reverse().join('-');
+  timeZone: 'America/Mexico_City',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+});
+
 
 
   resetForm() {
@@ -76,7 +78,8 @@ export class GenerarIncidenciaUserComponent implements OnInit{
       categoriaNombre:'',
       motivoId: '',
       motivoNombre: '',
-      estatus: 0,
+      estatusDir: 0,
+      estatusAdmin: 0,
       archivo: null
     };
     this.habilitarArchivo = false;

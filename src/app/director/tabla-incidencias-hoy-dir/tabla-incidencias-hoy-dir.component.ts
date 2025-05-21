@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { IncidenciaService } from '../../services/incidencia.service';
+import { SeguridadService } from '../../services/seguridad.service';
 
 export interface Incidencia {
   id: number;
@@ -31,7 +32,7 @@ export interface Incidencia {
 }
 
 @Component({
-  selector: 'app-tabla-incidencia-hoy',
+  selector: 'app-tabla-incidencias-hoy-dir',
   imports: [
     CommonModule,
     MatTableModule,
@@ -42,14 +43,18 @@ export interface Incidencia {
     MatButtonModule,
     MatInputModule
   ],
-  templateUrl: './tabla-incidencia-hoy.component.html',
-  styleUrl: './tabla-incidencia-hoy.component.css'
+  templateUrl: './tabla-incidencias-hoy-dir.component.html',
+  styleUrl: './tabla-incidencias-hoy-dir.component.css'
 })
-export class TablaIncidenciaHoyComponent implements OnInit, AfterViewInit{
+export class TablaIncidenciasHoyDirComponent implements OnInit, AfterViewInit{
 
-
-
-  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin','estatusDir'];
+   seguridadService = inject(SeguridadService);
+    
+      idAreaUser(): number{
+        return this.seguridadService.obtenerAreaUser();
+      }
+  
+  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin', 'estatusDir'];
     dataSource = new MatTableDataSource<Incidencia>([]);
   
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -78,10 +83,18 @@ export class TablaIncidenciaHoyComponent implements OnInit, AfterViewInit{
             day: '2-digit',
             month: '2-digit',
             year: 'numeric'
-          }).format(today); // Esto devuelve "dd/mm/aaaa"
+          }).format(today); // dd/mm/aaaa
+    
+          const userId = this.idAreaUser();
+    
+          if (!userId || userId <= 0) {
+            console.warn('ID de area no válido:', userId);
+            this.dataSource.data = []; // No muestra nada
+            return;
+          }
     
           const filteredData = data.filter((incidencia) => {
-            return incidencia.fecha === todayFormatted;
+            return incidencia.fecha === todayFormatted && incidencia.areaId === userId;
           });
     
           this.dataSource.data = filteredData.sort((a, b) => b.id - a.id);
@@ -104,7 +117,7 @@ export class TablaIncidenciaHoyComponent implements OnInit, AfterViewInit{
 
     visualizarIncidencia(id: number)
     {
-      this.router.navigate(['/incidencia', id,]);
+      this.router.navigate(['/incidenciaDir', id,]);
     }
 
 }

@@ -13,10 +13,16 @@
                   </div>            </div>
 
       
-            <h3>Estatus: 
-                <span class="estatus1" *ngIf="incidencia?.estatus === 0">En espera</span>
-                <span class="estatus2" *ngIf="incidencia?.estatus === 1">Aceptado</span>
-                <span class="estatus3" *ngIf="incidencia?.estatus === 2">Rechazado</span>
+            <h3>Estatus RR-HH: 
+                <span class="estatus1" *ngIf="incidencia?.estatusAdmin === 0">En espera</span>
+                <span class="estatus2" *ngIf="incidencia?.estatusAdmin === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="incidencia?.estatusAdmin === 2">Rechazado</span>
+              </h3>
+
+              <h3>Estatus dirección de carrera: 
+                <span class="estatus1" *ngIf="incidencia?.estatusDir === 0">En espera</span>
+                <span class="estatus2" *ngIf="incidencia?.estatusDir === 1">Aceptado</span>
+                <span class="estatus3" *ngIf="incidencia?.estatusDir === 2">Rechazado</span>
               </h3>
         </div>
         <form id="incidenciaForm">
@@ -55,12 +61,12 @@
             <p> </p>
             <div style="display: flex; gap: 10px;"> 
                 <div style="flex: 1; padding: 10px;" class="oculto-para-pdf"> 
-                    <button type="button"  (click)="autorizarIncidencia() "  [disabled]="incidencia?.estatus === 1">
+                    <button type="button"  (click)="autorizarIncidencia() "  [disabled]="incidencia?.estatusAdmin === 1">
                       <i class="fas fa-check-circle"></i> Autorizar
                     </button>
                   </div>
                   <div style="flex: 1; padding: 10px;" class="oculto-para-pdf">
-                    <button type="button" class="buttonC"  (click)="rechazarIncidencia()" [disabled]="incidencia?.estatus === 2">
+                    <button type="button" class="buttonC"  (click)="rechazarIncidencia()" [disabled]="incidencia?.estatusAdmin === 2">
                       <i class="fas fa-times-circle"></i> Rechazar
                     </button>
                   </div>

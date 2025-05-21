@@ -33,19 +33,37 @@
         </ng-container>
 
         
-        <ng-container matColumnDef="estatus">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus </th>
+        <ng-container matColumnDef="estatusAdmin">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estatus RR-HH</th>
           <td mat-cell *matCellDef="let incidencia">
             <ng-container 
-            *ngIf="incidencia.estatus === 0">
+            *ngIf="incidencia.estatusAdmin === 0">
             <label class="estatus1">En espera</label> 
           </ng-container>
           <ng-container 
-            *ngIf="incidencia.estatus === 1">
+            *ngIf="incidencia.estatusAdmin === 1">
             <label class="estatus2">Aceptado</label> 
           </ng-container>
           <ng-container 
-            *ngIf="incidencia.estatus === 2">
+            *ngIf="incidencia.estatusAdmin === 2">
+            <label class="estatus3">Rechazado</label> 
+          </ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estatusDir">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estatus dirección de carrera</th>
+          <td mat-cell *matCellDef="let incidencia">
+            <ng-container 
+            *ngIf="incidencia.estatusDir === 0">
+            <label class="estatus1">En espera</label> 
+          </ng-container>
+          <ng-container 
+            *ngIf="incidencia.estatusDir === 1">
+            <label class="estatus2">Aceptado</label> 
+          </ng-container>
+          <ng-container 
+            *ngIf="incidencia.estatusDir === 2">
             <label class="estatus3">Rechazado</label> 
           </ng-container>
           </td>

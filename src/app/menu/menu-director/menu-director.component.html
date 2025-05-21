@@ -10,7 +10,7 @@
 
   <div class="sidenav-nav">
     @for (item of items; track $index) {
-      <li class="sidenav-nav-item" [ngClass]="{'has-submenu': item.submenu}">
+      <li class="sidenav-nav-item">
         <a
           class="sidenav-nav-link"
           [routerLink]="item.routeLink"
@@ -21,27 +21,8 @@
           <i class="sidenav-link-icon" [class]="item.icon"></i>
           @if (!isLeftSidebarCollapsed()) {
             <span class="sidenav-link-text">{{ item.label }}</span>
-            @if (item.submenu) {
-              <i
-                class="fa submenu-toggle"
-                [ngClass]="{'fa-chevron-down': !item.expanded, 'fa-chevron-up': item.expanded}"
-              ></i>
-            }
           }
         </a>
-
-        @if (item.submenu && item.expanded && !isLeftSidebarCollapsed()) {
-          <ul class="submenu">
-            @for (subitem of item.submenu; track $index) {
-              <li class="submenu-item">
-                <a [routerLink]="subitem.routeLink" routerLinkActive="active">
-                  <i class="submenu-icon" [class]="subitem.icon"></i>
-                  <span class="submenu-text">{{ subitem.label }}</span>
-                </a>
-              </li>
-            }
-          </ul>
-        }
       </li>
     }
   </div>

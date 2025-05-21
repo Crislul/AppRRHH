@@ -27,7 +27,8 @@ export interface Incidencia {
   categoriaNombre: string;  
   motivoId: number;
   motivoNombre: string;  
-  estatus: number;
+  estatusDir: number;
+  estatusAdmin: number;
 }
 
 
@@ -51,7 +52,7 @@ export interface Incidencia {
 
 export class TablaIncidenciasAdminComponent implements OnInit, AfterViewInit{
 
-  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
+  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin','estatusDir'];
     dataSource = new MatTableDataSource<Incidencia>([]);
   
     @ViewChild(MatPaginator) paginator!: MatPaginator;

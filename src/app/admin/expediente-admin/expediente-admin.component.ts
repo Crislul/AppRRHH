@@ -6,10 +6,11 @@ import Swal from 'sweetalert2';
 import { SeguridadService } from '../../services/seguridad.service';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import { FooterComponent } from "../../footer/footer.component";
 
 @Component({
   selector: 'app-expediente-admin',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FooterComponent],
   templateUrl: './expediente-admin.component.html',
   styleUrl: './expediente-admin.component.css'
 })

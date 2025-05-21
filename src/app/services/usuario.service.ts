@@ -7,6 +7,8 @@ export interface Usuario {
   nombre: string;
   apellidoP: string;
   apellidoM: string;
+  areaId?: number;
+  areaNombre?: string;
   correo: string;
   contrasenaHash: string;
   tipoUsuario: number;

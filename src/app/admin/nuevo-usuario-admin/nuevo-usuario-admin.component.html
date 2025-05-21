@@ -1,8 +1,8 @@
-<title> Crear nuevo Usuario </title>  
+<title> Crear nuevo usuario </title>  
 <body>
   <div class="form-container">
     <div>
-      <h2>Crear Nuevo Usuario</h2>
+      <h2>Crear nuevo usuario</h2>
     </div>
     <form (ngSubmit)="crearUsuario()">
       <label>Nombre completo:</label>
@@ -26,21 +26,20 @@
         <div style="flex: 1; padding: 10px;">
           <label>Contraseña:</label>
           <input type="text" [(ngModel)]="contrasena" name="contrasena" required>
-          <button type="button" (click)="setRandomPassword()" style="height: 30px; width: 65px;; text-align:center; font-size: 12px; background-color:green; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">Generar </button>
-
         </div>
-        
         <div style="flex: 1; padding: 10px;">
           <label>Confirme la contraseña:</label>
           <input type="password" [(ngModel)]="confirmarContrasena" name="confirmarContrasena" required>
         </div>
+
+
       </div>
       <div style="display: flex; gap: 10px; ">
         <div style="flex: 1; padding: 10px; ">
-          <button type="submit" style="background-color: blue; ">Crear Usuario</button>
+          <button type="submit">Crear Usuario <i class="fa-solid fa-user-plus"></i></button>
         </div>
         <div style="flex: 1; padding: 10px;">
-          
+          <button type="button"  (click)="setRandomPassword()">Generar contraseña</button>
         </div>
       </div>
     </form>

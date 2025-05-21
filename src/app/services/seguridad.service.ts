@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -18,6 +18,7 @@ export class SeguridadService {
   Observable<{ 
     autenticado: boolean; 
     tipoUsuario?: number;
+    areaUsuario?: number;
     apellidoM?: string;
     apellidoP?: string; 
     nombre?: string; 
@@ -26,6 +27,7 @@ export class SeguridadService {
     return this.http.post<{ 
       autenticado: boolean; 
       tipoUsuario?: number;
+      areaUsuario?: number;
       apellidoM?: string;
       apellidoP?: string; 
       nombre?: string; 
@@ -38,6 +40,7 @@ export class SeguridadService {
         if (resp.autenticado) {
           sessionStorage.setItem('autenticado', 'true');
           sessionStorage.setItem('tipoUsuario', String(resp.tipoUsuario));
+          sessionStorage.setItem('areaUsuario', String(resp.areaUsuario));
           sessionStorage.setItem('apellidoMUsuario', String(resp.apellidoM));
           sessionStorage.setItem('apellidoPUsuario', String(resp.apellidoP));
           sessionStorage.setItem('nombreUsuario', String(resp.nombre));
@@ -61,23 +64,15 @@ export class SeguridadService {
 
   obtenerRol(): string {
     const tipoUsuario = sessionStorage.getItem('tipoUsuario');
-   return tipoUsuario === '2' ? 'admin' : 'user';
-   }
-
-  /* descomentar despues de hacer pruebas 
-
-  obtenerRol(): string {
-   const tipoUsuario = localStorage.getItem('tipoUsuario');
-  return tipoUsuario === '2' ? 'admin' : 'user';
+    switch (tipoUsuario) {
+      case '2':
+        return 'admin';
+      case '3':
+        return 'director';
+      default:
+        return 'user';
+    }
   }
-
-
-    obtenerRol(): string {
-   return 'admin';
-  }
-  
-  */
-  
 
   obtenerNombre(): string {
     const nombre1 = sessionStorage.getItem('nombreUsuario');
@@ -92,6 +87,11 @@ export class SeguridadService {
   obtenerApellidoM(): string {
     const nombre1 = sessionStorage.getItem('apellidoMUsuario');
     return nombre1 ?? '';  // Retorna un string vacío si el valor es null
+  }
+
+  obtenerAreaUser(): number {
+    const areaUsuario = sessionStorage.getItem('areaUsuario');
+    return areaUsuario ? Number(areaUsuario) : 0;  // Convierte a número o retorna 0 si es null
   }
 
   obtenerId(): number {

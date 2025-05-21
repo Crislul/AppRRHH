@@ -1,0 +1,48 @@
+<h2>Editar Director</h2>
+
+<mat-dialog-content class="model1" aria-hidden="false">
+  <form [formGroup]="usuarioForm">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input nombreInput matInput formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Apellido paterno</mat-label>
+      <input matInput formControlName="apellidoP">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Apellido materno</mat-label>
+      <input matInput formControlName="apellidoM">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Correo</mat-label>
+      <input matInput type="email" formControlName="correo">
+    </mat-form-field>
+    <p> </p>
+    <mat-label class="label1">** Mínimo 8 caracteres</mat-label>
+    <p> </p>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="contrasenaHash">
+    </mat-form-field>
+
+    <h3>Adscripción de trabajo</h3>
+    <mat-form-field appearance="fill">
+  <mat-label>Adscripción de trabajo</mat-label>
+  <mat-select formControlName="areaId">
+    <mat-option *ngFor="let area of areas" [value]="area.id">{{ area.nombre }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button color="primary" (click)="guardarCambios()" [disabled]="!usuarioForm.valid">
+    Guardar
+  </button>
+</mat-dialog-actions>

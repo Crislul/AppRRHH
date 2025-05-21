@@ -67,11 +67,11 @@ export const routes: Routes = [
    { path: 'tablaSalidasAdmin', component: TablaSalidasAdminComponent, canActivate: [authAdminGuard]},
    { path: 'tablaUsuariosAdmin', component: TablaUsuariosAdminComponent, canActivate: [authAdminGuard]},
 
-   { path: 'expedienteadmin', component: ExpedienteAdminComponent },
-   { path: 'expedientevistaadmin/:id', component: ExpedienteVistaAdminComponent },
+   { path: 'expedienteadmin', component: ExpedienteAdminComponent, canActivate: [authAdminGuard]},
+   { path: 'expedientevistaadmin/:id', component: ExpedienteVistaAdminComponent, canActivate: [authAdminGuard]},
 
-   { path: 'generarDirector', component: NuevoDirectorAdminComponent},
-   { path: 'tablaDirectoresAdmin', component: TablaDirectoresAdminComponent}, 
+   { path: 'generarDirector', component: NuevoDirectorAdminComponent, canActivate: [authAdminGuard]},
+   { path: 'tablaDirectoresAdmin', component: TablaDirectoresAdminComponent, canActivate: [authAdminGuard]},
 
 
    // usuario
@@ -93,8 +93,8 @@ export const routes: Routes = [
   
    // director 
    { path: 'indexDirector', component: IndexDirectorComponent},
-   { path: 'salida', component:  SalidaDirectorComponent},
-   { path: 'incidencia', component:  IncidenciaDirectorComponent},
+   { path: 'salidaDir/:id', component:  SalidaDirectorComponent},
+   { path: 'incidenciaDir/:id', component:  IncidenciaDirectorComponent},
    { path: 'tablaIncidenciasDirector', component: TablaIncidenciasDirectorComponent},
    { path: 'tablaSalidasDirector', component: TablaSalidasDirectorComponent}
 ];

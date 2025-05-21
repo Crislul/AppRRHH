@@ -37,15 +37,17 @@ export class GenerarSalidaAdminComponent implements OnInit{
     categoriaId: '',
     categoriaNombre: '',  
       
-    estatus: 0
+    estatusDir: 0,
+    estatusAdmin: 0
     };
 
     fechaHoy: string = new Date().toLocaleDateString('es-MX', {
-      timeZone: 'America/Mexico_City',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    }).split('/').reverse().join('-');
+  timeZone: 'America/Mexico_City',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+});
+
 
 
     constructor (private salidaService: SalidaService){}
@@ -64,7 +66,8 @@ export class GenerarSalidaAdminComponent implements OnInit{
         areaNombre: '',  
         categoriaId: '',
         categoriaNombre: '',  
-        estatus: 0
+        estatusDir: 0,
+        estatusAdmin: 0
       };
     }
     

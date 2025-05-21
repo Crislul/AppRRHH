@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { Notificacion, NotificacionesService } from '../../services/notificaciones.service';
+import { NotificacionesService } from '../../services/notificaciones.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class IncidenciaAdminComponent implements OnInit {
     notificacionId: number | null = null;// el id de la notificacion
-      incidencia: Incidencia | null = null;
+    incidencia: Incidencia | null = null;
 
 
   constructor(
@@ -85,18 +85,18 @@ export class IncidenciaAdminComponent implements OnInit {
     );
   }
 
-  actualizarEstatus(estatus: number): void {
+  actualizarEstatus(estatusAdmin: number): void {
     if (!this.incidencia) return;
 
     const incidenciaActualizada: Incidencia = {
       ...this.incidencia,
-      estatus: estatus
+      estatusAdmin: estatusAdmin
     };
 
     this.incidenciaService.updateIncidencia(this.incidencia.id, incidenciaActualizada).subscribe(
       () => {
-        this.incidencia!.estatus = estatus;
-        this.mostrarAlerta(estatus);
+        this.incidencia!.estatusAdmin = estatusAdmin;
+        this.mostrarAlerta(estatusAdmin);
       },
       (error) => {
         console.error('Error al actualizar el estatus:', error);

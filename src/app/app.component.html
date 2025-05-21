@@ -29,48 +29,22 @@
 ></app-main>
 }
 
-@else {
-  <app-login> </app-login>
-}
+@else if (estaAutorizado() && tipoUsuario()=='director')
+{
 
-  <!-- Login para hacer pruebas conAdmin
-
-    <app-toolbar></app-toolbar>
-
-  <app-menu
-    [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-    (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
-  ></app-menu>
-
-  <app-main
-    [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
-    [screenWidth]="screenWidth()"
-  ></app-main>
-   
-  -->
-
+  <app-toolbar-director ></app-toolbar-director> 
   
-<!-- Login para hacer pruebas con Usuario
-
-    <app-toolbar></app-toolbar>
-  
-  <app-menu-user 
+  <app-menu-director 
       [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
       (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)" 
-  > </app-menu-user>
+  > </app-menu-director>
 
   <app-main
       [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
       [screenWidth]="screenWidth()"
 ></app-main>
+}
 
--->
-
-
-
-<!--  Login Definitivo
-
-
--->
-
-
+@else {
+  <app-login> </app-login>
+}

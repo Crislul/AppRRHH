@@ -23,7 +23,8 @@ export interface Salida{
   categoriaId: number;
   categoriaNombre: string;  
     
-  estatus: number;
+  estatusDir: number;
+  estatusAdmin: number;
 }
 
 @Injectable({

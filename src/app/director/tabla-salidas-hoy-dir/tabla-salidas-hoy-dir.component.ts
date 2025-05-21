@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SalidaService } from '../../services/salida.service';
+import { SeguridadService } from '../../services/seguridad.service';
 
 export interface Salida{
   id: number;
@@ -36,7 +37,7 @@ export interface Salida{
 }
 
 @Component({
-  selector: 'app-tabla-salidas-hoy',
+  selector: 'app-tabla-salidas-hoy-dir',
   imports: [
     CommonModule,
         MatTableModule,
@@ -47,11 +48,18 @@ export interface Salida{
         MatButtonModule,
         MatInputModule
   ],
-  templateUrl: './tabla-salidas-hoy.component.html',
-  styleUrl: './tabla-salidas-hoy.component.css'
+  templateUrl: './tabla-salidas-hoy-dir.component.html',
+  styleUrl: './tabla-salidas-hoy-dir.component.css'
 })
-export class TablaSalidasHoyComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin', 'estatusDir'];
+export class TablaSalidasHoyDirComponent implements OnInit, AfterViewInit {
+
+  seguridadService = inject(SeguridadService);
+  
+    idAreaUser(): number{
+      return this.seguridadService.obtenerAreaUser();
+    }
+  
+   displayedColumns: string[] = ['usuarioNombre', 'usuarioApellidoP', 'usuarioApellidoM','areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin', 'estatusDir'];
       dataSource = new MatTableDataSource<Salida>([]);
     
       @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -82,8 +90,16 @@ export class TablaSalidasHoyComponent implements OnInit, AfterViewInit {
               year: 'numeric'
             }).format(today); // Esto devuelve "dd/mm/aaaa"
       
+            const userId = this.idAreaUser();
+      
+            if (!userId || userId <= 0) {
+              console.warn('ID de Area no válido:', userId);
+              this.dataSource.data = []; // No muestra nada
+              return;
+            }
+      
             const filteredData = data.filter((incidencia) => {
-              return incidencia.fecha === todayFormatted;
+              return incidencia.fecha === todayFormatted && incidencia.areaId === userId;
             });
       
             this.dataSource.data = filteredData.sort((a, b) => b.id - a.id);
@@ -105,7 +121,7 @@ export class TablaSalidasHoyComponent implements OnInit, AfterViewInit {
   
       visualizarIncidencia(id: number)
       {
-        this.router.navigate(['/salida', id,]);
+        this.router.navigate(['/salidaDir', id,]);
       }
 
 }

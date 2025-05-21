@@ -81,18 +81,18 @@ export class SalidaAdminComponent implements OnInit {
     );
   }
 
-  actualizarEstatus(estatus: number): void {
+  actualizarEstatus(estatusAdmin: number): void {
     if (!this.salida) return;
 
     const salidaActualizada: Salida = {
       ...this.salida,
-      estatus: estatus
+      estatusAdmin: estatusAdmin
     };
 
     this.salidaService.updateAutorizacion(this.salida.id, salidaActualizada).subscribe(
       () => {
-        this.salida!.estatus = estatus;
-        this.mostrarAlerta(estatus);
+        this.salida!.estatusAdmin = estatusAdmin;
+        this.mostrarAlerta(estatusAdmin);
       },
       (error) => {
         console.error('Error al actualizar el estatus:', error);

@@ -52,15 +52,21 @@ export class TablaUsuariosAdminComponent implements OnInit, AfterViewInit {
   }
 
   obtenerUsuarios(): void {
-    this.usuarioService.obtenerUsuarios().subscribe(
-      (data) => {
-        this.dataSource.data = data.sort((a, b) => b.id - a.id);
-      },
-      (error) => {
-        console.error('Error al obtener usuarios:', error);
-      }
-    );
-  }
+  this.usuarioService.obtenerUsuarios().subscribe(
+    (data) => {
+      // Filtrar usuarios con areaId inválido (null, undefined o 0)
+      const usuariosSinArea = data
+        .filter(usuario => usuario.areaId == null || usuario.areaId === 0)
+        .sort((a, b) => b.id - a.id);
+
+      this.dataSource.data = usuariosSinArea;
+    },
+    (error) => {
+      console.error('Error al obtener usuarios:', error);
+    }
+  );
+}
+
 
   aplicarFiltro(event: Event): void {
     const valorFiltro = (event.target as HTMLInputElement).value;

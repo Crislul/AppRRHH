@@ -27,7 +27,8 @@ export interface Incidencia {
   categoriaNombre: string;  
   motivoId: number;
   motivoNombre: string;  
-  estatus: number;
+  estatusDir: number;
+  estatusAdmin: number;
 }
 
 @Component({
@@ -54,7 +55,7 @@ export class TablaIncidenciasHoyUserComponent implements OnInit, AfterViewInit {
   }
 
 
-  displayedColumns: string[] = ['areaNombre','categoriaNombre','fecha', 'acciones', 'estatus'];
+  displayedColumns: string[] = ['areaNombre','categoriaNombre','fecha', 'acciones', 'estatusAdmin','estatusDir'];
       dataSource = new MatTableDataSource<Incidencia>([]);
     
       @ViewChild(MatPaginator) paginator!: MatPaginator;
