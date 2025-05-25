@@ -115,7 +115,7 @@ export class IncidenciaDirectorComponent implements OnInit {
   
     this.actualizarEstatus(1); 
     if (this.notificacionId !== null) {
-      this.notificacionesService.eliminarnotificacion(this.notificacionId).subscribe(() => {
+      this.notificacionesService.marcarNotificacionComoLeida(this.notificacionId).subscribe(() => {
         console.log('Notificación eliminada correctamente');
       });
     } else {
@@ -126,8 +126,8 @@ export class IncidenciaDirectorComponent implements OnInit {
   rechazarIncidencia(): void {
     this.actualizarEstatus(2); 
     if (this.notificacionId !== null) {
-      this.notificacionesService.eliminarnotificacion(this.notificacionId).subscribe(() => {
-        console.log('Notificación eliminada correctamente');
+      this.notificacionesService.marcarNotificacionComoLeida(this.notificacionId).subscribe(() => {
+        console.log('Notificación leida correctamente');
       });
     } else {
       console.warn('No se encontró ID de notificación');

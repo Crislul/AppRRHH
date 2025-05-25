@@ -68,6 +68,7 @@ export class LoginComponent {
 
         if (resp.autenticado) {
           localStorage.setItem('usuarioId', String(resp.id)); // id usuario
+          localStorage.setItem('rol', String(resp.tipoUsuario)); //rol guardado
           // Esperar a que el usuario cierre la alerta antes de continuar
           await Swal.fire({
             title: 'Bienvenido',

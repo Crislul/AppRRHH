@@ -24,22 +24,27 @@ export class NotificacionesService {
 
   constructor(private http: HttpClient) {}
 
-  
-  getNotificaciones(): Observable<Notificacion[]> {
-    return this.http.get<Notificacion[]>(this.apiUrl);
-  }
-  
+  //get notificaciones generales
+ getNotificacionesGenerales(): Observable<Notificacion[]> {
+  return this.http.get<Notificacion[]>(`${this.apiUrl}/generales`);
+}
+//  put leida
   marcarNotificacionComoLeida(id: number) {
-    return this.http.put(`${this.apiUrl}/notificaciones/${id}/leida`, {});
+    return this.http.put(`${this.apiUrl}/${id}/leida`, {});
   }
+
   eliminarnotificacion(id: number): Observable<any> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
+//notis de respuesta para usuario (1)
   getNotificacionesPorUsuario(usuarioId: number): Observable<Notificacion[]> {
     return this.http.get<Notificacion[]>(`${this.apiUrl}/usuario/${usuarioId}`);
   }
-  
+  //notis de solicitudes admin(2) y director (3)
+  getNotificacionesPorRol(rol: number): Observable<Notificacion[]> {
+  return this.http.get<Notificacion[]>(`${this.apiUrl}/rol/${rol}`);
+}
+
 }
 
 

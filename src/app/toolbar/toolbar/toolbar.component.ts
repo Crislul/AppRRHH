@@ -37,19 +37,22 @@ export class ToolbarComponent implements OnInit {
     private notificacionesService: NotificacionesService
   ) {}
 
-  rolUsuario: string = '';
-  
-  ngOnInit(): void {
-    const usuarioId = Number(localStorage.getItem('usuarioId'));
-  
-    if (usuarioId) {
-      this.cargarNotificaciones(usuarioId); // carga inicial
-  
-      this.pollingSub = interval(10000).subscribe(() => {
-        this.cargarNotificaciones(usuarioId);
-      });
-    }
+rolUsuario: string = '';
+
+ngOnInit(): void {
+  const usuarioId = Number(localStorage.getItem('usuarioId'));
+  this.rolUsuario = localStorage.getItem('rol') || '';
+    console.log('Rol del usuario:', this.rolUsuario);
+
+  if (usuarioId && this.rolUsuario === '2') {
+    this.cargarNotificaciones(usuarioId);
+
+    this.pollingSub = interval(10000).subscribe(() => {
+      this.cargarNotificaciones(usuarioId);
+    });
   }
+}
+
   
   
   ngOnDestroy(): void {
@@ -74,24 +77,31 @@ export class ToolbarComponent implements OnInit {
   editUser() {
     this.router.navigate(['/configuracion']);
   }
-  cargarNotificaciones(usuarioId: number) {
-    this.notificacionesService.getNotificaciones().subscribe({ // solicitudes para el admin
-      next: (pendientes) => {
-        this.notificacionesService.getNotificacionesPorUsuario(usuarioId).subscribe({ // respuestas para el mismo admin si hizo una solicitud
-          next: (respuestas) => {
-            this.notificaciones = [...pendientes, ...respuestas.filter(r => r.estado === 'pendiente')];
-          },
-          error: (err) => {
-            console.error('Error al obtener notificaciones de respuesta:', err);
-          }
-        });
-      },
-      error: (err) => {
-        console.error('Error al obtener notificaciones pendientes:', err);
-      }
-    });
-    
-  }
+ cargarNotificaciones(usuarioId: number) {
+  const rol = Number(this.rolUsuario);
+
+  this.notificacionesService.getNotificacionesPorRol(rol).subscribe({
+    next: (solicitudes) => {
+      this.notificacionesService.getNotificacionesPorUsuario(usuarioId).subscribe({
+        next: (respuestas) => {
+          this.notificaciones = [
+            ...solicitudes.filter(n => n.estado === 'pendiente'),
+            ...respuestas.filter(n => n.estado === 'pendiente')
+          ];
+          console.log('Notificaciones combinadas:', this.notificaciones);
+        },
+        
+        error: (err) => {
+          console.error('Error al obtener notificaciones de respuesta:', err);
+        }
+      });
+    },
+    error: (err) => {
+      console.error('Error al obtener notificaciones por rol:', err);
+    }
+  });
+}
+
   
   
   
@@ -101,7 +111,7 @@ export class ToolbarComponent implements OnInit {
   
     if (tipo && id) {
       if (noti.tipo === 'respuesta') {
-        this.notificacionesService.eliminarnotificacion(noti.id).subscribe(() => {
+        this.notificacionesService.marcarNotificacionComoLeida(noti.id).subscribe(() => {
           this.router.navigate([`/${tipo}`, id]);
         });
       } else {

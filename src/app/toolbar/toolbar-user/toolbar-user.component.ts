@@ -111,7 +111,7 @@ irAVista(noti: Notificacion) {
     }
 
     //Luego elimina la notificación
-   this.notificacionesService.eliminarnotificacion(noti.id).subscribe();
+   this.notificacionesService.marcarNotificacionComoLeida(noti.id).subscribe();
   } else {
     console.warn('Notificación sin tipoPermiso o permisoId');
   }

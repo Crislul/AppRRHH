@@ -39,18 +39,18 @@ export class ToolbarDirectorComponent implements OnInit {
   rolUsuario: string = '';
   
   ngOnInit(): void {
-    const usuarioId = Number(localStorage.getItem('usuarioId'));
-  
-    if (usuarioId) {
-      this.cargarNotificaciones(usuarioId); // carga inicial
-  
-      this.pollingSub = interval(10000).subscribe(() => {
-        this.cargarNotificaciones(usuarioId);
-      });
-    }
+  const usuarioId = Number(localStorage.getItem('usuarioId'));
+  this.rolUsuario = localStorage.getItem('rol') || '';
+
+  if ( this.rolUsuario === '3') {
+    this.cargarNotificaciones(); // carga inicial
+
+    this.pollingSub = interval(10000).subscribe(() => {
+      this.cargarNotificaciones();
+    });
   }
-  
-  
+}
+
   ngOnDestroy(): void {
     if (this.pollingSub) {
       this.pollingSub.unsubscribe();
@@ -73,47 +73,48 @@ export class ToolbarDirectorComponent implements OnInit {
   editUser() {
     this.router.navigate(['/configuracion']);
   }
-  cargarNotificaciones(usuarioId: number) {
-    this.notificacionesService.getNotificaciones().subscribe({ // solicitudes para el admin
-      next: (pendientes) => {
-        this.notificacionesService.getNotificacionesPorUsuario(usuarioId).subscribe({ // respuestas para el mismo admin si hizo una solicitud
-          next: (respuestas) => {
-            this.notificaciones = [...pendientes, ...respuestas.filter(r => r.estado === 'pendiente')];
-          },
-          error: (err) => {
-            console.error('Error al obtener notificaciones de respuesta:', err);
-          }
-        });
-      },
-      error: (err) => {
-        console.error('Error al obtener notificaciones pendientes:', err);
-      }
-    });
-    
-  }
-  
-  
-  
-  irAVista(noti: Notificacion) {
-    const tipo = noti.tipoPermiso?.toLowerCase();
-    const id = noti.permisoId;
-  
-    if (tipo && id) {
-      if (noti.tipo === 'respuesta') {
-        this.notificacionesService.eliminarnotificacion(noti.id).subscribe(() => {
-          this.router.navigate([`/${tipo}`, id]);
-        });
-      } else {
-        this.router.navigate([`/${tipo}`, id], {
-          state: { notificacionId: noti.id }
-        });
-      }
-    } else {
-      console.warn('Notificación sin tipo o id de referencia');
+  cargarNotificaciones() {
+  const rol = Number(this.rolUsuario);
+
+  this.notificacionesService.getNotificacionesPorRol(rol).subscribe({
+    next: (solicitudes) => {
+      this.notificaciones = solicitudes.filter(n => n.estado === 'pendiente');
+    },
+    error: (err) => {
+      console.error('Error al obtener notificaciones por rol:', err);
     }
+  });
+}
+
+
+  
+  
+irAVista(noti: Notificacion) {
+  const tipo = noti.tipoPermiso?.toLowerCase();
+  const id = noti.permisoId;
+
+  if (tipo && id) {
+    let ruta = '';
+
+    if (tipo === 'incidencia') {
+      ruta = '/incidenciaDir';
+    } else if (tipo === 'salida') {
+      ruta = '/salidaDir';
+    } else {
+      console.warn('Tipo no reconocido:', tipo);
+      return;
+    }
+
+    console.log(`➡️ Redirigiendo a ${ruta}/${id} con notiId ${noti.id}`);
+
+    this.router.navigate([ruta, id], {
+      state: { notificacionId: noti.id }
+    });
+  } else {
+    console.warn('❌ Notificación inválida:', noti);
   }
-  
-  
+}
+
   
   
   

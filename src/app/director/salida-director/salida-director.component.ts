@@ -111,8 +111,8 @@ export class SalidaDirectorComponent implements OnInit{
   autorizarSalida(): void {
     this.actualizarEstatus(1);
     if (this.notificacionId) {
-      this.notificacionesService.eliminarnotificacion(this.notificacionId).subscribe(() => {
-        console.log('Notificación eliminada correctamente');
+      this.notificacionesService.marcarNotificacionComoLeida(this.notificacionId).subscribe(() => {
+        console.log('Notificación leida correctamente');
       });
     } else {
       console.warn('No se encontró ID de notificación');
@@ -122,8 +122,8 @@ export class SalidaDirectorComponent implements OnInit{
   rechazarSalida(): void {
     this.actualizarEstatus(2);
     if (this.notificacionId) {
-      this.notificacionesService.eliminarnotificacion(this.notificacionId).subscribe(() => {
-        console.log('Notificación eliminada correctamente');
+      this.notificacionesService.marcarNotificacionComoLeida(this.notificacionId).subscribe(() => {
+        console.log('Notificación leida correctamente');
       });
     } else {
       console.warn('No se encontró ID de notificación');
