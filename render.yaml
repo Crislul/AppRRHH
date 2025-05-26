@@ -1,7 +1,6 @@
 buildCommand: npm install && npm run build
 publishPath: dist/utrng-rrhh/browser
-staticPublishOptions:
-  redirects:
-    - source: "/*"
-      destination: "/index.html"
-      statusCode: 200
+redirects:
+  - source: /.*
+    destination: /index.html
+    status: 200
