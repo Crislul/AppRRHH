@@ -13,7 +13,7 @@ export interface Expediente {
 })
 export class ExpedienteService {
 
-  private apiUrl = 'https://localhost:7064/api/Expediente'; // Cambia el puerto si es necesario
+  private apiUrl = 'https://apirrhh.onrender.com/api/Expediente'; // Cambia el puerto si es necesario
 
   constructor(private http: HttpClient) {}
 

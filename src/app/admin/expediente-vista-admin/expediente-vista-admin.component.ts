@@ -68,7 +68,7 @@ documentos: any[] = [];
         // Separar la foto del resto de documentos
         const fotoDoc = respuesta.find(doc => doc.documento.toLowerCase() === 'foto');
         if (fotoDoc) {
-          this.fotoUrl = `https://localhost:7064/${fotoDoc.archivo.replace(/\\/g, '/')}`;
+          this.fotoUrl = `https://apirrhh.onrender.com/${fotoDoc.archivo.replace(/\\/g, '/')}`;
           this.fotoId = fotoDoc.id; // Guarda el ID de la foto para actualizar si es necesario
         }
   
@@ -170,7 +170,7 @@ documentos: any[] = [];
   }
   
   getUrlDocumento(doc: any): string {
-    return `https://localhost:7064/${doc.archivo.replace(/\\/g, '/')}`;
+    return `https://apirrhh.onrender.com/${doc.archivo.replace(/\\/g, '/')}`;
   }
   
   

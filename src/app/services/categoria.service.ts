@@ -15,7 +15,7 @@ export interface CreateCategoriaDto {
   providedIn: 'root'
 })
 export class CategoriaService {
-  private apiUrl = 'https://localhost:7064/api/categoria'; // Ajusta la URL según tu backend
+  private apiUrl = 'https://apirrhh.onrender.com/api/categoria'; // Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) {}
 

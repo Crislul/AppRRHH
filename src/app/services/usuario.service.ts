@@ -18,7 +18,7 @@ export interface Usuario {
   providedIn: 'root'
 })
 export class UsuarioService {
-  private apiUrl = 'https://localhost:7064/api/usuarios';
+  private apiUrl = 'https://apirrhh.onrender.com/api/usuarios';
 
   constructor(private http: HttpClient) {}
 

@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 export class SeguridadService {
 
 
-  private apiUrl = 'https://localhost:7064/api/auth/login'; // Cambia al puerto correcto de tu API
+  private apiUrl = 'https://apirrhh.onrender.com/api/auth/login'; // Cambia al puerto correcto de tu API
 
   constructor(private http: HttpClient) {
 

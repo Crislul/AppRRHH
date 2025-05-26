@@ -20,7 +20,7 @@ export interface Notificacion {
   providedIn: 'root'
 })
 export class NotificacionesService {
-  private apiUrl = 'https://localhost:7064/api/notificaciones';
+  private apiUrl = 'https://apirrhh.onrender.com/api/notificaciones';
 
   constructor(private http: HttpClient) {}
 

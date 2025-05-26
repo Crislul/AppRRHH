@@ -17,7 +17,7 @@ export interface CreateMotivoDto {
 
 
 export class MotivoService {
-  private apiUrl = 'https://localhost:7064/api/motivo'; // Ajusta según tu backend
+  private apiUrl = 'https://apirrhh.onrender.com/api/motivo'; // Ajusta según tu backend
 
   constructor(private http: HttpClient) {}
 

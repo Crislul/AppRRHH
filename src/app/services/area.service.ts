@@ -16,7 +16,7 @@ export interface CreateAreaDto {
   providedIn: 'root'
 })
 export class AreaService {
-  private apiUrl = 'https://localhost:7064/api/area'; // Ajusta la URL de tu API
+  private apiUrl = 'https://apirrhh.onrender.com/api/area'; // Ajusta la URL de tu API
 
   constructor(private http: HttpClient) {}
 

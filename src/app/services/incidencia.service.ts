@@ -29,11 +29,11 @@ export interface Incidencia {
 })
 export class IncidenciaService {
   
-  private apiUrl = 'https://localhost:7064/api/incidencia';
-  private usuariosUrl = 'https://localhost:7064/api/usuarios';
-  private areasUrl = 'https://localhost:7064/api/area';
-  private categoriasUrl = 'https://localhost:7064/api/categoria';
-  private motivosUrl = 'https://localhost:7064/api/motivo';
+  private apiUrl = 'https://apirrhh.onrender.com/api/incidencia';
+  private usuariosUrl = 'https://apirrhh.onrender.com/api/usuarios';
+  private areasUrl = 'https://apirrhh.onrender.com/api/area';
+  private categoriasUrl = 'https://apirrhh.onrender.com/api/categoria';
+  private motivosUrl = 'https://apirrhh.onrender.com/api/motivo';
 
   constructor(private http: HttpClient) {}
 

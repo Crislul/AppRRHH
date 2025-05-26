@@ -32,10 +32,10 @@ export interface Salida{
 })
 export class SalidaService {
 
-  private apiUrl = 'https://localhost:7064/api/autorizacion';
-  private usuariosUrl = 'https://localhost:7064/api/usuarios';
-  private areasUrl = 'https://localhost:7064/api/area';
-  private categoriasUrl = 'https://localhost:7064/api/categoria';
+  private apiUrl = 'https://apirrhh.onrender.com/autorizacion';
+  private usuariosUrl = 'https://apirrhh.onrender.com/api/usuarios';
+  private areasUrl = 'https://apirrhh.onrender.com/api/area';
+  private categoriasUrl = 'https://apirrhh.onrender.com/api/categoria';
 
   constructor(private http: HttpClient) { }
 

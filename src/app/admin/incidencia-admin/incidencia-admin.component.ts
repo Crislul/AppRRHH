@@ -140,7 +140,7 @@ export class IncidenciaAdminComponent implements OnInit {
   visualizarArchivo(): void {
     if (!this.incidencia?.id) return;
   
-    const fileUrl = `https://localhost:7064/api/incidencia/descargar-archivo/${this.incidencia.id}`;
+    const fileUrl = `https://apirrhh.onrender.com/api/incidencia/descargar-archivo/${this.incidencia.id}`;
     window.open(fileUrl, '_blank');
 
   }
