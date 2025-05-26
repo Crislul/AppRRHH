@@ -50,7 +50,7 @@
                 }
               ],
               "outputHashing": "all",
-                "baseHref": "./"
+                "baseHref": "/"
 
             },
             "development": {
