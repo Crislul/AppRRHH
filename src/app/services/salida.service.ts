@@ -32,7 +32,7 @@ export interface Salida{
 })
 export class SalidaService {
 
-  private apiUrl = 'https://apirrhh.onrender.com/autorizacion';
+  private apiUrl = 'https://apirrhh.onrender.com/api/autorizacion';
   private usuariosUrl = 'https://apirrhh.onrender.com/api/usuarios';
   private areasUrl = 'https://apirrhh.onrender.com/api/area';
   private categoriasUrl = 'https://apirrhh.onrender.com/api/categoria';
