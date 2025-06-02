@@ -63,7 +63,20 @@ export class TablaIncidenciasAdminComponent implements OnInit, AfterViewInit{
       private router: Router) {}
   
     ngOnInit(): void {
+      
       this.getIncidencias();
+      this.dataSource.filterPredicate = (data: Incidencia, filter: string) => {
+    const dataStr = (
+      data.usuarioNombre + ' ' +
+      data.usuarioApellidoP + ' ' +
+      data.usuarioApellidoM + ' ' +
+      data.areaNombre + ' ' +
+      data.categoriaNombre + ' ' +
+      data.motivoNombre
+    ).toLowerCase();
+
+    return dataStr.indexOf(filter) !== -1;
+  };
     }
   
     ngAfterViewInit(): void {
